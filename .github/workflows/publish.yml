@@ -2,8 +2,10 @@ name: Publish Core Package
 
 on:
   push:
+    branches:
+      - main  # Her main branch push'unda çalışır
     tags:
-      - 'v*'  # v1.0.0, v1.0.1 gibi version tag'lerde çalışır
+      - 'v*'  # Version tag'lerde de çalışır
   release:
     types: [created]
   workflow_dispatch:  # Manuel tetikleme için
