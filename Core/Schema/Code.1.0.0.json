@@ -1,0 +1,58 @@
+{
+    "key": "Code",
+    "version": "1.0.0",
+    "domain": "Core",
+    "flow": "Schema",
+    "flowVersion": "1.0.0",
+    "tags": [
+        "Core",
+        "Schema",
+        "Code",
+        "Task"
+    ],
+    "attributes": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://schemas.amorphie.com/core/code.json",
+        "title": "Code Definition",
+        "description": "Çalıştırılacak kod parçacığının tanımı. BASE64 formatında kod ve interface bilgisi içerir.",
+        "type": "object",
+        "properties": {
+            "code": {
+                "type": "string",
+                "description": "Çalıştırılacak kodun BASE64 formatındaki hali",
+                "pattern": "^[A-Za-z0-9+/]*={0,2}$"
+            },
+            "interface": {
+                "type": "string",
+                "description": "Kodun implement edeceği interface türü",
+                "oneOf": [
+                    {
+                        "const": "TaskMapper",
+                        "description": "Task mapping işlemleri için kullanılan interface"
+                    },
+                    {
+                        "const": "ResponseDataMapper",
+                        "description": "Response data mapping işlemleri için kullanılan interface"
+                    },
+                    {
+                        "const": "Script",
+                        "description": "Genel script çalıştırma için kullanılan interface"
+                    },
+                    {
+                        "const": "ExtensionTaskMapper",
+                        "description": "Extension task mapping işlemleri için kullanılan interface"
+                    },
+                    {
+                        "const": "FunctionTaskMapper",
+                        "description": "Function task mapping işlemleri için kullanılan interface"
+                    }
+                ]
+            }
+        },
+        "required": [
+            "code",
+            "interface"
+        ],
+        "additionalProperties": false
+    }
+} 

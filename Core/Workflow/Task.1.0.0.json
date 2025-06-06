@@ -1,0 +1,194 @@
+{
+    "key": "task-lifecycle-workflow",
+    "version": "1.0.0",
+    "domain": "Core",
+    "flow": "Workflow",
+    "flowVersion": "1.0.0",
+    "tags": [
+        "Core",
+        "Task",
+        "Lifecycle",
+        "Repository"
+    ],
+    "attributes": {
+        "timeout": null,
+        "type": "flow",
+        "labels": {
+            "en": "Task Lifecycle Management",
+            "tr": "Görev Yaşam Döngüsü Yönetimi"
+        },
+        "functions": [],
+        "sharedTransitions": [],
+        "extensions": [],
+        "features": [],
+        "startTransition": {
+            "key": "create-task",
+            "target": "draft",
+            "labels": {
+                "en": "Create Task",
+                "tr": "Görev Oluştur"
+            },
+            "versionStrategy": {
+                "strategy": "noAction"
+            },
+            "schema": {
+                "key": "task-creation-input",
+                "domain": "Core",
+                "workflow": "Task",
+                "version": "1.0.0"
+            },
+            "onExecute": [],
+            "views": [],
+            "type": "forward"
+        },
+        "states": [
+            {
+                "key": "draft",
+                "labels": {
+                    "en": "Draft State",
+                    "tr": "Taslak Durumu"
+                },
+                "transitions": [
+                    {
+                        "key": "activate",
+                        "target": "active",
+                        "labels": {
+                            "en": "Activate Task",
+                            "tr": "Görevi Aktifleştir"
+                        },
+                        "versionStrategy": {
+                            "strategy": "noAction"
+                        },
+                        "onExecute": [],
+                        "views": [],
+                        "type": "forward"
+                    },
+                    {
+                        "key": "delete",
+                        "target": null,
+                        "labels": {
+                            "en": "Delete Draft",
+                            "tr": "Taslağı Sil"
+                        },
+                        "versionStrategy": {
+                            "strategy": "noAction"
+                        },
+                        "onExecute": [],
+                        "views": [],
+                        "type": "self"
+                    }
+                ],
+                "views": [],
+                "responses": [],
+                "onFirstEntry": [],
+                "onFirstExit": [],
+                "onEntry": [],
+                "onExit": [],
+                "versionStrategy": {
+                    "strategy": "noAction"
+                },
+                "type": "start"
+            },
+            {
+                "key": "active",
+                "labels": {
+                    "en": "Active State",
+                    "tr": "Aktif Durumu"
+                },
+                "transitions": [
+                    {
+                        "key": "deactivate",
+                        "target": "passive",
+                        "labels": {
+                            "en": "Deactivate Task",
+                            "tr": "Görevi Pasifleştir"
+                        },
+                        "versionStrategy": {
+                            "strategy": "noAction"
+                        },
+                        "onExecute": [],
+                        "views": [],
+                        "type": "forward"
+                    },
+                    {
+                        "key": "update",
+                        "target": "active",
+                        "labels": {
+                            "en": "Update Task",
+                            "tr": "Görevi Güncelle"
+                        },
+                        "versionStrategy": {
+                            "strategy": "noAction"
+                        },
+                        "onExecute": [],
+                        "views": [],
+                        "type": "self"
+                    }
+                ],
+                "views": [],
+                "responses": [],
+                "onFirstEntry": [],
+                "onFirstExit": [],
+                "onEntry": [],
+                "onExit": [],
+                "versionStrategy": {
+                    "strategy": "noAction"
+                },
+                "type": "normal"
+            },
+            {
+                "key": "passive",
+                "labels": {
+                    "en": "Passive State",
+                    "tr": "Pasif Durumu"
+                },
+                "transitions": [
+                    {
+                        "key": "reactivate",
+                        "target": "active",
+                        "labels": {
+                            "en": "Reactivate Task",
+                            "tr": "Görevi Yeniden Aktifleştir"
+                        },
+                        "versionStrategy": {
+                            "strategy": "noAction"
+                        },
+                        "onExecute": [],
+                        "views": [],
+                        "type": "forward"
+                    },
+                    {
+                        "key": "archive",
+                        "target": null,
+                        "labels": {
+                            "en": "Archive Task",
+                            "tr": "Görevi Arşivle"
+                        },
+                        "versionStrategy": {
+                            "strategy": "noAction"
+                        },
+                        "onExecute": [],
+                        "views": [],
+                        "type": "self"
+                    }
+                ],
+                "views": [],
+                "responses": [],
+                "onFirstEntry": [],
+                "onFirstExit": [],
+                "onEntry": [],
+                "onExit": [],
+                "versionStrategy": {
+                    "strategy": "noAction"
+                },
+                "type": "finish"
+            }
+        ],
+        "modelSchema": {
+            "key": "Task",
+            "domain": "Core",
+            "workflow": "Schema",
+            "version": "1.0.0"
+        }
+    }
+}

@@ -1,0 +1,115 @@
+{
+    "key": "View",
+    "version": "1.0.0",
+    "domain": "Core",
+    "flow": "Schema",
+    "flowVersion": "1.0.0",
+    "tags": [
+        "Core",
+        "Schema",
+        "View",
+        "UI"
+    ],
+    "attributes": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://schemas.amorphie.com/core/view.json",
+        "title": "View Definition",
+        "description": "Amorphie platformunda kullanıcı arayüzü view tanımları için şema. Dinamik UI render edilebilir içerik ve gösterim şekli bilgilerini içerir.",
+        "type": "object",
+        "properties": {
+            "type": {
+                "type": "string",
+                "description": "View'in render teknolojisi veya türü",
+                "oneOf": [
+                    {
+                        "const": "dynamic-flutter",
+                        "description": "Flutter ile dinamik render edilecek view"
+                    },
+                    {
+                        "const": "dynamic-html",
+                        "description": "HTML olarak dinamik render edilecek view"
+                    },
+                    {
+                        "const": "static-html",
+                        "description": "Statik HTML içerik"
+                    },
+                    {
+                        "const": "native",
+                        "description": "Platform native view referansı"
+                    }
+                ]
+            },
+            "display": {
+                "type": "string",
+                "description": "View'in ekranda gösterim şekli",
+                "oneOf": [
+                    {
+                        "const": "full-page",
+                        "description": "Tam sayfa olarak gösterilir"
+                    },
+                    {
+                        "const": "popup",
+                        "description": "Popup/modal olarak gösterilir"
+                    },
+                    {
+                        "const": "bottom-sheet",
+                        "description": "Alt taraftan açılan sheet olarak gösterilir"
+                    },
+                    {
+                        "const": "top-sheet",
+                        "description": "Üst taraftan açılan sheet olarak gösterilir"
+                    },
+                    {
+                        "const": "drawer",
+                        "description": "Yan menü/drawer olarak gösterilir"
+                    },
+                    {
+                        "const": "inline",
+                        "description": "Sayfa içinde inline olarak gösterilir"
+                    }
+                ]
+            },
+            "content": {
+                "type": "string",
+                "description": "View'in render edilecek içeriği. Flutter/HTML/Native kod içerir."
+            },
+            "metadata": {
+                "type": "object",
+                "description": "View'e özgü ek metadata bilgileri",
+                "properties": {
+                    "minHeight": {
+                        "type": "integer",
+                        "description": "Minimum yükseklik (pixel)"
+                    },
+                    "maxHeight": {
+                        "type": "integer",
+                        "description": "Maksimum yükseklik (pixel)"
+                    },
+                    "dismissible": {
+                        "type": "boolean",
+                        "description": "Kullanıcı tarafından kapatılabilir mi?"
+                    },
+                    "backdrop": {
+                        "type": "boolean",
+                        "description": "Arka plan gösterilsin mi?"
+                    },
+                    "animation": {
+                        "type": "string",
+                        "description": "Açılış/kapanış animasyon türü"
+                    }
+                },
+                "additionalProperties": true
+            },
+            "labels": {
+                "$ref": "Label.1.0.0.json#/attributes",
+                "description": "View'in çoklu dil başlıkları"
+            }
+        },
+        "required": [
+            "type",
+            "display",
+            "content"
+        ],
+        "additionalProperties": false
+    }
+} 

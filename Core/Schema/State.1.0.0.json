@@ -1,0 +1,203 @@
+{
+    "key": "State",
+    "version": "1.0.0",
+    "domain": "Core",
+    "flow": "Schema",
+    "flowVersion": "1.0.0",
+    "tags": [
+        "Core",
+        "State",
+        "Workflow",
+        "StateMachine"
+    ],
+    "attributes": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://schemas.amorphie.com/core/state.json",
+        "title": "State Definition",
+        "description": "Amorphie workflow state machine içindeki bir state'in tanımı. State'ler workflow'un temel yapı taşlarıdır.",
+        "type": "object",
+        "properties": {
+            "key": {
+                "type": "string",
+                "description": "State'in anahtar değeri. Workflow içinde benzersiz olmalıdır.",
+                "pattern": "^[a-z0-9-_]+$"
+            },
+            "labels": {
+                "$ref": "Label.1.0.0.json#/attributes",
+                "description": "State'in çoklu dil etiketleri"
+            },
+            "transitions": {
+                "type": "array",
+                "items": {
+                    "$ref": "Transition.1.0.0.json#/attributes"
+                },
+                "description": "Bu state'den çıkış yapılabilecek geçişlerin listesi."
+            },
+            "views": {
+                "type": "array",
+                "items": {
+                    "$ref": "Reference.1.0.0.json#/attributes"
+                },
+                "description": "Bu state ile ilişkili kullanıcı arayüzü view'larının referansları."
+            },
+            "responses": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "key": {
+                            "type": "string",
+                            "description": "Response mapping'in anahtar değeri."
+                        },
+                        "mapping": {
+                            "$ref": "Code.1.0.0.json#/attributes",
+                            "description": "State'de workflow verilerinin dönüş şeklini belirleyen mapping kodu referansı."
+                        }
+                    },
+                    "required": ["key", "mapping"],
+                    "additionalProperties": false
+                },
+                "description": "State'de workflow verilerinin görünüm katmanına nasıl döneceğini belirten mapping'ler."
+            },
+            "onFirstEntry": {
+                "type": "array",
+                "description": "State'e ilk kez girildiğinde çalıştırılacak görevler dizisi",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "order": {
+                            "type": "integer",
+                            "description": "Görevin çalışma sırası. Aynı sıradaki görevler paralel çalıştırılır."
+                        },
+                        "task": {
+                            "$ref": "Reference.1.0.0.json#/attributes",
+                            "description": "Çalıştırılacak task referansı"
+                        },
+                        "mapping": {
+                            "$ref": "Mapping.1.0.0.json#/attributes",
+                            "description": "Göreve iletilecek ve geri dönüşümde alınacak verilerin mapping tanımı"
+                        }
+                    },
+                    "required": ["order", "task", "mapping"],
+                    "additionalProperties": false
+                }
+            },
+            "onFirstExit": {
+                "type": "array",
+                "description": "State'den ilk kez çıkılırken çalıştırılacak görevler dizisi",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "order": {
+                            "type": "integer",
+                            "description": "Görevin çalışma sırası. Aynı sıradaki görevler paralel çalıştırılır."
+                        },
+                        "task": {
+                            "$ref": "Reference.1.0.0.json#/attributes",
+                            "description": "Çalıştırılacak task referansı"
+                        },
+                        "mapping": {
+                            "$ref": "Mapping.1.0.0.json#/attributes",
+                            "description": "Göreve iletilecek ve geri dönüşümde alınacak verilerin mapping tanımı"
+                        }
+                    },
+                    "required": ["order", "task", "mapping"],
+                    "additionalProperties": false
+                }
+            },
+            "onEntry": {
+                "type": "array",
+                "description": "State'e her girildiğinde çalıştırılacak görevler dizisi",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "order": {
+                            "type": "integer",
+                            "description": "Görevin çalışma sırası. Aynı sıradaki görevler paralel çalıştırılır."
+                        },
+                        "task": {
+                            "$ref": "Reference.1.0.0.json#/attributes",
+                            "description": "Çalıştırılacak task referansı"
+                        },
+                        "mapping": {
+                            "$ref": "Mapping.1.0.0.json#/attributes",
+                            "description": "Göreve iletilecek ve geri dönüşümde alınacak verilerin mapping tanımı"
+                        }
+                    },
+                    "required": ["order", "task", "mapping"],
+                    "additionalProperties": false
+                }
+            },
+            "onExit": {
+                "type": "array",
+                "description": "State'den her çıkılırken çalıştırılacak görevler dizisi",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "order": {
+                            "type": "integer",
+                            "description": "Görevin çalışma sırası. Aynı sıradaki görevler paralel çalıştırılır."
+                        },
+                        "task": {
+                            "$ref": "Reference.1.0.0.json#/attributes",
+                            "description": "Çalıştırılacak task referansı"
+                        },
+                        "mapping": {
+                            "$ref": "Mapping.1.0.0.json#/attributes",
+                            "description": "Göreve iletilecek ve geri dönüşümde alınacak verilerin mapping tanımı"
+                        }
+                    },
+                    "required": ["order", "task", "mapping"],
+                    "additionalProperties": false
+                }
+            },
+            "versionStrategy": {
+                "$ref": "VersionStrategy.1.0.0.json#/attributes",
+                "description": "State'in versiyon yönetim stratejisi."
+            },
+            "type": {
+                "oneOf": [
+                    {
+                        "const": "start",
+                        "description": "Workflow'un başlangıç state'i."
+                    },
+                    {
+                        "const": "wizard",
+                        "description": "Çok adımlı form state'i."
+                    },
+                    {
+                        "const": "normal",
+                        "description": "Normal işlem state'i."
+                    },
+                    {
+                        "const": "finish",
+                        "description": "Workflow'un sonlandırıldığı final state'i."
+                    },
+                    {
+                        "const": "subFlow",
+                        "description": "Alt workflow çağıran state."
+                    }
+                ],
+                "description": "State'in türü."
+            },
+            "subFlow": {
+                "$ref": "Reference.1.0.0.json#/attributes",
+                "description": "SubFlow state türü için çağrılacak alt workflow'un referansı."
+            }
+        },
+        "required": [
+            "key",
+            "labels",
+            "transitions",
+            "views", 
+            "responses",
+            "onFirstEntry",
+            "onFirstExit",
+            "onEntry",
+            "onExit",
+            "versionStrategy",
+            "type"
+        ],
+        "additionalProperties": false
+    }
+} 

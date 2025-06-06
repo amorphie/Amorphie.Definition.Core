@@ -1,0 +1,182 @@
+{
+    "key": "Transition",
+    "version": "1.0.0",
+    "domain": "Core",
+    "flow": "Schema",
+    "flowVersion": "1.0.0",
+    "tags": [
+        "Core",
+        "Schema",
+        "Transition",
+        "Workflow"
+    ],
+    "attributes": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://schemas.amorphie.com/core/transition.json",
+        "title": "Transition",
+        "description": "İş akışında state'ler arası geçişi tanımlayan şema. Kullanıcı etkileşimi, otomatik tetikleme ve veri validasyonu içerir.",
+        "type": "object",
+        "properties": {
+            "key": {
+                "type": "string",
+                "description": "Geçişin anahtar değeri. Geçiş talebinde kullanılır ve akış özelinde tekildir.",
+                "pattern": "^[a-z0-9-_]+$"
+            },
+            "target": {
+                "type": ["string", "null"],
+                "description": "Geçiş başarılı tamamlandığında erişeceği state key'i. Null ise bulunduğu state kabul edilir (type=self)."
+            },
+            "labels": {
+                "$ref": "Label.1.0.0.json#/attributes",
+                "description": "Çok dilli geçiş ismi"
+            },
+            "versionStrategy": {
+                "$ref": "VersionStrategy.1.0.0.json#/attributes",
+                "description": "Başarılı geçiş sonrasında versiyon artış stratejisi"
+            },
+            "schema": {
+                "$ref": "Reference.1.0.0.json#/attributes",
+                "description": "Geçişi çalıştırmak için gönderilmesi gereken veri şeması referansı"
+            },
+            "timer": {
+                "type": "object",
+                "description": "Otomatik olarak geçiş çalışacak ise zamanlama bilgisi",
+                "properties": {
+                    "duration": {
+                        "type": "string",
+                        "format": "duration",
+                        "description": "Süre bilgisi (ISO 8601 formatında)",
+                        "examples": ["PT30S", "PT5M", "PT1H"]
+                    },
+                    "reset": {
+                        "type": "string",
+                        "description": "Zamanlayıcı hangi durumlarda sıfırlanacak",
+                        "oneOf": [
+                            {
+                                "const": "never",
+                                "description": "Geçiş akışa tanımlanmışsa akış boyunca sayaç resetlenmez"
+                            },
+                            {
+                                "const": "stateEntry",
+                                "description": "State değiştiğinde sayaç resetlenir"
+                            }
+                        ]
+                    },
+                    "payload": {
+                        "type": "object",
+                        "description": "Zamanlayıcı ile tetiklenecek transition için geçilecek veri kümesi. Her akış ve geçişte değişebileceği için complex bırakılmıştır.",
+                        "additionalProperties": true
+                    }
+                },
+                "required": ["reset", "duration", "payload"],
+                "additionalProperties": false
+            },
+            "onExecute": {
+                "type": "array",
+                "description": "Geçiş tetiklendiğinde çalıştırılacak görevler dizisi",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "order": {
+                            "type": "integer",
+                            "description": "Görevin çalışma sırası. Aynı sıradaki görevler paralel çalıştırılır."
+                        },
+                        "task": {
+                            "$ref": "Reference.1.0.0.json#/attributes",
+                            "description": "Çalıştırılacak task referansı (Task.1.0.0.json şemasına uygun)"
+                        },
+                        "mapping": {
+                            "$ref": "Mapping.1.0.0.json#/attributes",
+                            "description": "Göreve iletilecek ve geri dönüşümde alınacak verilerin mapping tanımı"
+                        }
+                    },
+                    "required": ["order", "task", "mapping"],
+                    "additionalProperties": false
+                }
+            },
+            "views": {
+                "type": "array",
+                "description": "Geçişte kullanılacak arayüz bilgileri",
+                "items": {
+                    "$ref": "Reference.1.0.0.json#/attributes"
+                }
+            },
+            "rule": {
+                "$ref": "Code.1.0.0.json#/attributes",
+                "description": "Kural tabanlı ilerleme olacak ise kuralın tanımlandığı kod referansı"
+            },
+            "triggers": {
+                "type": "array",
+                "description": "Dapr input binding ile transition tetikleme (kafka mesajı ile akış başlatma/ilerletme)",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "mapping": {
+                            "$ref": "Code.1.0.0.json#/attributes",
+                            "description": "Gelen verinin maplenması için kullanılan kod"
+                        },
+                        "task": {
+                            "$ref": "Reference.1.0.0.json#/attributes",
+                            "description": "Bu transition'ı tetikleyen task referansı"
+                        }
+                    },
+                    "required": ["mapping", "task"],
+                    "additionalProperties": false
+                }
+            },
+            "type": {
+                "type": "string",
+                "description": "Geçişin kavramsal türünü belirler",
+                "oneOf": [
+                    {
+                        "const": "forward",
+                        "description": "Akışın ileri doğru hareketini belirler"
+                    },
+                    {
+                        "const": "back",
+                        "description": "Akışın geri gideceğini belirler. Sadece Wizard tipi state'lere tanımlanabilir"
+                    },
+                    {
+                        "const": "self",
+                        "description": "State değiştirmeyen geçişler için kullanılır. Target aynı state'i tanımlar"
+                    }
+                ]
+            }
+        },
+        "required": [
+            "key",
+            "labels", 
+            "versionStrategy",
+            "onExecute",
+            "type"
+        ],
+        "additionalProperties": false,
+        "allOf": [
+            {
+                "if": {
+                    "properties": {
+                        "type": {"const": "self"}
+                    }
+                },
+                "then": {
+                    "properties": {
+                        "target": {"type": "null"}
+                    }
+                }
+            },
+            {
+                "if": {
+                    "properties": {
+                        "type": {"enum": ["forward", "back"]}
+                    }
+                },
+                "then": {
+                    "properties": {
+                        "target": {"type": "string"}
+                    },
+                    "required": ["target"]
+                }
+            }
+        ]
+    }
+} 

@@ -1,0 +1,95 @@
+{
+    "key": "Task",
+    "version": "1.0.0",
+    "domain": "Core",
+    "flow": "Schema",
+    "flowVersion": "1.0.0",
+    "tags": [
+        "Core",
+        "Schema",
+        "Task",
+        "Dapr",
+        "Binding"
+    ],
+    "attributes": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://schemas.amorphie.com/core/task.json",
+        "title": "Task",
+        "description": "Dapr binding tabanlı görev tanımı. Mikroservis çağrıları, HTTP istekleri, mesaj kuyruğu işlemleri için kullanılır.",
+        "type": "object",
+        "properties": {
+            "binding": {
+                "type": "string",
+                "description": "Kullanılacak Dapr binding tipi",
+                "examples": [
+                    "dapr.bindings.http",
+                    "dapr.bindings.kafka",
+                    "dapr.bindings.redis",
+                    "dapr.bindings.postgresql",
+                    "dapr.bindings.blob-storage",
+                    "dapr.bindings.rabbitmq"
+                ]
+            },
+            "configuration": {
+                "type": "string",
+                "description": "Görev için kullanılacak konfigürasyon referansı",
+                "examples": ["fora-services", "banking-config", "notification-config"]
+            },
+            "metadata": {
+                "type": "object",
+                "description": "Binding tipine özel metadata bilgileri. Developer Dapr documentation'dan bakarak ilgili alanları ekler.",
+                "additionalProperties": true,
+                "examples": [
+                    {
+                        "url": "/api/service/endpoint/{param}",
+                        "operation": "post",
+                        "successResponses": [200, 201],
+                        "incident": false,
+                        "timeout": "PT30S"
+                    },
+                    {
+                        "topic": "user-events",
+                        "partition": "user-{userId}",
+                        "timeout": "PT30S",
+                        "maxRetries": 3
+                    },
+                    {
+                        "query": "INSERT INTO audit_log (user_id, action) VALUES (?, ?)",
+                        "timeout": "PT10S"
+                    }
+                ]
+            }
+        },
+        "required": ["binding", "configuration", "metadata"],
+        "additionalProperties": false,
+        "examples": [
+            {
+                "binding": "dapr.bindings.http",
+                "configuration": "fora-services",
+                "metadata": {
+                    "url": "/fora/DigitalServices/AccountService.svc/accounts/checking/new/{tckn}",
+                    "operation": "post",
+                    "successResponses": [200, 467],
+                    "incident": false
+                }
+            },
+            {
+                "binding": "dapr.bindings.kafka",
+                "configuration": "messaging-config",
+                "metadata": {
+                    "topic": "user-notifications",
+                    "partition": "user-{userId}",
+                    "timeout": "PT30S"
+                }
+            },
+            {
+                "binding": "dapr.bindings.postgresql",
+                "configuration": "database-config",
+                "metadata": {
+                    "query": "INSERT INTO audit_log (user_id, action, timestamp) VALUES (?, ?, ?)",
+                    "timeout": "PT10S"
+                }
+            }
+        ]
+    }
+} 

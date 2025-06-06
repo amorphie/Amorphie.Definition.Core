@@ -1,0 +1,44 @@
+{
+    "key": "Label",
+    "version": "1.0.0",
+    "domain": "Core",
+    "flow": "Schema",
+    "flowVersion": "1.0.0",
+    "tags": [
+        "Core",
+        "Schema",
+        "Label",
+        "Localization"
+    ],
+    "attributes": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://schemas.amorphie.com/core/label.json",
+        "title": "Multi-language Label",
+        "description": "Çoklu dil desteği için kullanılan etiket yapısı. Her dil kodu için ayrı değer saklar.",
+        "type": "object",
+        "patternProperties": {
+            "^[a-z]{2}(-[A-Z]{2})?$": {
+                "type": "string",
+                "description": "Belirtilen dil kodu için etiket değeri"
+            }
+        },
+        "additionalProperties": false,
+        "minProperties": 1,
+        "examples": [
+            {
+                "en": "User Login",
+                "tr": "Kullanıcı Girişi"
+            },
+            {
+                "en": "Data Processing",
+                "tr": "Veri İşleme",
+                "de": "Datenverarbeitung"
+            },
+            {
+                "en-US": "American English Label",
+                "en-GB": "British English Label",
+                "tr": "Türkçe Etiket"
+            }
+        ]
+    }
+} 

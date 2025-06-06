@@ -1,0 +1,36 @@
+{
+    "key": "Mapping",
+    "version": "1.0.0",
+    "domain": "Core",
+    "flow": "Schema",
+    "flowVersion": "1.0.0",
+    "tags": [
+        "Core",
+        "Mapping",
+        "DataTransformation",
+        "Reference"
+    ],
+    "attributes": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://schemas.amorphie.com/core/mapping.json",
+        "title": "Data Mapping Definition",
+        "description": "Veri dönüşüm mapping'leri için standart yapı. Input, output ve asenkron output mapping'lerini tanımlar.",
+        "type": "object",
+        "properties": {
+            "input": {
+                "$ref": "Code.1.0.0.json#/attributes",
+                "description": "Göreve iletilecek veri mapping kodu. Gelen veriyi task'ın beklediği formata dönüştürür."
+            },
+            "output": {
+                "$ref": "Code.1.0.0.json#/attributes",
+                "description": "Görevden dönecek veri mapping kodu. Task sonucunu workflow verisi formatına dönüştürür."
+            },
+            "asyncOutput": {
+                "$ref": "Code.1.0.0.json#/attributes",
+                "description": "Görevin asenkron dönüş veri mapping kodu. Async callback verisini workflow formatına dönüştürür."
+            }
+        },
+        "required": ["input", "output", "asyncOutput"],
+        "additionalProperties": false
+    }
+} 
