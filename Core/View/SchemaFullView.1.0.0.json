@@ -1,5 +1,5 @@
 {
-    "key": "schema-full-view",
+    "key": "SchemaFullView",
     "version": "1.0.0",
     "domain": "Core",
     "flow": "View",

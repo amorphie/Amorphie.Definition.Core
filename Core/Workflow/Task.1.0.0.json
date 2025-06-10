@@ -1,5 +1,5 @@
 {
-    "key": "task-lifecycle-workflow",
+    "key": "Task",
     "version": "1.0.0",
     "domain": "Core",
     "flow": "Workflow",

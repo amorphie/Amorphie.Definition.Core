@@ -5,6 +5,12 @@
 - Files inside folders are instances of that workflow
 - All files must follow semantic versioning: `[Name].[Version].json` (e.g., `State.1.0.0.json`)
 
+### File Naming Convention (Linter Rule)
+- Definition file names MUST be composed of: `key` + `.` + `version` + `.json`
+- The filename must exactly match the combination of the definition's `key` attribute and `version` attribute
+- Example: If key="Schema" and version="1.0.0", filename must be `Schema.1.0.0.json`
+- This ensures consistency and enables automated validation/linting
+
 ## Schema Instance Pattern Rules
 
 ### Platform Managed Properties (InstanceBase)

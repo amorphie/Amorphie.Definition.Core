@@ -1,5 +1,5 @@
 {
-    "key": "schema-lifecycle-workflow",
+    "key": "Schema",
     "version": "1.0.0",
     "domain": "Core",
     "flow": "Workflow",
@@ -80,7 +80,7 @@
                 ],
                 "views": [
                     {
-                        "key": "schema-full-view",
+                        "key": "SchemaFullView",
                         "domain": "Core",
                         "workflow": "View",
                         "version": "1.0.0"
@@ -134,7 +134,7 @@
                 ],
                 "views": [
                     {
-                        "key": "schema-full-view",
+                        "key": "SchemaFullView",
                         "domain": "Core",
                         "workflow": "View",
                         "version": "1.0.0"
@@ -188,7 +188,7 @@
                 ],
                 "views": [
                     {
-                        "key": "schema-full-view",
+                        "key": "SchemaFullView",
                         "domain": "Core",
                         "workflow": "View",
                         "version": "1.0.0"
