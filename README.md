@@ -42,3 +42,9 @@ Current: 1.0.0
 ## Lisans
 
 MIT 
+
+## Workflow Model Kuralları
+
+- Hiçbir transition'ın target'ı null olamaz. Her transition bir state'e yönlenmelidir.
+- Silme veya arşivleme işlemleri için deleted adında bir state tanımlanmalı ve ilgili transition'lar bu state'e yönlendirilmelidir.
+- deleted state'inden recover transition'ı ile active state'e dönüş sağlanmalıdır. 

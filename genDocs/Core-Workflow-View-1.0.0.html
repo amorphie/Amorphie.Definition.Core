@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View v1.0.0 - @amorphie/definition-core</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f8f9fa; }
+        .json-viewer { background: #1e1e1e; color: #d4d4d4; border-radius: 8px; }
+        .workflow-docs { background: white; border-left: 4px solid #0d6efd; padding: 1.5rem; margin: 2rem 0; border-radius: 8px; }
+        .plantuml-diagram { text-align: center; margin: 2rem 0; }
+        .schema-documentation { background: #f8f9fa; border-radius: 8px; padding: 1rem; }
+        .schema-object { background: white; border-radius: 8px; padding: 1rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .nested-schema { background: #f8f9fa; }
+        .schema-array { background: #fff3cd; border-radius: 8px; padding: 1rem; }
+        .schema-conditional { background: #d1ecf1; border-radius: 8px; padding: 1rem; }
+        .property-details { font-size: 0.875rem; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-white"><i class="bi bi-house"></i> Home</a></li>
+                    <li class="breadcrumb-item"><a href="Workflow.html" class="text-white">Workflow</a></li>
+                    <li class="breadcrumb-item active text-white-50" aria-current="page">View</li>
+                </ol>
+            </nav>
+        </div>
+    </nav>
+
+    <div class="container my-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h1 class="h3 mb-0"><i class="bi bi-file-earmark-code"></i> View</h1>
+                        <small>Version 1.0.0</small>
+                    </div>
+                    <div class="card-body">
+                        <div class="row mb-4">
+                            <div class="col-md-3">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Domain</h6>
+                                        <span class="badge bg-primary">Core</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Flow</h6>
+                                        <span class="badge bg-info">Workflow</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Flow Version</h6>
+                                        <span class="badge bg-secondary">1.0.0</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h6 class="card-title">File Path</h6>
+                                        <code class="small">Core/Workflow/View.1.0.0.json</code>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div class="mb-4">
+                            <h5><i class="bi bi-tags"></i> Tags</h5>
+                            <div class="d-flex gap-1 flex-wrap">
+                                <span class="badge bg-light text-dark">Core</span> <span class="badge bg-light text-dark">View</span> <span class="badge bg-light text-dark">Lifecycle</span> <span class="badge bg-light text-dark">Repository</span>
+                            </div>
+                        </div>
+                        
+
+                        
+
+                        
+
+                        
+          <div class="plantuml-diagram">
+            <h4><i class="bi bi-diagram-3"></i> Workflow Diagram</h4>
+            <img src="http://www.plantuml.com/plantuml/svg/hPL1Rzem5CVl-HHFscrIA8n9dP0sDIjTRrrLkauJuc3YbsB5YP7ZWBffduNFiCjEt2ZVQy-9az0DcedjWlFUtyxl-U_dS9OPfasUIBWJkFoiT1n9jVICC1AB55Gvy67HwtGxNI-BHJfdcYL0Ymt2DmzWP5zphgJIy69wYhsGK_8YvIuLlPbEUPTIxraOtskLDqeKSJorYj8SjSls-trAVL2fkM89Gg05aoun4byHUgyf2epHOfeRRDAllEzUMHJNB39UyGi3kBs1jt3BCibY6EOwJ_9QkhWYQLW48xko5kvGPqAb8wCfU_z0ir8LX8PI3i4eMA1N3XKaY8s8AaOj5P2WZ4fABRLYvYpBBCUD5UYQPGseqGhIjGjBL2EsiZXADCWzDrQiaP0YJSHsLV9svD8z5ph_Ql4PtFZb17p_7LHcXnffZh-WZlDIHPMe58WPqp5BDaKvWFDYHjcJ9t2v-QatwtIpJk2ZpBShaskQkdWA73GyW2oSOS86C1vRY5y0IV6fbtFJcHcw0dk4oOIMceSv3Y1IUiaqzp3bO4jqZM9tKHzcyM1DsB-7mCb_xcApBZj78kr5jEsbjI1hxy2Tve5QoaDpdNzINex7rUCFUzX_XSzGHWtRMM3XJRznR35aM4_OQqdHu_zaoKvPzI7bStwuea-5kBUQIteAKKeymfxAaoU5w3PxRfwtvmkcWcFw7pfdjxpc_Z8TpkoNvq0pb-h-NjRRbLWSvLI5_ysfKD6B3jfKgBO8r082UPm9P_H4_uJUBm00" 
+                 alt="Workflow Diagram" class="img-fluid" 
+                 style="max-width: 100%; background: white; padding: 1rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+          </div>
+
+                        
+                        <div class="mb-4">
+                            <h5><i class="bi bi-link-45deg"></i> References</h5>
+                            <div class="list-group">
+                                
+                                    <div class="list-group-item">
+                                        <code>Label.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <div class="mb-4">
+                            <h5><i class="bi bi-diagram-2"></i> Schema Documentation</h5>
+                            <div class="schema-documentation">
+                                
+      <div class="schema-simple mb-2 ">
+        <div class="d-flex align-items-center">
+          <span class="badge bg-dark me-2">flow</span>
+          <span class="text-muted">No description</span>
+        </div>
+        
+      </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h6><i class="bi bi-code-slash"></i> Raw JSON Schema</h6>
+                                <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#rawSchema-View-1.0.0">
+                                    <i class="bi bi-eye"></i> Toggle Raw JSON
+                                </button>
+                            </div>
+                            <div class="collapse" id="rawSchema-View-1.0.0">
+                                <pre class="json-viewer p-3"><code>{
+  "timeout": null,
+  "type": "flow",
+  "labels": {
+    "en": "View Lifecycle Management",
+    "tr": "Görünüm Yaşam Döngüsü Yönetimi"
+  },
+  "functions": [],
+  "sharedTransitions": [],
+  "extensions": [],
+  "features": [],
+  "startTransition": {
+    "key": "create-view",
+    "target": "draft",
+    "labels": {
+      "en": "Create View",
+      "tr": "Görünüm Oluştur"
+    },
+    "versionStrategy": {
+      "strategy": "noAction"
+    },
+    "schema": {
+      "key": "view-creation-input",
+      "domain": "Core",
+      "workflow": "View",
+      "version": "1.0.0"
+    },
+    "onExecute": [],
+    "views": [],
+    "type": "forward"
+  },
+  "states": [
+    {
+      "key": "draft",
+      "labels": {
+        "en": "Draft State",
+        "tr": "Taslak Durumu"
+      },
+      "transitions": [
+        {
+          "key": "activate",
+          "target": "active",
+          "labels": {
+            "en": "Activate View",
+            "tr": "Görünümü Aktifleştir"
+          },
+          "versionStrategy": {
+            "strategy": "noAction"
+          },
+          "onExecute": [],
+          "views": [],
+          "type": "forward"
+        },
+        {
+          "key": "delete",
+          "target": null,
+          "labels": {
+            "en": "Delete Draft",
+            "tr": "Taslağı Sil"
+          },
+          "versionStrategy": {
+            "strategy": "noAction"
+          },
+          "onExecute": [],
+          "views": [],
+          "type": "self"
+        }
+      ],
+      "views": [],
+      "responses": [],
+      "onFirstEntry": [],
+      "onFirstExit": [],
+      "onEntry": [],
+      "onExit": [],
+      "versionStrategy": {
+        "strategy": "noAction"
+      },
+      "type": "start"
+    },
+    {
+      "key": "active",
+      "labels": {
+        "en": "Active State",
+        "tr": "Aktif Durumu"
+      },
+      "transitions": [
+        {
+          "key": "deactivate",
+          "target": "passive",
+          "labels": {
+            "en": "Deactivate View",
+            "tr": "Görünümü Pasifleştir"
+          },
+          "versionStrategy": {
+            "strategy": "noAction"
+          },
+          "onExecute": [],
+          "views": [],
+          "type": "forward"
+        },
+        {
+          "key": "update",
+          "target": "active",
+          "labels": {
+            "en": "Update View",
+            "tr": "Görünümü Güncelle"
+          },
+          "versionStrategy": {
+            "strategy": "noAction"
+          },
+          "onExecute": [],
+          "views": [],
+          "type": "self"
+        }
+      ],
+      "views": [],
+      "responses": [],
+      "onFirstEntry": [],
+      "onFirstExit": [],
+      "onEntry": [],
+      "onExit": [],
+      "versionStrategy": {
+        "strategy": "noAction"
+      },
+      "type": "normal"
+    },
+    {
+      "key": "passive",
+      "labels": {
+        "en": "Passive State",
+        "tr": "Pasif Durumu"
+      },
+      "transitions": [
+        {
+          "key": "reactivate",
+          "target": "active",
+          "labels": {
+            "en": "Reactivate View",
+            "tr": "Görünümü Yeniden Aktifleştir"
+          },
+          "versionStrategy": {
+            "strategy": "noAction"
+          },
+          "onExecute": [],
+          "views": [],
+          "type": "forward"
+        },
+        {
+          "key": "archive",
+          "target": "deleted",
+          "labels": {
+            "en": "Archive View",
+            "tr": "Görünümü Arşivle"
+          },
+          "versionStrategy": {
+            "strategy": "noAction"
+          },
+          "onExecute": [],
+          "views": [],
+          "type": "self"
+        }
+      ],
+      "views": [],
+      "responses": [],
+      "onFirstEntry": [],
+      "onFirstExit": [],
+      "onEntry": [],
+      "onExit": [],
+      "versionStrategy": {
+        "strategy": "noAction"
+      },
+      "type": "finish"
+    },
+    {
+      "key": "deleted",
+      "labels": {
+        "en": "Deleted State",
+        "tr": "Silinmiş Durum"
+      },
+      "transitions": [
+        {
+          "key": "recover",
+          "target": "active",
+          "labels": {
+            "en": "Recover",
+            "tr": "Geri Al"
+          },
+          "versionStrategy": {
+            "strategy": "noAction"
+          },
+          "onExecute": [],
+          "views": [],
+          "type": "forward"
+        }
+      ],
+      "views": [],
+      "responses": [],
+      "onFirstEntry": [],
+      "onFirstExit": [],
+      "onEntry": [],
+      "onExit": [],
+      "versionStrategy": {
+        "strategy": "noAction"
+      },
+      "type": "finish"
+    }
+  ],
+  "modelSchema": {
+    "key": "View",
+    "domain": "Core",
+    "workflow": "Schema",
+    "version": "1.0.0"
+  }
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</body>
+</html>

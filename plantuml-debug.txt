@@ -1,0 +1,41 @@
+@startuml client-lifecycle-workflowWorkflow
+title client-lifecycle-workflow Workflow - v1.0.0
+skinparam state {
+  StartColor #b7e1cd
+  EndColor #f8bbd0
+  BackgroundColor #fffde7
+  BorderColor #333
+  FontName Arial
+  FontSize 14
+  AttributeFontSize 12
+}
+state draft
+draft : TR = Taslak Müşteri
+draft : EN = Draft Client
+draft : Views = client-onboarding-form
+draft : Responses = client-created
+state active
+active : TR = Aktif Müşteri
+active : EN = Active Client
+active : Views = client-management-view
+active : Responses = client-updated
+state suspended
+suspended : TR = Askıya Alınmış Müşteri
+suspended : EN = Suspended Client
+suspended : Views = client-suspension-view
+suspended : Responses = client-suspended
+state passive
+passive : TR = Pasif Müşteri
+passive : EN = Inactive Client
+passive : Views = client-archive-view
+passive : Responses = client-archived
+draft --> [*] : undefined
+draft --> [*] : undefined
+active --> [*] : undefined
+active --> [*] : undefined
+active --> [*] : undefined
+suspended --> [*] : undefined
+suspended --> [*] : undefined
+passive --> [*] : undefined
+passive --> [*] : undefined
+@enduml

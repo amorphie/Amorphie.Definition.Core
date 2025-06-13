@@ -1,0 +1,1506 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transition v1.0.0 - @amorphie/definition-core</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f8f9fa; }
+        .json-viewer { background: #1e1e1e; color: #d4d4d4; border-radius: 8px; }
+        .workflow-docs { background: white; border-left: 4px solid #0d6efd; padding: 1.5rem; margin: 2rem 0; border-radius: 8px; }
+        .plantuml-diagram { text-align: center; margin: 2rem 0; }
+        .schema-documentation { background: #f8f9fa; border-radius: 8px; padding: 1rem; }
+        .schema-object { background: white; border-radius: 8px; padding: 1rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .nested-schema { background: #f8f9fa; }
+        .schema-array { background: #fff3cd; border-radius: 8px; padding: 1rem; }
+        .schema-conditional { background: #d1ecf1; border-radius: 8px; padding: 1rem; }
+        .property-details { font-size: 0.875rem; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-white"><i class="bi bi-house"></i> Home</a></li>
+                    <li class="breadcrumb-item"><a href="Schema.html" class="text-white">Schema</a></li>
+                    <li class="breadcrumb-item active text-white-50" aria-current="page">Transition</li>
+                </ol>
+            </nav>
+        </div>
+    </nav>
+
+    <div class="container my-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h1 class="h3 mb-0"><i class="bi bi-file-earmark-code"></i> Transition</h1>
+                        <small>Version 1.0.0</small>
+                    </div>
+                    <div class="card-body">
+                        <div class="row mb-4">
+                            <div class="col-md-3">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Domain</h6>
+                                        <span class="badge bg-primary">Core</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Flow</h6>
+                                        <span class="badge bg-info">Schema</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Flow Version</h6>
+                                        <span class="badge bg-secondary">1.0.0</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h6 class="card-title">File Path</h6>
+                                        <code class="small">Core/Schema/Transition.1.0.0.json</code>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div class="mb-4">
+                            <h5><i class="bi bi-tags"></i> Tags</h5>
+                            <div class="d-flex gap-1 flex-wrap">
+                                <span class="badge bg-light text-dark">Core</span> <span class="badge bg-light text-dark">Schema</span> <span class="badge bg-light text-dark">Transition</span> <span class="badge bg-light text-dark">Workflow</span>
+                            </div>
+                        </div>
+                        
+
+                        
+                        <div class="mb-4">
+                            <h5><i class="bi bi-info-circle"></i> Description</h5>
+                            <div class="alert alert-info">
+                                <p class="mb-0">İş akışında state'ler arası geçişi tanımlayan şema. Kullanıcı etkileşimi, otomatik tetikleme ve veri validasyonu içerir.</p>
+                            </div>
+                        </div>
+                        
+
+                        
+
+                        
+
+                        
+                        <div class="mb-4">
+                            <h5><i class="bi bi-link-45deg"></i> References</h5>
+                            <div class="list-group">
+                                
+                                    <div class="list-group-item">
+                                        <code>Label.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                                    <div class="list-group-item">
+                                        <code>VersionStrategy.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                                    <div class="list-group-item">
+                                        <code>Reference.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                                    <div class="list-group-item">
+                                        <code>Reference.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                                    <div class="list-group-item">
+                                        <code>Mapping.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                                    <div class="list-group-item">
+                                        <code>Reference.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                                    <div class="list-group-item">
+                                        <code>Code.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                                    <div class="list-group-item">
+                                        <code>Code.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                                    <div class="list-group-item">
+                                        <code>Reference.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <div class="mb-4">
+                            <h5><i class="bi bi-diagram-2"></i> Schema Documentation</h5>
+                            <div class="schema-documentation">
+                                
+      <div class="schema-object mb-4 ">
+        <h6 class="text-primary"><i class="bi bi-box"></i> Transition</h6>
+        <p class="text-muted small">İş akışında state'ler arası geçişi tanımlayan şema. Kullanıcı etkileşimi, otomatik tetikleme ve veri validasyonu içerir.</p>
+        
+        <div class="table-responsive">
+          <table class="table table-sm table-bordered">
+            <thead class="table-primary">
+              <tr>
+                <th width="25%">Property</th>
+                <th width="15%">Type</th>
+                <th width="10%">Required</th>
+                <th width="50%">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+        <tr>
+          <td>
+            <code class="text-primary">key</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-success">string</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-check-circle text-success" title="Required"></i>
+          </td>
+          <td>
+            Geçişin anahtar değeri. Geçiş talebinde kullanılır ve akış özelinde tekildir.
+            <div class="mt-1"><small class="text-muted"><strong>Pattern:</strong> <code>^[a-z0-9-_]+$</code></small></div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="text-primary">target</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-dark">string,null</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-dash-circle text-muted" title="Optional"></i>
+          </td>
+          <td>
+            Geçiş başarılı tamamlandığında erişeceği state key'i. Null ise bulunduğu state kabul edilir (type=self).
+            
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="text-primary">labels</code>
+            <br><small class="text-muted">→ Label.1.0.0.json#/attributes</small>
+          </td>
+          <td>
+            <span class="badge bg-dark">reference</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-check-circle text-success" title="Required"></i>
+          </td>
+          <td>
+            Çok dilli geçiş ismi
+            
+          </td>
+        </tr>
+          <tr>
+            <td colspan="4" class="nested-schema p-0">
+              <div class="border-start border-3 border-primary ps-3 py-2 ms-3" style="background-color: #f8f9fa;">
+                <small class="text-muted fw-bold">↳ labels details:</small>
+                
+      <div class="schema-reference mb-3 ms-3">
+        <div class="alert alert-info border-info">
+          <h6 class="text-info mb-2"><i class="bi bi-link-45deg"></i> Reference to: <code>Label.1.0.0.json#/attributes</code></h6>
+          <p class="text-muted small">Çok dilli geçiş ismi</p>
+          <div class="mt-3">
+            <small class="text-muted fw-bold">Referenced schema details:</small>
+            <div class="border-start border-info border-2 ps-3 mt-2">
+              
+      <div class="schema-simple mb-2 ms-3">
+        <div class="d-flex align-items-center">
+          <span class="badge bg-info me-2">object</span>
+          <span class="text-muted">Çoklu dil desteği için kullanılan etiket yapısı. Her dil kodu için ayrı değer saklar.</span>
+        </div>
+        <div class="mt-1"><small class="text-muted"><strong>Examples:</strong> <code>{"en":"User Login","tr":"Kullanıcı Girişi"}</code>, <code>{"en":"Data Processing","tr":"Veri İşleme","de":"Datenverarbeitung"}</code>, <code>{"en-US":"American English Label","en-GB":"British English Label","tr":"Türkçe Etiket"}</code></small></div>
+      </div>
+            </div>
+          </div>
+        </div>
+      </div>
+              </div>
+            </td>
+          </tr>
+        <tr>
+          <td>
+            <code class="text-primary">versionStrategy</code>
+            <br><small class="text-muted">→ VersionStrategy.1.0.0.json#/attributes</small>
+          </td>
+          <td>
+            <span class="badge bg-dark">reference</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-check-circle text-success" title="Required"></i>
+          </td>
+          <td>
+            Başarılı geçiş sonrasında versiyon artış stratejisi
+            
+          </td>
+        </tr>
+          <tr>
+            <td colspan="4" class="nested-schema p-0">
+              <div class="border-start border-3 border-primary ps-3 py-2 ms-3" style="background-color: #f8f9fa;">
+                <small class="text-muted fw-bold">↳ versionStrategy details:</small>
+                
+      <div class="schema-reference mb-3 ms-3">
+        <div class="alert alert-info border-info">
+          <h6 class="text-info mb-2"><i class="bi bi-link-45deg"></i> Reference to: <code>VersionStrategy.1.0.0.json#/attributes</code></h6>
+          <p class="text-muted small">Başarılı geçiş sonrasında versiyon artış stratejisi</p>
+          <div class="mt-3">
+            <small class="text-muted fw-bold">Referenced schema details:</small>
+            <div class="border-start border-info border-2 ps-3 mt-2">
+              <div class="schema-conditional mb-3 ms-3">
+        <h6 class="text-info"><i class="bi bi-layers"></i> One Of (Choose one option)</h6>
+        <div class="accordion" id="oneOf-fn550r56p">
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#oneOf-2v2x2c869-0">
+                <strong>Option 1:</strong> noAction
+                <small class="text-muted ms-2">- Version olusturmaz</small>
+              </button>
+            </h2>
+            <div id="oneOf-2v2x2c869-0" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                
+      <div class="schema-simple mb-2 ms-3">
+        <div class="d-flex align-items-center">
+          <span class="badge bg-dark me-2">unknown</span>
+          <span class="text-muted">Version olusturmaz</span>
+        </div>
+        <div class="mt-1"><small class="text-muted"><strong>Constant value:</strong> <code>noAction</code></small></div>
+      </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#oneOf-60w2we382-1">
+                <strong>Option 2:</strong> increaseMinor
+                <small class="text-muted ms-2">- Sadece minor versiyonu arttir ve patch versiyonu sifirlar.</small>
+              </button>
+            </h2>
+            <div id="oneOf-60w2we382-1" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                
+      <div class="schema-simple mb-2 ms-3">
+        <div class="d-flex align-items-center">
+          <span class="badge bg-dark me-2">unknown</span>
+          <span class="text-muted">Sadece minor versiyonu arttir ve patch versiyonu sifirlar.</span>
+        </div>
+        <div class="mt-1"><small class="text-muted"><strong>Constant value:</strong> <code>increaseMinor</code></small></div>
+      </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#oneOf-allc2rpoj-2">
+                <strong>Option 3:</strong> increaseMajor
+                <small class="text-muted ms-2">- Major versiyonu arttirir ve minor versiyonu sifirlar.</small>
+              </button>
+            </h2>
+            <div id="oneOf-allc2rpoj-2" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                
+      <div class="schema-simple mb-2 ms-3">
+        <div class="d-flex align-items-center">
+          <span class="badge bg-dark me-2">unknown</span>
+          <span class="text-muted">Major versiyonu arttirir ve minor versiyonu sifirlar.</span>
+        </div>
+        <div class="mt-1"><small class="text-muted"><strong>Constant value:</strong> <code>increaseMajor</code></small></div>
+      </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#oneOf-8n7vsfzno-3">
+                <strong>Option 4:</strong> increasePatch
+                <small class="text-muted ms-2">- Sadece patch versiyonunu arttirir.</small>
+              </button>
+            </h2>
+            <div id="oneOf-8n7vsfzno-3" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                
+      <div class="schema-simple mb-2 ms-3">
+        <div class="d-flex align-items-center">
+          <span class="badge bg-dark me-2">unknown</span>
+          <span class="text-muted">Sadece patch versiyonunu arttirir.</span>
+        </div>
+        <div class="mt-1"><small class="text-muted"><strong>Constant value:</strong> <code>increasePatch</code></small></div>
+      </div>
+              </div>
+            </div>
+          </div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+              </div>
+            </td>
+          </tr>
+        <tr>
+          <td>
+            <code class="text-primary">schema</code>
+            <br><small class="text-muted">→ Reference.1.0.0.json#/attributes</small>
+          </td>
+          <td>
+            <span class="badge bg-dark">reference</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-dash-circle text-muted" title="Optional"></i>
+          </td>
+          <td>
+            Geçişi çalıştırmak için gönderilmesi gereken veri şeması referansı
+            
+          </td>
+        </tr>
+          <tr>
+            <td colspan="4" class="nested-schema p-0">
+              <div class="border-start border-3 border-primary ps-3 py-2 ms-3" style="background-color: #f8f9fa;">
+                <small class="text-muted fw-bold">↳ schema details:</small>
+                
+      <div class="schema-reference mb-3 ms-3">
+        <div class="alert alert-info border-info">
+          <h6 class="text-info mb-2"><i class="bi bi-link-45deg"></i> Reference to: <code>Reference.1.0.0.json#/attributes</code></h6>
+          <p class="text-muted small">Geçişi çalıştırmak için gönderilmesi gereken veri şeması referansı</p>
+          <div class="mt-3">
+            <small class="text-muted fw-bold">Referenced schema details:</small>
+            <div class="border-start border-info border-2 ps-3 mt-2">
+              
+      <div class="schema-object mb-4 ms-3">
+        <h6 class="text-primary"><i class="bi bi-box"></i> Reference</h6>
+        <p class="text-muted small">Cross-domain kayıtlara referans vermek için kullanılan ortak şema. Farklı runtime'lar arasında referans mekanizması sağlar.</p>
+        
+        <div class="table-responsive">
+          <table class="table table-sm table-bordered">
+            <thead class="table-primary">
+              <tr>
+                <th width="25%">Property</th>
+                <th width="15%">Type</th>
+                <th width="10%">Required</th>
+                <th width="50%">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+        <tr>
+          <td>
+            <code class="text-primary">id</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-success">string</span>
+            <br><small class="text-info">uuid</small>
+          </td>
+          <td>
+            <i class="bi bi-dash-circle text-muted" title="Optional"></i>
+          </td>
+          <td>
+            Referans edilen kaydın benzersiz tanımlayıcısı (UUID v7 formatında)
+            
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="text-primary">key</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-success">string</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-dash-circle text-muted" title="Optional"></i>
+          </td>
+          <td>
+            Referans edilen kaydın anahtar değeri (okunabilir identifier)
+            
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="text-primary">domain</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-success">string</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-dash-circle text-muted" title="Optional"></i>
+          </td>
+          <td>
+            Referans edilen kaydın bulunduğu domain (cross-domain referanslar için zorunlu)
+            <div class="mt-1"><small class="text-muted"><strong>Examples:</strong> <code>"Core"</code>, <code>"IDM"</code>, <code>"Banking"</code>, <code>"Payment"</code></small></div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="text-primary">workflow</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-success">string</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-dash-circle text-muted" title="Optional"></i>
+          </td>
+          <td>
+            Referans edilen kaydın bulunduğu workflow adı
+            
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="text-primary">version</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-success">string</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-dash-circle text-muted" title="Optional"></i>
+          </td>
+          <td>
+            Referans edilen kaydın sürüm bilgisi (semantic versioning)
+            <div class="mt-1"><small class="text-muted"><strong>Pattern:</strong> <code>^\d+\.\d+(\.\d+)?$</code></small></div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="text-primary">metadata</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-info">object</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-dash-circle text-muted" title="Optional"></i>
+          </td>
+          <td>
+            İstemci tarafından serbest şekilde eklenebilecek metadata bilgileri (displayName, description vb.)
+            
+          </td>
+        </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+            </div>
+          </div>
+        </div>
+      </div>
+              </div>
+            </td>
+          </tr>
+        <tr>
+          <td>
+            <code class="text-primary">timer</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-info">object</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-dash-circle text-muted" title="Optional"></i>
+          </td>
+          <td>
+            Otomatik olarak geçiş çalışacak ise zamanlama bilgisi
+            
+          </td>
+        </tr>
+          <tr>
+            <td colspan="4" class="nested-schema p-0">
+              <div class="border-start border-3 border-primary ps-3 py-2 ms-3" style="background-color: #f8f9fa;">
+                <small class="text-muted fw-bold">↳ timer details:</small>
+                
+      <div class="schema-object mb-4 ms-3">
+        
+        <p class="text-muted small">Otomatik olarak geçiş çalışacak ise zamanlama bilgisi</p>
+        
+        <div class="table-responsive">
+          <table class="table table-sm table-bordered">
+            <thead class="table-primary">
+              <tr>
+                <th width="25%">Property</th>
+                <th width="15%">Type</th>
+                <th width="10%">Required</th>
+                <th width="50%">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+        <tr>
+          <td>
+            <code class="text-primary">duration</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-success">string</span>
+            <br><small class="text-info">duration</small>
+          </td>
+          <td>
+            <i class="bi bi-check-circle text-success" title="Required"></i>
+          </td>
+          <td>
+            Süre bilgisi (ISO 8601 formatında)
+            <div class="mt-1"><small class="text-muted"><strong>Examples:</strong> <code>"PT30S"</code>, <code>"PT5M"</code>, <code>"PT1H"</code></small></div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="text-primary">reset</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-success">string</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-check-circle text-success" title="Required"></i>
+          </td>
+          <td>
+            Zamanlayıcı hangi durumlarda sıfırlanacak
+            
+          </td>
+        </tr>
+          <tr>
+            <td colspan="4" class="nested-schema p-0">
+              <div class="border-start border-3 border-primary ps-3 py-2 ms-3" style="background-color: #f8f9fa;">
+                <small class="text-muted fw-bold">↳ reset details:</small>
+                <div class="schema-conditional mb-3 ms-3">
+        <h6 class="text-info"><i class="bi bi-layers"></i> One Of (Choose one option)</h6>
+        <div class="accordion" id="oneOf-iojgnt5yo">
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#oneOf-w0q48pkym-0">
+                <strong>Option 1:</strong> never
+                <small class="text-muted ms-2">- Geçiş akışa tanımlanmışsa akış boyunca sayaç resetlenmez</small>
+              </button>
+            </h2>
+            <div id="oneOf-w0q48pkym-0" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                
+      <div class="schema-simple mb-2 ms-3">
+        <div class="d-flex align-items-center">
+          <span class="badge bg-dark me-2">unknown</span>
+          <span class="text-muted">Geçiş akışa tanımlanmışsa akış boyunca sayaç resetlenmez</span>
+        </div>
+        <div class="mt-1"><small class="text-muted"><strong>Constant value:</strong> <code>never</code></small></div>
+      </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#oneOf-vddhzerme-1">
+                <strong>Option 2:</strong> stateEntry
+                <small class="text-muted ms-2">- State değiştiğinde sayaç resetlenir</small>
+              </button>
+            </h2>
+            <div id="oneOf-vddhzerme-1" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                
+      <div class="schema-simple mb-2 ms-3">
+        <div class="d-flex align-items-center">
+          <span class="badge bg-dark me-2">unknown</span>
+          <span class="text-muted">State değiştiğinde sayaç resetlenir</span>
+        </div>
+        <div class="mt-1"><small class="text-muted"><strong>Constant value:</strong> <code>stateEntry</code></small></div>
+      </div>
+              </div>
+            </div>
+          </div></div></div>
+              </div>
+            </td>
+          </tr>
+        <tr>
+          <td>
+            <code class="text-primary">payload</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-info">object</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-check-circle text-success" title="Required"></i>
+          </td>
+          <td>
+            Zamanlayıcı ile tetiklenecek transition için geçilecek veri kümesi. Her akış ve geçişte değişebileceği için complex bırakılmıştır.
+            
+          </td>
+        </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+              </div>
+            </td>
+          </tr>
+        <tr>
+          <td>
+            <code class="text-primary">onExecute</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-secondary">array[object]</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-check-circle text-success" title="Required"></i>
+          </td>
+          <td>
+            Geçiş tetiklendiğinde çalıştırılacak görevler dizisi
+            
+          </td>
+        </tr>
+          <tr>
+            <td colspan="4" class="nested-schema p-0">
+              <div class="border-start border-3 border-primary ps-3 py-2 ms-3" style="background-color: #f8f9fa;">
+                <small class="text-muted fw-bold">↳ onExecute details:</small>
+                
+      <div class="schema-array mb-3 ms-3">
+        <h6 class="text-warning"><i class="bi bi-list"></i> Array of Items</h6>
+        <p class="text-muted small">Geçiş tetiklendiğinde çalıştırılacak görevler dizisi</p>
+        
+        <div class="border-start border-warning border-3 ps-3 py-2" style="background-color: #fff3cd;">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <small class="text-muted fw-bold">Each item in this array:</small>
+            <span class="badge bg-warning text-dark">Array Item</span>
+          </div>
+      <div class="schema-object mb-4 ms-3">
+        
+        
+        
+        <div class="table-responsive">
+          <table class="table table-sm table-bordered">
+            <thead class="table-primary">
+              <tr>
+                <th width="25%">Property</th>
+                <th width="15%">Type</th>
+                <th width="10%">Required</th>
+                <th width="50%">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+        <tr>
+          <td>
+            <code class="text-primary">order</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-primary">integer</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-check-circle text-success" title="Required"></i>
+          </td>
+          <td>
+            Görevin çalışma sırası. Aynı sıradaki görevler paralel çalıştırılır.
+            
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="text-primary">task</code>
+            <br><small class="text-muted">→ Reference.1.0.0.json#/attributes</small>
+          </td>
+          <td>
+            <span class="badge bg-dark">reference</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-check-circle text-success" title="Required"></i>
+          </td>
+          <td>
+            Çalıştırılacak task referansı (Task.1.0.0.json şemasına uygun)
+            
+          </td>
+        </tr>
+          <tr>
+            <td colspan="4" class="nested-schema p-0">
+              <div class="border-start border-3 border-primary ps-3 py-2 ms-3" style="background-color: #f8f9fa;">
+                <small class="text-muted fw-bold">↳ task details:</small>
+                
+      <div class="schema-reference mb-3 ms-3">
+        <div class="alert alert-info border-info">
+          <h6 class="text-info mb-2"><i class="bi bi-link-45deg"></i> Reference to: <code>Reference.1.0.0.json#/attributes</code></h6>
+          <p class="text-muted small">Çalıştırılacak task referansı (Task.1.0.0.json şemasına uygun)</p>
+          <div class="mt-2">
+            <small class="text-warning"><i class="bi bi-info-circle"></i> Schema details available but hidden to prevent deep nesting</small>
+          </div>
+        </div>
+      </div>
+              </div>
+            </td>
+          </tr>
+        <tr>
+          <td>
+            <code class="text-primary">mapping</code>
+            <br><small class="text-muted">→ Mapping.1.0.0.json#/attributes</small>
+          </td>
+          <td>
+            <span class="badge bg-dark">reference</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-check-circle text-success" title="Required"></i>
+          </td>
+          <td>
+            Göreve iletilecek ve geri dönüşümde alınacak verilerin mapping tanımı
+            
+          </td>
+        </tr>
+          <tr>
+            <td colspan="4" class="nested-schema p-0">
+              <div class="border-start border-3 border-primary ps-3 py-2 ms-3" style="background-color: #f8f9fa;">
+                <small class="text-muted fw-bold">↳ mapping details:</small>
+                
+      <div class="schema-reference mb-3 ms-3">
+        <div class="alert alert-info border-info">
+          <h6 class="text-info mb-2"><i class="bi bi-link-45deg"></i> Reference to: <code>Mapping.1.0.0.json#/attributes</code></h6>
+          <p class="text-muted small">Göreve iletilecek ve geri dönüşümde alınacak verilerin mapping tanımı</p>
+          <div class="mt-2">
+            <small class="text-warning"><i class="bi bi-info-circle"></i> Schema details available but hidden to prevent deep nesting</small>
+          </div>
+        </div>
+      </div>
+              </div>
+            </td>
+          </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+        </div>
+        
+        <div class="array-constraints mt-2">
+          
+          
+          
+        </div>
+      </div>
+              </div>
+            </td>
+          </tr>
+        <tr>
+          <td>
+            <code class="text-primary">views</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-secondary">array[reference]</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-dash-circle text-muted" title="Optional"></i>
+          </td>
+          <td>
+            Geçişte kullanılacak arayüz bilgileri
+            
+          </td>
+        </tr>
+          <tr>
+            <td colspan="4" class="nested-schema p-0">
+              <div class="border-start border-3 border-primary ps-3 py-2 ms-3" style="background-color: #f8f9fa;">
+                <small class="text-muted fw-bold">↳ views details:</small>
+                
+      <div class="schema-array mb-3 ms-3">
+        <h6 class="text-warning"><i class="bi bi-list"></i> Array of Items</h6>
+        <p class="text-muted small">Geçişte kullanılacak arayüz bilgileri</p>
+        
+        <div class="border-start border-warning border-3 ps-3 py-2" style="background-color: #fff3cd;">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <small class="text-muted fw-bold">Each item in this array:</small>
+            <span class="badge bg-warning text-dark">Array Item</span>
+          </div>
+      <div class="schema-reference mb-3 ms-3">
+        <div class="alert alert-info border-info">
+          <h6 class="text-info mb-2"><i class="bi bi-link-45deg"></i> Reference to: <code>Reference.1.0.0.json#/attributes</code></h6>
+          
+          <div class="mt-2">
+            <small class="text-warning"><i class="bi bi-info-circle"></i> Schema details available but hidden to prevent deep nesting</small>
+          </div>
+        </div>
+      </div>
+        </div>
+        
+        <div class="array-constraints mt-2">
+          
+          
+          
+        </div>
+      </div>
+              </div>
+            </td>
+          </tr>
+        <tr>
+          <td>
+            <code class="text-primary">rule</code>
+            <br><small class="text-muted">→ Code.1.0.0.json#/attributes</small>
+          </td>
+          <td>
+            <span class="badge bg-dark">reference</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-dash-circle text-muted" title="Optional"></i>
+          </td>
+          <td>
+            Kural tabanlı ilerleme olacak ise kuralın tanımlandığı kod referansı
+            
+          </td>
+        </tr>
+          <tr>
+            <td colspan="4" class="nested-schema p-0">
+              <div class="border-start border-3 border-primary ps-3 py-2 ms-3" style="background-color: #f8f9fa;">
+                <small class="text-muted fw-bold">↳ rule details:</small>
+                
+      <div class="schema-reference mb-3 ms-3">
+        <div class="alert alert-info border-info">
+          <h6 class="text-info mb-2"><i class="bi bi-link-45deg"></i> Reference to: <code>Code.1.0.0.json#/attributes</code></h6>
+          <p class="text-muted small">Kural tabanlı ilerleme olacak ise kuralın tanımlandığı kod referansı</p>
+          <div class="mt-3">
+            <small class="text-muted fw-bold">Referenced schema details:</small>
+            <div class="border-start border-info border-2 ps-3 mt-2">
+              
+      <div class="schema-object mb-4 ms-3">
+        <h6 class="text-primary"><i class="bi bi-box"></i> Code Definition</h6>
+        <p class="text-muted small">Çalıştırılacak kod parçacığının tanımı. BASE64 formatında kod ve interface bilgisi içerir.</p>
+        
+        <div class="table-responsive">
+          <table class="table table-sm table-bordered">
+            <thead class="table-primary">
+              <tr>
+                <th width="25%">Property</th>
+                <th width="15%">Type</th>
+                <th width="10%">Required</th>
+                <th width="50%">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+        <tr>
+          <td>
+            <code class="text-primary">code</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-success">string</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-check-circle text-success" title="Required"></i>
+          </td>
+          <td>
+            Çalıştırılacak kodun BASE64 formatındaki hali
+            <div class="mt-1"><small class="text-muted"><strong>Pattern:</strong> <code>^[A-Za-z0-9+/]*={0,2}$</code></small></div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="text-primary">interface</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-success">string</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-check-circle text-success" title="Required"></i>
+          </td>
+          <td>
+            Kodun implement edeceği interface türü
+            
+          </td>
+        </tr>
+          <tr>
+            <td colspan="4" class="nested-schema p-0">
+              <div class="border-start border-3 border-primary ps-3 py-2 ms-3" style="background-color: #f8f9fa;">
+                <small class="text-muted fw-bold">↳ interface details:</small>
+                <div class="schema-conditional mb-3 ms-3">
+        <h6 class="text-info"><i class="bi bi-layers"></i> One Of (Choose one option)</h6>
+        <div class="accordion" id="oneOf-f8et3asdb">
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#oneOf-md8svsus1-0">
+                <strong>Option 1:</strong> TaskMapper
+                <small class="text-muted ms-2">- Task mapping işlemleri için kullanılan interface</small>
+              </button>
+            </h2>
+            <div id="oneOf-md8svsus1-0" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                
+      <div class="schema-simple mb-2 ms-3">
+        <div class="d-flex align-items-center">
+          <span class="badge bg-dark me-2">unknown</span>
+          <span class="text-muted">Task mapping işlemleri için kullanılan interface</span>
+        </div>
+        <div class="mt-1"><small class="text-muted"><strong>Constant value:</strong> <code>TaskMapper</code></small></div>
+      </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#oneOf-v859mr3e3-1">
+                <strong>Option 2:</strong> ResponseDataMapper
+                <small class="text-muted ms-2">- Response data mapping işlemleri için kullanılan interface</small>
+              </button>
+            </h2>
+            <div id="oneOf-v859mr3e3-1" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                
+      <div class="schema-simple mb-2 ms-3">
+        <div class="d-flex align-items-center">
+          <span class="badge bg-dark me-2">unknown</span>
+          <span class="text-muted">Response data mapping işlemleri için kullanılan interface</span>
+        </div>
+        <div class="mt-1"><small class="text-muted"><strong>Constant value:</strong> <code>ResponseDataMapper</code></small></div>
+      </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#oneOf-inzqmiil1-2">
+                <strong>Option 3:</strong> Script
+                <small class="text-muted ms-2">- Genel script çalıştırma için kullanılan interface</small>
+              </button>
+            </h2>
+            <div id="oneOf-inzqmiil1-2" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                
+      <div class="schema-simple mb-2 ms-3">
+        <div class="d-flex align-items-center">
+          <span class="badge bg-dark me-2">unknown</span>
+          <span class="text-muted">Genel script çalıştırma için kullanılan interface</span>
+        </div>
+        <div class="mt-1"><small class="text-muted"><strong>Constant value:</strong> <code>Script</code></small></div>
+      </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#oneOf-6p1wug2q1-3">
+                <strong>Option 4:</strong> ExtensionTaskMapper
+                <small class="text-muted ms-2">- Extension task mapping işlemleri için kullanılan interface</small>
+              </button>
+            </h2>
+            <div id="oneOf-6p1wug2q1-3" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                
+      <div class="schema-simple mb-2 ms-3">
+        <div class="d-flex align-items-center">
+          <span class="badge bg-dark me-2">unknown</span>
+          <span class="text-muted">Extension task mapping işlemleri için kullanılan interface</span>
+        </div>
+        <div class="mt-1"><small class="text-muted"><strong>Constant value:</strong> <code>ExtensionTaskMapper</code></small></div>
+      </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#oneOf-yt24pd4bi-4">
+                <strong>Option 5:</strong> FunctionTaskMapper
+                <small class="text-muted ms-2">- Function task mapping işlemleri için kullanılan interface</small>
+              </button>
+            </h2>
+            <div id="oneOf-yt24pd4bi-4" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                
+      <div class="schema-simple mb-2 ms-3">
+        <div class="d-flex align-items-center">
+          <span class="badge bg-dark me-2">unknown</span>
+          <span class="text-muted">Function task mapping işlemleri için kullanılan interface</span>
+        </div>
+        <div class="mt-1"><small class="text-muted"><strong>Constant value:</strong> <code>FunctionTaskMapper</code></small></div>
+      </div>
+              </div>
+            </div>
+          </div></div></div>
+              </div>
+            </td>
+          </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+            </div>
+          </div>
+        </div>
+      </div>
+              </div>
+            </td>
+          </tr>
+        <tr>
+          <td>
+            <code class="text-primary">triggers</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-secondary">array[object]</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-dash-circle text-muted" title="Optional"></i>
+          </td>
+          <td>
+            Dapr input binding ile transition tetikleme (kafka mesajı ile akış başlatma/ilerletme)
+            
+          </td>
+        </tr>
+          <tr>
+            <td colspan="4" class="nested-schema p-0">
+              <div class="border-start border-3 border-primary ps-3 py-2 ms-3" style="background-color: #f8f9fa;">
+                <small class="text-muted fw-bold">↳ triggers details:</small>
+                
+      <div class="schema-array mb-3 ms-3">
+        <h6 class="text-warning"><i class="bi bi-list"></i> Array of Items</h6>
+        <p class="text-muted small">Dapr input binding ile transition tetikleme (kafka mesajı ile akış başlatma/ilerletme)</p>
+        
+        <div class="border-start border-warning border-3 ps-3 py-2" style="background-color: #fff3cd;">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <small class="text-muted fw-bold">Each item in this array:</small>
+            <span class="badge bg-warning text-dark">Array Item</span>
+          </div>
+      <div class="schema-object mb-4 ms-3">
+        
+        
+        
+        <div class="table-responsive">
+          <table class="table table-sm table-bordered">
+            <thead class="table-primary">
+              <tr>
+                <th width="25%">Property</th>
+                <th width="15%">Type</th>
+                <th width="10%">Required</th>
+                <th width="50%">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+        <tr>
+          <td>
+            <code class="text-primary">mapping</code>
+            <br><small class="text-muted">→ Code.1.0.0.json#/attributes</small>
+          </td>
+          <td>
+            <span class="badge bg-dark">reference</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-check-circle text-success" title="Required"></i>
+          </td>
+          <td>
+            Gelen verinin maplenması için kullanılan kod
+            
+          </td>
+        </tr>
+          <tr>
+            <td colspan="4" class="nested-schema p-0">
+              <div class="border-start border-3 border-primary ps-3 py-2 ms-3" style="background-color: #f8f9fa;">
+                <small class="text-muted fw-bold">↳ mapping details:</small>
+                
+      <div class="schema-reference mb-3 ms-3">
+        <div class="alert alert-info border-info">
+          <h6 class="text-info mb-2"><i class="bi bi-link-45deg"></i> Reference to: <code>Code.1.0.0.json#/attributes</code></h6>
+          <p class="text-muted small">Gelen verinin maplenması için kullanılan kod</p>
+          <div class="mt-2">
+            <small class="text-warning"><i class="bi bi-info-circle"></i> Schema details available but hidden to prevent deep nesting</small>
+          </div>
+        </div>
+      </div>
+              </div>
+            </td>
+          </tr>
+        <tr>
+          <td>
+            <code class="text-primary">task</code>
+            <br><small class="text-muted">→ Reference.1.0.0.json#/attributes</small>
+          </td>
+          <td>
+            <span class="badge bg-dark">reference</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-check-circle text-success" title="Required"></i>
+          </td>
+          <td>
+            Bu transition'ı tetikleyen task referansı
+            
+          </td>
+        </tr>
+          <tr>
+            <td colspan="4" class="nested-schema p-0">
+              <div class="border-start border-3 border-primary ps-3 py-2 ms-3" style="background-color: #f8f9fa;">
+                <small class="text-muted fw-bold">↳ task details:</small>
+                
+      <div class="schema-reference mb-3 ms-3">
+        <div class="alert alert-info border-info">
+          <h6 class="text-info mb-2"><i class="bi bi-link-45deg"></i> Reference to: <code>Reference.1.0.0.json#/attributes</code></h6>
+          <p class="text-muted small">Bu transition'ı tetikleyen task referansı</p>
+          <div class="mt-2">
+            <small class="text-warning"><i class="bi bi-info-circle"></i> Schema details available but hidden to prevent deep nesting</small>
+          </div>
+        </div>
+      </div>
+              </div>
+            </td>
+          </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+        </div>
+        
+        <div class="array-constraints mt-2">
+          
+          
+          
+        </div>
+      </div>
+              </div>
+            </td>
+          </tr>
+        <tr>
+          <td>
+            <code class="text-primary">type</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-success">string</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-check-circle text-success" title="Required"></i>
+          </td>
+          <td>
+            Geçişin kavramsal türünü belirler
+            
+          </td>
+        </tr>
+          <tr>
+            <td colspan="4" class="nested-schema p-0">
+              <div class="border-start border-3 border-primary ps-3 py-2 ms-3" style="background-color: #f8f9fa;">
+                <small class="text-muted fw-bold">↳ type details:</small>
+                <div class="schema-conditional mb-3 ms-3">
+        <h6 class="text-info"><i class="bi bi-layers"></i> One Of (Choose one option)</h6>
+        <div class="accordion" id="oneOf-jm4yuhupy">
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#oneOf-wy85gibrj-0">
+                <strong>Option 1:</strong> forward
+                <small class="text-muted ms-2">- Akışın ileri doğru hareketini belirler</small>
+              </button>
+            </h2>
+            <div id="oneOf-wy85gibrj-0" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                
+      <div class="schema-simple mb-2 ms-3">
+        <div class="d-flex align-items-center">
+          <span class="badge bg-dark me-2">unknown</span>
+          <span class="text-muted">Akışın ileri doğru hareketini belirler</span>
+        </div>
+        <div class="mt-1"><small class="text-muted"><strong>Constant value:</strong> <code>forward</code></small></div>
+      </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#oneOf-14g3ei93t-1">
+                <strong>Option 2:</strong> back
+                <small class="text-muted ms-2">- Akışın geri gideceğini belirler. Sadece Wizard tipi state'lere tanımlanabilir</small>
+              </button>
+            </h2>
+            <div id="oneOf-14g3ei93t-1" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                
+      <div class="schema-simple mb-2 ms-3">
+        <div class="d-flex align-items-center">
+          <span class="badge bg-dark me-2">unknown</span>
+          <span class="text-muted">Akışın geri gideceğini belirler. Sadece Wizard tipi state'lere tanımlanabilir</span>
+        </div>
+        <div class="mt-1"><small class="text-muted"><strong>Constant value:</strong> <code>back</code></small></div>
+      </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#oneOf-waiqamlkt-2">
+                <strong>Option 3:</strong> self
+                <small class="text-muted ms-2">- State değiştirmeyen geçişler için kullanılır. Target aynı state'i tanımlar</small>
+              </button>
+            </h2>
+            <div id="oneOf-waiqamlkt-2" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                
+      <div class="schema-simple mb-2 ms-3">
+        <div class="d-flex align-items-center">
+          <span class="badge bg-dark me-2">unknown</span>
+          <span class="text-muted">State değiştirmeyen geçişler için kullanılır. Target aynı state'i tanımlar</span>
+        </div>
+        <div class="mt-1"><small class="text-muted"><strong>Constant value:</strong> <code>self</code></small></div>
+      </div>
+              </div>
+            </div>
+          </div></div></div>
+              </div>
+            </td>
+          </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h6><i class="bi bi-code-slash"></i> Raw JSON Schema</h6>
+                                <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#rawSchema-Transition-1.0.0">
+                                    <i class="bi bi-eye"></i> Toggle Raw JSON
+                                </button>
+                            </div>
+                            <div class="collapse" id="rawSchema-Transition-1.0.0">
+                                <pre class="json-viewer p-3"><code>{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.amorphie.com/core/transition.json",
+  "title": "Transition",
+  "description": "İş akışında state'ler arası geçişi tanımlayan şema. Kullanıcı etkileşimi, otomatik tetikleme ve veri validasyonu içerir.",
+  "type": "object",
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "Geçişin anahtar değeri. Geçiş talebinde kullanılır ve akış özelinde tekildir.",
+      "pattern": "^[a-z0-9-_]+$"
+    },
+    "target": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Geçiş başarılı tamamlandığında erişeceği state key'i. Null ise bulunduğu state kabul edilir (type=self)."
+    },
+    "labels": {
+      "$ref": "Label.1.0.0.json#/attributes",
+      "description": "Çok dilli geçiş ismi"
+    },
+    "versionStrategy": {
+      "$ref": "VersionStrategy.1.0.0.json#/attributes",
+      "description": "Başarılı geçiş sonrasında versiyon artış stratejisi"
+    },
+    "schema": {
+      "$ref": "Reference.1.0.0.json#/attributes",
+      "description": "Geçişi çalıştırmak için gönderilmesi gereken veri şeması referansı"
+    },
+    "timer": {
+      "type": "object",
+      "description": "Otomatik olarak geçiş çalışacak ise zamanlama bilgisi",
+      "properties": {
+        "duration": {
+          "type": "string",
+          "format": "duration",
+          "description": "Süre bilgisi (ISO 8601 formatında)",
+          "examples": [
+            "PT30S",
+            "PT5M",
+            "PT1H"
+          ]
+        },
+        "reset": {
+          "type": "string",
+          "description": "Zamanlayıcı hangi durumlarda sıfırlanacak",
+          "oneOf": [
+            {
+              "const": "never",
+              "description": "Geçiş akışa tanımlanmışsa akış boyunca sayaç resetlenmez"
+            },
+            {
+              "const": "stateEntry",
+              "description": "State değiştiğinde sayaç resetlenir"
+            }
+          ]
+        },
+        "payload": {
+          "type": "object",
+          "description": "Zamanlayıcı ile tetiklenecek transition için geçilecek veri kümesi. Her akış ve geçişte değişebileceği için complex bırakılmıştır.",
+          "additionalProperties": true
+        }
+      },
+      "required": [
+        "reset",
+        "duration",
+        "payload"
+      ],
+      "additionalProperties": false
+    },
+    "onExecute": {
+      "type": "array",
+      "description": "Geçiş tetiklendiğinde çalıştırılacak görevler dizisi",
+      "items": {
+        "type": "object",
+        "properties": {
+          "order": {
+            "type": "integer",
+            "description": "Görevin çalışma sırası. Aynı sıradaki görevler paralel çalıştırılır."
+          },
+          "task": {
+            "$ref": "Reference.1.0.0.json#/attributes",
+            "description": "Çalıştırılacak task referansı (Task.1.0.0.json şemasına uygun)"
+          },
+          "mapping": {
+            "$ref": "Mapping.1.0.0.json#/attributes",
+            "description": "Göreve iletilecek ve geri dönüşümde alınacak verilerin mapping tanımı"
+          }
+        },
+        "required": [
+          "order",
+          "task",
+          "mapping"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "views": {
+      "type": "array",
+      "description": "Geçişte kullanılacak arayüz bilgileri",
+      "items": {
+        "$ref": "Reference.1.0.0.json#/attributes"
+      }
+    },
+    "rule": {
+      "$ref": "Code.1.0.0.json#/attributes",
+      "description": "Kural tabanlı ilerleme olacak ise kuralın tanımlandığı kod referansı"
+    },
+    "triggers": {
+      "type": "array",
+      "description": "Dapr input binding ile transition tetikleme (kafka mesajı ile akış başlatma/ilerletme)",
+      "items": {
+        "type": "object",
+        "properties": {
+          "mapping": {
+            "$ref": "Code.1.0.0.json#/attributes",
+            "description": "Gelen verinin maplenması için kullanılan kod"
+          },
+          "task": {
+            "$ref": "Reference.1.0.0.json#/attributes",
+            "description": "Bu transition'ı tetikleyen task referansı"
+          }
+        },
+        "required": [
+          "mapping",
+          "task"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "type": {
+      "type": "string",
+      "description": "Geçişin kavramsal türünü belirler",
+      "oneOf": [
+        {
+          "const": "forward",
+          "description": "Akışın ileri doğru hareketini belirler"
+        },
+        {
+          "const": "back",
+          "description": "Akışın geri gideceğini belirler. Sadece Wizard tipi state'lere tanımlanabilir"
+        },
+        {
+          "const": "self",
+          "description": "State değiştirmeyen geçişler için kullanılır. Target aynı state'i tanımlar"
+        }
+      ]
+    }
+  },
+  "required": [
+    "key",
+    "labels",
+    "versionStrategy",
+    "onExecute",
+    "type"
+  ],
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "self"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "target": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "enum": [
+              "forward",
+              "back"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "target": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "target"
+        ]
+      }
+    }
+  ]
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</body>
+</html>

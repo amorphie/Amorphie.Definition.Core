@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code v1.0.0 - @amorphie/definition-core</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f8f9fa; }
+        .json-viewer { background: #1e1e1e; color: #d4d4d4; border-radius: 8px; }
+        .workflow-docs { background: white; border-left: 4px solid #0d6efd; padding: 1.5rem; margin: 2rem 0; border-radius: 8px; }
+        .plantuml-diagram { text-align: center; margin: 2rem 0; }
+        .schema-documentation { background: #f8f9fa; border-radius: 8px; padding: 1rem; }
+        .schema-object { background: white; border-radius: 8px; padding: 1rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .nested-schema { background: #f8f9fa; }
+        .schema-array { background: #fff3cd; border-radius: 8px; padding: 1rem; }
+        .schema-conditional { background: #d1ecf1; border-radius: 8px; padding: 1rem; }
+        .property-details { font-size: 0.875rem; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-white"><i class="bi bi-house"></i> Home</a></li>
+                    <li class="breadcrumb-item"><a href="Schema.html" class="text-white">Schema</a></li>
+                    <li class="breadcrumb-item active text-white-50" aria-current="page">Code</li>
+                </ol>
+            </nav>
+        </div>
+    </nav>
+
+    <div class="container my-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h1 class="h3 mb-0"><i class="bi bi-file-earmark-code"></i> Code</h1>
+                        <small>Version 1.0.0</small>
+                    </div>
+                    <div class="card-body">
+                        <div class="row mb-4">
+                            <div class="col-md-3">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Domain</h6>
+                                        <span class="badge bg-primary">Core</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Flow</h6>
+                                        <span class="badge bg-info">Schema</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Flow Version</h6>
+                                        <span class="badge bg-secondary">1.0.0</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h6 class="card-title">File Path</h6>
+                                        <code class="small">Core/Schema/Code.1.0.0.json</code>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div class="mb-4">
+                            <h5><i class="bi bi-tags"></i> Tags</h5>
+                            <div class="d-flex gap-1 flex-wrap">
+                                <span class="badge bg-light text-dark">Core</span> <span class="badge bg-light text-dark">Schema</span> <span class="badge bg-light text-dark">Code</span> <span class="badge bg-light text-dark">Task</span>
+                            </div>
+                        </div>
+                        
+
+                        
+                        <div class="mb-4">
+                            <h5><i class="bi bi-info-circle"></i> Description</h5>
+                            <div class="alert alert-info">
+                                <p class="mb-0">Çalıştırılacak kod parçacığının tanımı. BASE64 formatında kod ve interface bilgisi içerir.</p>
+                            </div>
+                        </div>
+                        
+
+                        
+
+                        
+
+                        
+
+                        <div class="mb-4">
+                            <h5><i class="bi bi-diagram-2"></i> Schema Documentation</h5>
+                            <div class="schema-documentation">
+                                
+      <div class="schema-object mb-4 ">
+        <h6 class="text-primary"><i class="bi bi-box"></i> Code Definition</h6>
+        <p class="text-muted small">Çalıştırılacak kod parçacığının tanımı. BASE64 formatında kod ve interface bilgisi içerir.</p>
+        
+        <div class="table-responsive">
+          <table class="table table-sm table-bordered">
+            <thead class="table-primary">
+              <tr>
+                <th width="25%">Property</th>
+                <th width="15%">Type</th>
+                <th width="10%">Required</th>
+                <th width="50%">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+        <tr>
+          <td>
+            <code class="text-primary">code</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-success">string</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-check-circle text-success" title="Required"></i>
+          </td>
+          <td>
+            Çalıştırılacak kodun BASE64 formatındaki hali
+            <div class="mt-1"><small class="text-muted"><strong>Pattern:</strong> <code>^[A-Za-z0-9+/]*={0,2}$</code></small></div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="text-primary">interface</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-success">string</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-check-circle text-success" title="Required"></i>
+          </td>
+          <td>
+            Kodun implement edeceği interface türü
+            
+          </td>
+        </tr>
+          <tr>
+            <td colspan="4" class="nested-schema p-0">
+              <div class="border-start border-3 border-primary ps-3 py-2 ms-3" style="background-color: #f8f9fa;">
+                <small class="text-muted fw-bold">↳ interface details:</small>
+                <div class="schema-conditional mb-3 ms-3">
+        <h6 class="text-info"><i class="bi bi-layers"></i> One Of (Choose one option)</h6>
+        <div class="accordion" id="oneOf-22amzulg2">
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#oneOf-84hftggdc-0">
+                <strong>Option 1:</strong> TaskMapper
+                <small class="text-muted ms-2">- Task mapping işlemleri için kullanılan interface</small>
+              </button>
+            </h2>
+            <div id="oneOf-84hftggdc-0" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                
+      <div class="schema-simple mb-2 ms-3">
+        <div class="d-flex align-items-center">
+          <span class="badge bg-dark me-2">unknown</span>
+          <span class="text-muted">Task mapping işlemleri için kullanılan interface</span>
+        </div>
+        <div class="mt-1"><small class="text-muted"><strong>Constant value:</strong> <code>TaskMapper</code></small></div>
+      </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#oneOf-m657ejmna-1">
+                <strong>Option 2:</strong> ResponseDataMapper
+                <small class="text-muted ms-2">- Response data mapping işlemleri için kullanılan interface</small>
+              </button>
+            </h2>
+            <div id="oneOf-m657ejmna-1" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                
+      <div class="schema-simple mb-2 ms-3">
+        <div class="d-flex align-items-center">
+          <span class="badge bg-dark me-2">unknown</span>
+          <span class="text-muted">Response data mapping işlemleri için kullanılan interface</span>
+        </div>
+        <div class="mt-1"><small class="text-muted"><strong>Constant value:</strong> <code>ResponseDataMapper</code></small></div>
+      </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#oneOf-7tlfbx9qt-2">
+                <strong>Option 3:</strong> Script
+                <small class="text-muted ms-2">- Genel script çalıştırma için kullanılan interface</small>
+              </button>
+            </h2>
+            <div id="oneOf-7tlfbx9qt-2" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                
+      <div class="schema-simple mb-2 ms-3">
+        <div class="d-flex align-items-center">
+          <span class="badge bg-dark me-2">unknown</span>
+          <span class="text-muted">Genel script çalıştırma için kullanılan interface</span>
+        </div>
+        <div class="mt-1"><small class="text-muted"><strong>Constant value:</strong> <code>Script</code></small></div>
+      </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#oneOf-ztine30d4-3">
+                <strong>Option 4:</strong> ExtensionTaskMapper
+                <small class="text-muted ms-2">- Extension task mapping işlemleri için kullanılan interface</small>
+              </button>
+            </h2>
+            <div id="oneOf-ztine30d4-3" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                
+      <div class="schema-simple mb-2 ms-3">
+        <div class="d-flex align-items-center">
+          <span class="badge bg-dark me-2">unknown</span>
+          <span class="text-muted">Extension task mapping işlemleri için kullanılan interface</span>
+        </div>
+        <div class="mt-1"><small class="text-muted"><strong>Constant value:</strong> <code>ExtensionTaskMapper</code></small></div>
+      </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#oneOf-8nc933cgx-4">
+                <strong>Option 5:</strong> FunctionTaskMapper
+                <small class="text-muted ms-2">- Function task mapping işlemleri için kullanılan interface</small>
+              </button>
+            </h2>
+            <div id="oneOf-8nc933cgx-4" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                
+      <div class="schema-simple mb-2 ms-3">
+        <div class="d-flex align-items-center">
+          <span class="badge bg-dark me-2">unknown</span>
+          <span class="text-muted">Function task mapping işlemleri için kullanılan interface</span>
+        </div>
+        <div class="mt-1"><small class="text-muted"><strong>Constant value:</strong> <code>FunctionTaskMapper</code></small></div>
+      </div>
+              </div>
+            </div>
+          </div></div></div>
+              </div>
+            </td>
+          </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h6><i class="bi bi-code-slash"></i> Raw JSON Schema</h6>
+                                <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#rawSchema-Code-1.0.0">
+                                    <i class="bi bi-eye"></i> Toggle Raw JSON
+                                </button>
+                            </div>
+                            <div class="collapse" id="rawSchema-Code-1.0.0">
+                                <pre class="json-viewer p-3"><code>{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.amorphie.com/core/code.json",
+  "title": "Code Definition",
+  "description": "Çalıştırılacak kod parçacığının tanımı. BASE64 formatında kod ve interface bilgisi içerir.",
+  "type": "object",
+  "properties": {
+    "code": {
+      "type": "string",
+      "description": "Çalıştırılacak kodun BASE64 formatındaki hali",
+      "pattern": "^[A-Za-z0-9+/]*={0,2}$"
+    },
+    "interface": {
+      "type": "string",
+      "description": "Kodun implement edeceği interface türü",
+      "oneOf": [
+        {
+          "const": "TaskMapper",
+          "description": "Task mapping işlemleri için kullanılan interface"
+        },
+        {
+          "const": "ResponseDataMapper",
+          "description": "Response data mapping işlemleri için kullanılan interface"
+        },
+        {
+          "const": "Script",
+          "description": "Genel script çalıştırma için kullanılan interface"
+        },
+        {
+          "const": "ExtensionTaskMapper",
+          "description": "Extension task mapping işlemleri için kullanılan interface"
+        },
+        {
+          "const": "FunctionTaskMapper",
+          "description": "Function task mapping işlemleri için kullanılan interface"
+        }
+      ]
+    }
+  },
+  "required": [
+    "code",
+    "interface"
+  ],
+  "additionalProperties": false
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transition v1.0.0 - @amorphie/definition-core</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f8f9fa; }
+        .json-viewer { background: #1e1e1e; color: #d4d4d4; border-radius: 8px; }
+        .workflow-docs { background: white; border-left: 4px solid #0d6efd; padding: 1.5rem; margin: 2rem 0; border-radius: 8px; }
+        .plantuml-diagram { text-align: center; margin: 2rem 0; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-white"><i class="bi bi-house"></i> Home</a></li>
+                    <li class="breadcrumb-item"><a href="Schema.html" class="text-white">Schema</a></li>
+                    <li class="breadcrumb-item active text-white-50" aria-current="page">Transition</li>
+                </ol>
+            </nav>
+        </div>
+    </nav>
+
+    <div class="container my-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h1 class="h3 mb-0"><i class="bi bi-file-earmark-code"></i> Transition</h1>
+                        <small>Version 1.0.0</small>
+                    </div>
+                    <div class="card-body">
+                        <div class="row mb-4">
+                            <div class="col-md-3">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Domain</h6>
+                                        <span class="badge bg-primary">Core</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Flow</h6>
+                                        <span class="badge bg-info">Schema</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Flow Version</h6>
+                                        <span class="badge bg-secondary">1.0.0</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h6 class="card-title">File Path</h6>
+                                        <code class="small">Core/Schema/Transition.1.0.0.json</code>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div class="mb-4">
+                            <h5><i class="bi bi-tags"></i> Tags</h5>
+                            <div class="d-flex gap-1 flex-wrap">
+                                <span class="badge bg-light text-dark">Core</span> <span class="badge bg-light text-dark">Schema</span> <span class="badge bg-light text-dark">Transition</span> <span class="badge bg-light text-dark">Workflow</span>
+                            </div>
+                        </div>
+                        
+
+                        
+                        <div class="mb-4">
+                            <h5><i class="bi bi-info-circle"></i> Description</h5>
+                            <div class="alert alert-info">
+                                <p class="mb-0">İş akışında state'ler arası geçişi tanımlayan şema. Kullanıcı etkileşimi, otomatik tetikleme ve veri validasyonu içerir.</p>
+                            </div>
+                        </div>
+                        
+
+                        
+
+                        
+
+                        
+                        <div class="mb-4">
+                            <h5><i class="bi bi-link-45deg"></i> References</h5>
+                            <div class="list-group">
+                                
+                                    <div class="list-group-item">
+                                        <code>Label.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                                    <div class="list-group-item">
+                                        <code>VersionStrategy.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                                    <div class="list-group-item">
+                                        <code>Reference.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                                    <div class="list-group-item">
+                                        <code>Reference.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                                    <div class="list-group-item">
+                                        <code>Mapping.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                                    <div class="list-group-item">
+                                        <code>Reference.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                                    <div class="list-group-item">
+                                        <code>Code.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                                    <div class="list-group-item">
+                                        <code>Code.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                                    <div class="list-group-item">
+                                        <code>Reference.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <div class="mb-4">
+                            <h5><i class="bi bi-code-slash"></i> JSON Schema</h5>
+                            <pre class="json-viewer p-3"><code>{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.amorphie.com/core/transition.json",
+  "title": "Transition",
+  "description": "İş akışında state'ler arası geçişi tanımlayan şema. Kullanıcı etkileşimi, otomatik tetikleme ve veri validasyonu içerir.",
+  "type": "object",
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "Geçişin anahtar değeri. Geçiş talebinde kullanılır ve akış özelinde tekildir.",
+      "pattern": "^[a-z0-9-_]+$"
+    },
+    "target": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Geçiş başarılı tamamlandığında erişeceği state key'i. Null ise bulunduğu state kabul edilir (type=self)."
+    },
+    "labels": {
+      "$ref": "Label.1.0.0.json#/attributes",
+      "description": "Çok dilli geçiş ismi"
+    },
+    "versionStrategy": {
+      "$ref": "VersionStrategy.1.0.0.json#/attributes",
+      "description": "Başarılı geçiş sonrasında versiyon artış stratejisi"
+    },
+    "schema": {
+      "$ref": "Reference.1.0.0.json#/attributes",
+      "description": "Geçişi çalıştırmak için gönderilmesi gereken veri şeması referansı"
+    },
+    "timer": {
+      "type": "object",
+      "description": "Otomatik olarak geçiş çalışacak ise zamanlama bilgisi",
+      "properties": {
+        "duration": {
+          "type": "string",
+          "format": "duration",
+          "description": "Süre bilgisi (ISO 8601 formatında)",
+          "examples": [
+            "PT30S",
+            "PT5M",
+            "PT1H"
+          ]
+        },
+        "reset": {
+          "type": "string",
+          "description": "Zamanlayıcı hangi durumlarda sıfırlanacak",
+          "oneOf": [
+            {
+              "const": "never",
+              "description": "Geçiş akışa tanımlanmışsa akış boyunca sayaç resetlenmez"
+            },
+            {
+              "const": "stateEntry",
+              "description": "State değiştiğinde sayaç resetlenir"
+            }
+          ]
+        },
+        "payload": {
+          "type": "object",
+          "description": "Zamanlayıcı ile tetiklenecek transition için geçilecek veri kümesi. Her akış ve geçişte değişebileceği için complex bırakılmıştır.",
+          "additionalProperties": true
+        }
+      },
+      "required": [
+        "reset",
+        "duration",
+        "payload"
+      ],
+      "additionalProperties": false
+    },
+    "onExecute": {
+      "type": "array",
+      "description": "Geçiş tetiklendiğinde çalıştırılacak görevler dizisi",
+      "items": {
+        "type": "object",
+        "properties": {
+          "order": {
+            "type": "integer",
+            "description": "Görevin çalışma sırası. Aynı sıradaki görevler paralel çalıştırılır."
+          },
+          "task": {
+            "$ref": "Reference.1.0.0.json#/attributes",
+            "description": "Çalıştırılacak task referansı (Task.1.0.0.json şemasına uygun)"
+          },
+          "mapping": {
+            "$ref": "Mapping.1.0.0.json#/attributes",
+            "description": "Göreve iletilecek ve geri dönüşümde alınacak verilerin mapping tanımı"
+          }
+        },
+        "required": [
+          "order",
+          "task",
+          "mapping"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "views": {
+      "type": "array",
+      "description": "Geçişte kullanılacak arayüz bilgileri",
+      "items": {
+        "$ref": "Reference.1.0.0.json#/attributes"
+      }
+    },
+    "rule": {
+      "$ref": "Code.1.0.0.json#/attributes",
+      "description": "Kural tabanlı ilerleme olacak ise kuralın tanımlandığı kod referansı"
+    },
+    "triggers": {
+      "type": "array",
+      "description": "Dapr input binding ile transition tetikleme (kafka mesajı ile akış başlatma/ilerletme)",
+      "items": {
+        "type": "object",
+        "properties": {
+          "mapping": {
+            "$ref": "Code.1.0.0.json#/attributes",
+            "description": "Gelen verinin maplenması için kullanılan kod"
+          },
+          "task": {
+            "$ref": "Reference.1.0.0.json#/attributes",
+            "description": "Bu transition'ı tetikleyen task referansı"
+          }
+        },
+        "required": [
+          "mapping",
+          "task"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "type": {
+      "type": "string",
+      "description": "Geçişin kavramsal türünü belirler",
+      "oneOf": [
+        {
+          "const": "forward",
+          "description": "Akışın ileri doğru hareketini belirler"
+        },
+        {
+          "const": "back",
+          "description": "Akışın geri gideceğini belirler. Sadece Wizard tipi state'lere tanımlanabilir"
+        },
+        {
+          "const": "self",
+          "description": "State değiştirmeyen geçişler için kullanılır. Target aynı state'i tanımlar"
+        }
+      ]
+    }
+  },
+  "required": [
+    "key",
+    "labels",
+    "versionStrategy",
+    "onExecute",
+    "type"
+  ],
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "self"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "target": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "enum": [
+              "forward",
+              "back"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "target": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "target"
+        ]
+      }
+    }
+  ]
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</body>
+</html>

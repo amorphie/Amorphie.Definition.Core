@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reference v1.0.0 - @amorphie/definition-core</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f8f9fa; }
+        .json-viewer { background: #1e1e1e; color: #d4d4d4; border-radius: 8px; }
+        .workflow-docs { background: white; border-left: 4px solid #0d6efd; padding: 1.5rem; margin: 2rem 0; border-radius: 8px; }
+        .plantuml-diagram { text-align: center; margin: 2rem 0; }
+        .schema-documentation { background: #f8f9fa; border-radius: 8px; padding: 1rem; }
+        .schema-object { background: white; border-radius: 8px; padding: 1rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .nested-schema { background: #f8f9fa; }
+        .schema-array { background: #fff3cd; border-radius: 8px; padding: 1rem; }
+        .schema-conditional { background: #d1ecf1; border-radius: 8px; padding: 1rem; }
+        .property-details { font-size: 0.875rem; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-white"><i class="bi bi-house"></i> Home</a></li>
+                    <li class="breadcrumb-item"><a href="Schema.html" class="text-white">Schema</a></li>
+                    <li class="breadcrumb-item active text-white-50" aria-current="page">Reference</li>
+                </ol>
+            </nav>
+        </div>
+    </nav>
+
+    <div class="container my-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h1 class="h3 mb-0"><i class="bi bi-file-earmark-code"></i> Reference</h1>
+                        <small>Version 1.0.0</small>
+                    </div>
+                    <div class="card-body">
+                        <div class="row mb-4">
+                            <div class="col-md-3">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Domain</h6>
+                                        <span class="badge bg-primary">Core</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Flow</h6>
+                                        <span class="badge bg-info">Schema</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Flow Version</h6>
+                                        <span class="badge bg-secondary">1.0.0</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h6 class="card-title">File Path</h6>
+                                        <code class="small">Core/Schema/Reference.1.0.0.json</code>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div class="mb-4">
+                            <h5><i class="bi bi-tags"></i> Tags</h5>
+                            <div class="d-flex gap-1 flex-wrap">
+                                <span class="badge bg-light text-dark">Core</span> <span class="badge bg-light text-dark">Schema</span> <span class="badge bg-light text-dark">Reference</span> <span class="badge bg-light text-dark">CrossDomain</span>
+                            </div>
+                        </div>
+                        
+
+                        
+                        <div class="mb-4">
+                            <h5><i class="bi bi-info-circle"></i> Description</h5>
+                            <div class="alert alert-info">
+                                <p class="mb-0">Cross-domain kayıtlara referans vermek için kullanılan ortak şema. Farklı runtime'lar arasında referans mekanizması sağlar.</p>
+                            </div>
+                        </div>
+                        
+
+                        
+
+                        
+
+                        
+
+                        <div class="mb-4">
+                            <h5><i class="bi bi-diagram-2"></i> Schema Documentation</h5>
+                            <div class="schema-documentation">
+                                
+      <div class="schema-object mb-4 ">
+        <h6 class="text-primary"><i class="bi bi-box"></i> Reference</h6>
+        <p class="text-muted small">Cross-domain kayıtlara referans vermek için kullanılan ortak şema. Farklı runtime'lar arasında referans mekanizması sağlar.</p>
+        
+        <div class="table-responsive">
+          <table class="table table-sm table-bordered">
+            <thead class="table-primary">
+              <tr>
+                <th width="25%">Property</th>
+                <th width="15%">Type</th>
+                <th width="10%">Required</th>
+                <th width="50%">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+        <tr>
+          <td>
+            <code class="text-primary">id</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-success">string</span>
+            <br><small class="text-info">uuid</small>
+          </td>
+          <td>
+            <i class="bi bi-dash-circle text-muted" title="Optional"></i>
+          </td>
+          <td>
+            Referans edilen kaydın benzersiz tanımlayıcısı (UUID v7 formatında)
+            
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="text-primary">key</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-success">string</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-dash-circle text-muted" title="Optional"></i>
+          </td>
+          <td>
+            Referans edilen kaydın anahtar değeri (okunabilir identifier)
+            
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="text-primary">domain</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-success">string</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-dash-circle text-muted" title="Optional"></i>
+          </td>
+          <td>
+            Referans edilen kaydın bulunduğu domain (cross-domain referanslar için zorunlu)
+            <div class="mt-1"><small class="text-muted"><strong>Examples:</strong> <code>"Core"</code>, <code>"IDM"</code>, <code>"Banking"</code>, <code>"Payment"</code></small></div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="text-primary">workflow</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-success">string</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-dash-circle text-muted" title="Optional"></i>
+          </td>
+          <td>
+            Referans edilen kaydın bulunduğu workflow adı
+            
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="text-primary">version</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-success">string</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-dash-circle text-muted" title="Optional"></i>
+          </td>
+          <td>
+            Referans edilen kaydın sürüm bilgisi (semantic versioning)
+            <div class="mt-1"><small class="text-muted"><strong>Pattern:</strong> <code>^\d+\.\d+(\.\d+)?$</code></small></div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="text-primary">metadata</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-info">object</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-dash-circle text-muted" title="Optional"></i>
+          </td>
+          <td>
+            İstemci tarafından serbest şekilde eklenebilecek metadata bilgileri (displayName, description vb.)
+            
+          </td>
+        </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h6><i class="bi bi-code-slash"></i> Raw JSON Schema</h6>
+                                <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#rawSchema-Reference-1.0.0">
+                                    <i class="bi bi-eye"></i> Toggle Raw JSON
+                                </button>
+                            </div>
+                            <div class="collapse" id="rawSchema-Reference-1.0.0">
+                                <pre class="json-viewer p-3"><code>{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.amorphie.com/core/reference.json",
+  "title": "Reference",
+  "description": "Cross-domain kayıtlara referans vermek için kullanılan ortak şema. Farklı runtime'lar arasında referans mekanizması sağlar.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Referans edilen kaydın benzersiz tanımlayıcısı (UUID v7 formatında)"
+    },
+    "key": {
+      "type": "string",
+      "description": "Referans edilen kaydın anahtar değeri (okunabilir identifier)"
+    },
+    "domain": {
+      "type": "string",
+      "description": "Referans edilen kaydın bulunduğu domain (cross-domain referanslar için zorunlu)",
+      "examples": [
+        "Core",
+        "IDM",
+        "Banking",
+        "Payment"
+      ]
+    },
+    "workflow": {
+      "type": "string",
+      "description": "Referans edilen kaydın bulunduğu workflow adı"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+(\\.\\d+)?$",
+      "description": "Referans edilen kaydın sürüm bilgisi (semantic versioning)"
+    },
+    "metadata": {
+      "type": "object",
+      "description": "İstemci tarafından serbest şekilde eklenebilecek metadata bilgileri (displayName, description vb.)",
+      "additionalProperties": true
+    }
+  },
+  "anyOf": [
+    {
+      "required": [
+        "id"
+      ]
+    },
+    {
+      "required": [
+        "key"
+      ]
+    }
+  ],
+  "additionalProperties": false,
+  "examples": [
+    {
+      "id": "01234567-89ab-cdef-0123-456789abcdef",
+      "domain": "IDM",
+      "workflow": "UserAuthentication",
+      "version": "1.0.0",
+      "metadata": {
+        "displayName": "Mobil Uygulama Kullanıcısı",
+        "channel": "mobile",
+        "priority": "high"
+      }
+    },
+    {
+      "key": "user-login-state",
+      "domain": "Core",
+      "workflow": "Authentication",
+      "version": "2.1.0",
+      "metadata": {
+        "displayName": "Kullanıcı Giriş Durumu",
+        "timeout": 300,
+        "retryable": true
+      }
+    },
+    {
+      "id": "98765432-10ab-cdef-9876-543210abcdef",
+      "key": "payment-validation-task",
+      "domain": "Banking",
+      "workflow": "PaymentProcess",
+      "version": "1.2.3",
+      "metadata": {
+        "description": "Ödeme doğrulama görevi"
+      }
+    }
+  ]
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</body>
+</html>

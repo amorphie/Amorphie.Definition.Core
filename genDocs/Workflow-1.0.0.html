@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workflow v1.0.0 - @amorphie/definition-core</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f8f9fa; }
+        .json-viewer { background: #1e1e1e; color: #d4d4d4; border-radius: 8px; }
+        .workflow-docs { background: white; border-left: 4px solid #0d6efd; padding: 1.5rem; margin: 2rem 0; border-radius: 8px; }
+        .plantuml-diagram { text-align: center; margin: 2rem 0; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-white"><i class="bi bi-house"></i> Home</a></li>
+                    <li class="breadcrumb-item"><a href="Schema.html" class="text-white">Schema</a></li>
+                    <li class="breadcrumb-item active text-white-50" aria-current="page">Workflow</li>
+                </ol>
+            </nav>
+        </div>
+    </nav>
+
+    <div class="container my-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h1 class="h3 mb-0"><i class="bi bi-file-earmark-code"></i> Workflow</h1>
+                        <small>Version 1.0.0</small>
+                    </div>
+                    <div class="card-body">
+                        <div class="row mb-4">
+                            <div class="col-md-3">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Domain</h6>
+                                        <span class="badge bg-primary">Core</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Flow</h6>
+                                        <span class="badge bg-info">Schema</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Flow Version</h6>
+                                        <span class="badge bg-secondary">1.0.0</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h6 class="card-title">File Path</h6>
+                                        <code class="small">Core/Schema/Workflow.1.0.0.json</code>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div class="mb-4">
+                            <h5><i class="bi bi-tags"></i> Tags</h5>
+                            <div class="d-flex gap-1 flex-wrap">
+                                <span class="badge bg-light text-dark">Core</span> <span class="badge bg-light text-dark">Workflow</span> <span class="badge bg-light text-dark">StateMachine</span> <span class="badge bg-light text-dark">Schema</span>
+                            </div>
+                        </div>
+                        
+
+                        
+                        <div class="mb-4">
+                            <h5><i class="bi bi-info-circle"></i> Description</h5>
+                            <div class="alert alert-info">
+                                <p class="mb-0">Amorphie platformunda iş akışı tanımlarını yapılandıran şema. Sadece workflow attributes yapısını tanımlar.</p>
+                            </div>
+                        </div>
+                        
+
+                        
+
+                        
+
+                        
+                        <div class="mb-4">
+                            <h5><i class="bi bi-link-45deg"></i> References</h5>
+                            <div class="list-group">
+                                
+                                    <div class="list-group-item">
+                                        <code>Transition.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                                    <div class="list-group-item">
+                                        <code>Label.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                                    <div class="list-group-item">
+                                        <code>Reference.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                                    <div class="list-group-item">
+                                        <code>Transition.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                                    <div class="list-group-item">
+                                        <code>Reference.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                                    <div class="list-group-item">
+                                        <code>Reference.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                                    <div class="list-group-item">
+                                        <code>Transition.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                                    <div class="list-group-item">
+                                        <code>State.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                                    <div class="list-group-item">
+                                        <code>Reference.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <div class="mb-4">
+                            <h5><i class="bi bi-code-slash"></i> JSON Schema</h5>
+                            <pre class="json-viewer p-3"><code>{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.amorphie.com/core/workflow.json",
+  "title": "Workflow Definition",
+  "description": "Amorphie platformunda iş akışı tanımlarını yapılandıran şema. Sadece workflow attributes yapısını tanımlar.",
+  "type": "object",
+  "properties": {
+    "timeout": {
+      "$ref": "Transition.1.0.0.json#/attributes",
+      "description": "Workflow genel timeout tanımı"
+    },
+    "type": {
+      "oneOf": [
+        {
+          "const": "flow",
+          "description": "Ana iş akışı türü"
+        },
+        {
+          "const": "subflow",
+          "description": "Alt iş akışı türü"
+        },
+        {
+          "const": "process",
+          "description": "İş süreci türü"
+        }
+      ],
+      "description": "Workflow'un türü"
+    },
+    "labels": {
+      "$ref": "Label.1.0.0.json#/attributes",
+      "description": "Workflow'un çoklu dil etiketleri"
+    },
+    "functions": {
+      "type": "array",
+      "items": {
+        "$ref": "Reference.1.0.0.json#/attributes"
+      },
+      "description": "Workflow ile ilişkili function referansları"
+    },
+    "sharedTransitions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "transition": {
+            "$ref": "Transition.1.0.0.json#/attributes",
+            "description": "Paylaşılan transition tanımı"
+          },
+          "availableIn": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Bu transition'ın kullanılabileceği state'lerin listesi"
+          }
+        },
+        "required": [
+          "transition",
+          "availableIn"
+        ],
+        "additionalProperties": false
+      },
+      "description": "Birden fazla state'de kullanılabilecek ortak transition'lar"
+    },
+    "extensions": {
+      "type": "array",
+      "items": {
+        "$ref": "Reference.1.0.0.json#/attributes"
+      },
+      "description": "Workflow ile ilişkili extension referansları"
+    },
+    "features": {
+      "type": "array",
+      "items": {
+        "$ref": "Reference.1.0.0.json#/attributes"
+      },
+      "description": "Workflow ile ilişkili feature referansları"
+    },
+    "startTransition": {
+      "$ref": "Transition.1.0.0.json#/attributes",
+      "description": "Workflow'u başlatan initial transition"
+    },
+    "states": {
+      "type": "array",
+      "items": {
+        "$ref": "State.1.0.0.json#/attributes"
+      },
+      "description": "Workflow'u oluşturan state'lerin listesi"
+    },
+    "modelSchema": {
+      "$ref": "Reference.1.0.0.json#/attributes",
+      "description": "Workflow'un kullandığı veri model şemasının referansı"
+    }
+  },
+  "required": [
+    "timeout",
+    "type",
+    "labels",
+    "functions",
+    "sharedTransitions",
+    "features",
+    "startTransition",
+    "states",
+    "modelSchema"
+  ],
+  "additionalProperties": false
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</body>
+</html>

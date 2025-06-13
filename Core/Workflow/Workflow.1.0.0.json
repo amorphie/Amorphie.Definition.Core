@@ -160,7 +160,7 @@
                     },
                     {
                         "key": "archive",
-                        "target": null,
+                        "target": "deleted",
                         "labels": {
                             "en": "Archive Workflow",
                             "tr": "İş Akışını Arşivle"
@@ -171,6 +171,39 @@
                         "onExecute": [],
                         "views": [],
                         "type": "self"
+                    }
+                ],
+                "views": [],
+                "responses": [],
+                "onFirstEntry": [],
+                "onFirstExit": [],
+                "onEntry": [],
+                "onExit": [],
+                "versionStrategy": {
+                    "strategy": "noAction"
+                },
+                "type": "finish"
+            },
+            {
+                "key": "deleted",
+                "labels": {
+                    "en": "Deleted State",
+                    "tr": "Silinmiş Durum"
+                },
+                "transitions": [
+                    {
+                        "key": "recover",
+                        "target": "active",
+                        "labels": {
+                            "en": "Recover",
+                            "tr": "Geri Al"
+                        },
+                        "versionStrategy": {
+                            "strategy": "noAction"
+                        },
+                        "onExecute": [],
+                        "views": [],
+                        "type": "forward"
                     }
                 ],
                 "views": [],

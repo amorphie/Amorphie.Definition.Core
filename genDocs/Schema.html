@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schema - @amorphie/definition-core</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        body { background-color: #f8f9fa; }
+        .definition-item { transition: all 0.2s; }
+        .definition-item:hover { transform: translateY(-2px); }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-white"><i class="bi bi-house"></i> Home</a></li>
+                    <li class="breadcrumb-item active text-white-50" aria-current="page">Schema</li>
+                </ol>
+            </nav>
+        </div>
+    </nav>
+
+    <div class="container my-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h1 class="h3 mb-0"><i class="bi bi-collection"></i> Schema</h1>
+                        <small>12 definitions</small>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            
+                                <div class="col-lg-6 mb-3">
+                                    <a href="Core-Schema-Workflow-1.0.0.html" class="text-decoration-none">
+                                        <div class="card definition-item h-100 shadow-sm">
+                                            <div class="card-body">
+                                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                                    <h5 class="card-title text-dark">Workflow</h5>
+                                                    <span class="badge bg-secondary">v1.0.0</span>
+                                                </div>
+                                                <p class="card-text text-muted small">Amorphie platformunda iş akışı tanımlarını yapılandıran şema. Sadece workflow attributes yapısını tanımlar.</p>
+                                                <div class="d-flex gap-1 flex-wrap">
+                                                    <small class="text-muted"><i class="bi bi-file"></i> Core/Schema/Workflow.1.0.0.json</small>
+                                                </div>
+                                                <div class="d-flex gap-1 flex-wrap mt-2">
+                                                    <span class="badge bg-light text-dark">Core</span><span class="badge bg-light text-dark">Workflow</span><span class="badge bg-light text-dark">StateMachine</span><span class="badge bg-light text-dark">Schema</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            
+                                <div class="col-lg-6 mb-3">
+                                    <a href="Core-Schema-View-1.0.0.html" class="text-decoration-none">
+                                        <div class="card definition-item h-100 shadow-sm">
+                                            <div class="card-body">
+                                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                                    <h5 class="card-title text-dark">View</h5>
+                                                    <span class="badge bg-secondary">v1.0.0</span>
+                                                </div>
+                                                <p class="card-text text-muted small">Amorphie platformunda kullanıcı arayüzü view tanımları için şema. Dinamik UI render edilebilir içerik ve gösterim şekli bilgilerini içerir.</p>
+                                                <div class="d-flex gap-1 flex-wrap">
+                                                    <small class="text-muted"><i class="bi bi-file"></i> Core/Schema/View.1.0.0.json</small>
+                                                </div>
+                                                <div class="d-flex gap-1 flex-wrap mt-2">
+                                                    <span class="badge bg-light text-dark">Core</span><span class="badge bg-light text-dark">Schema</span><span class="badge bg-light text-dark">View</span><span class="badge bg-light text-dark">UI</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            
+                                <div class="col-lg-6 mb-3">
+                                    <a href="Core-Schema-VersionStrategy-1.0.0.html" class="text-decoration-none">
+                                        <div class="card definition-item h-100 shadow-sm">
+                                            <div class="card-body">
+                                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                                    <h5 class="card-title text-dark">VersionStrategy</h5>
+                                                    <span class="badge bg-secondary">v1.0.0</span>
+                                                </div>
+                                                <p class="card-text text-muted small">İş akışı geçişlerinde kullanılan versiyon artırma stratejisi</p>
+                                                <div class="d-flex gap-1 flex-wrap">
+                                                    <small class="text-muted"><i class="bi bi-file"></i> Core/Schema/VersionStrategy.1.0.0.json</small>
+                                                </div>
+                                                <div class="d-flex gap-1 flex-wrap mt-2">
+                                                    <span class="badge bg-light text-dark">Core</span><span class="badge bg-light text-dark">Schema</span><span class="badge bg-light text-dark">VersionStrategy</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            
+                                <div class="col-lg-6 mb-3">
+                                    <a href="Core-Schema-Transition-1.0.0.html" class="text-decoration-none">
+                                        <div class="card definition-item h-100 shadow-sm">
+                                            <div class="card-body">
+                                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                                    <h5 class="card-title text-dark">Transition</h5>
+                                                    <span class="badge bg-secondary">v1.0.0</span>
+                                                </div>
+                                                <p class="card-text text-muted small">İş akışında state'ler arası geçişi tanımlayan şema. Kullanıcı etkileşimi, otomatik tetikleme ve veri validasyonu içerir.</p>
+                                                <div class="d-flex gap-1 flex-wrap">
+                                                    <small class="text-muted"><i class="bi bi-file"></i> Core/Schema/Transition.1.0.0.json</small>
+                                                </div>
+                                                <div class="d-flex gap-1 flex-wrap mt-2">
+                                                    <span class="badge bg-light text-dark">Core</span><span class="badge bg-light text-dark">Schema</span><span class="badge bg-light text-dark">Transition</span><span class="badge bg-light text-dark">Workflow</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            
+                                <div class="col-lg-6 mb-3">
+                                    <a href="Core-Schema-Task-1.0.0.html" class="text-decoration-none">
+                                        <div class="card definition-item h-100 shadow-sm">
+                                            <div class="card-body">
+                                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                                    <h5 class="card-title text-dark">Task</h5>
+                                                    <span class="badge bg-secondary">v1.0.0</span>
+                                                </div>
+                                                <p class="card-text text-muted small">Dapr binding tabanlı görev tanımı. Mikroservis çağrıları, HTTP istekleri, mesaj kuyruğu işlemleri için kullanılır.</p>
+                                                <div class="d-flex gap-1 flex-wrap">
+                                                    <small class="text-muted"><i class="bi bi-file"></i> Core/Schema/Task.1.0.0.json</small>
+                                                </div>
+                                                <div class="d-flex gap-1 flex-wrap mt-2">
+                                                    <span class="badge bg-light text-dark">Core</span><span class="badge bg-light text-dark">Schema</span><span class="badge bg-light text-dark">Task</span><span class="badge bg-light text-dark">Dapr</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            
+                                <div class="col-lg-6 mb-3">
+                                    <a href="Core-Schema-State-1.0.0.html" class="text-decoration-none">
+                                        <div class="card definition-item h-100 shadow-sm">
+                                            <div class="card-body">
+                                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                                    <h5 class="card-title text-dark">State</h5>
+                                                    <span class="badge bg-secondary">v1.0.0</span>
+                                                </div>
+                                                <p class="card-text text-muted small">Amorphie workflow state machine içindeki bir state'in tanımı. State'ler workflow'un temel yapı taşlarıdır.</p>
+                                                <div class="d-flex gap-1 flex-wrap">
+                                                    <small class="text-muted"><i class="bi bi-file"></i> Core/Schema/State.1.0.0.json</small>
+                                                </div>
+                                                <div class="d-flex gap-1 flex-wrap mt-2">
+                                                    <span class="badge bg-light text-dark">Core</span><span class="badge bg-light text-dark">State</span><span class="badge bg-light text-dark">Workflow</span><span class="badge bg-light text-dark">StateMachine</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            
+                                <div class="col-lg-6 mb-3">
+                                    <a href="Core-Schema-Schema-1.0.0.html" class="text-decoration-none">
+                                        <div class="card definition-item h-100 shadow-sm">
+                                            <div class="card-body">
+                                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                                    <h5 class="card-title text-dark">Schema</h5>
+                                                    <span class="badge bg-secondary">v1.0.0</span>
+                                                </div>
+                                                <p class="card-text text-muted small">Gerçek JSON Schema tanımının bulunduğu alan. Bu alan valid bir JSON Schema olmalıdır.</p>
+                                                <div class="d-flex gap-1 flex-wrap">
+                                                    <small class="text-muted"><i class="bi bi-file"></i> Core/Schema/Schema.1.1.0.json</small>
+                                                </div>
+                                                <div class="d-flex gap-1 flex-wrap mt-2">
+                                                    <span class="badge bg-light text-dark">Core</span><span class="badge bg-light text-dark">Schema</span><span class="badge bg-light text-dark">MetaSchema</span><span class="badge bg-light text-dark">Base</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            
+                                <div class="col-lg-6 mb-3">
+                                    <a href="Core-Schema-Schema-1.0.0.html" class="text-decoration-none">
+                                        <div class="card definition-item h-100 shadow-sm">
+                                            <div class="card-body">
+                                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                                    <h5 class="card-title text-dark">Schema</h5>
+                                                    <span class="badge bg-secondary">v1.0.0</span>
+                                                </div>
+                                                <p class="card-text text-muted small">Gerçek JSON Schema tanımının bulunduğu alan. Bu alan valid bir JSON Schema olmalıdır.</p>
+                                                <div class="d-flex gap-1 flex-wrap">
+                                                    <small class="text-muted"><i class="bi bi-file"></i> Core/Schema/Schema.1.0.0.json</small>
+                                                </div>
+                                                <div class="d-flex gap-1 flex-wrap mt-2">
+                                                    <span class="badge bg-light text-dark">Core</span><span class="badge bg-light text-dark">Schema</span><span class="badge bg-light text-dark">MetaSchema</span><span class="badge bg-light text-dark">Base</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            
+                                <div class="col-lg-6 mb-3">
+                                    <a href="Core-Schema-Reference-1.0.0.html" class="text-decoration-none">
+                                        <div class="card definition-item h-100 shadow-sm">
+                                            <div class="card-body">
+                                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                                    <h5 class="card-title text-dark">Reference</h5>
+                                                    <span class="badge bg-secondary">v1.0.0</span>
+                                                </div>
+                                                <p class="card-text text-muted small">Cross-domain kayıtlara referans vermek için kullanılan ortak şema. Farklı runtime'lar arasında referans mekanizması sağlar.</p>
+                                                <div class="d-flex gap-1 flex-wrap">
+                                                    <small class="text-muted"><i class="bi bi-file"></i> Core/Schema/Reference.1.0.0.json</small>
+                                                </div>
+                                                <div class="d-flex gap-1 flex-wrap mt-2">
+                                                    <span class="badge bg-light text-dark">Core</span><span class="badge bg-light text-dark">Schema</span><span class="badge bg-light text-dark">Reference</span><span class="badge bg-light text-dark">CrossDomain</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            
+                                <div class="col-lg-6 mb-3">
+                                    <a href="Core-Schema-Mapping-1.0.0.html" class="text-decoration-none">
+                                        <div class="card definition-item h-100 shadow-sm">
+                                            <div class="card-body">
+                                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                                    <h5 class="card-title text-dark">Mapping</h5>
+                                                    <span class="badge bg-secondary">v1.0.0</span>
+                                                </div>
+                                                <p class="card-text text-muted small">Veri dönüşüm mapping'leri için standart yapı. Input, output ve asenkron output mapping'lerini tanımlar.</p>
+                                                <div class="d-flex gap-1 flex-wrap">
+                                                    <small class="text-muted"><i class="bi bi-file"></i> Core/Schema/Mapping.1.0.0.json</small>
+                                                </div>
+                                                <div class="d-flex gap-1 flex-wrap mt-2">
+                                                    <span class="badge bg-light text-dark">Core</span><span class="badge bg-light text-dark">Mapping</span><span class="badge bg-light text-dark">DataTransformation</span><span class="badge bg-light text-dark">Reference</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            
+                                <div class="col-lg-6 mb-3">
+                                    <a href="Core-Schema-Label-1.0.0.html" class="text-decoration-none">
+                                        <div class="card definition-item h-100 shadow-sm">
+                                            <div class="card-body">
+                                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                                    <h5 class="card-title text-dark">Label</h5>
+                                                    <span class="badge bg-secondary">v1.0.0</span>
+                                                </div>
+                                                <p class="card-text text-muted small">Çoklu dil desteği için kullanılan etiket yapısı. Her dil kodu için ayrı değer saklar.</p>
+                                                <div class="d-flex gap-1 flex-wrap">
+                                                    <small class="text-muted"><i class="bi bi-file"></i> Core/Schema/Label.1.0.0.json</small>
+                                                </div>
+                                                <div class="d-flex gap-1 flex-wrap mt-2">
+                                                    <span class="badge bg-light text-dark">Core</span><span class="badge bg-light text-dark">Schema</span><span class="badge bg-light text-dark">Label</span><span class="badge bg-light text-dark">Localization</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            
+                                <div class="col-lg-6 mb-3">
+                                    <a href="Core-Schema-Code-1.0.0.html" class="text-decoration-none">
+                                        <div class="card definition-item h-100 shadow-sm">
+                                            <div class="card-body">
+                                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                                    <h5 class="card-title text-dark">Code</h5>
+                                                    <span class="badge bg-secondary">v1.0.0</span>
+                                                </div>
+                                                <p class="card-text text-muted small">Çalıştırılacak kod parçacığının tanımı. BASE64 formatında kod ve interface bilgisi içerir.</p>
+                                                <div class="d-flex gap-1 flex-wrap">
+                                                    <small class="text-muted"><i class="bi bi-file"></i> Core/Schema/Code.1.0.0.json</small>
+                                                </div>
+                                                <div class="d-flex gap-1 flex-wrap mt-2">
+                                                    <span class="badge bg-light text-dark">Core</span><span class="badge bg-light text-dark">Schema</span><span class="badge bg-light text-dark">Code</span><span class="badge bg-light text-dark">Task</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workflow v1.0.0 - @amorphie/definition-core</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f8f9fa; }
+        .json-viewer { background: #1e1e1e; color: #d4d4d4; border-radius: 8px; }
+        .workflow-docs { background: white; border-left: 4px solid #0d6efd; padding: 1.5rem; margin: 2rem 0; border-radius: 8px; }
+        .plantuml-diagram { text-align: center; margin: 2rem 0; }
+        .schema-documentation { background: #f8f9fa; border-radius: 8px; padding: 1rem; }
+        .schema-object { background: white; border-radius: 8px; padding: 1rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .nested-schema { background: #f8f9fa; }
+        .schema-array { background: #fff3cd; border-radius: 8px; padding: 1rem; }
+        .schema-conditional { background: #d1ecf1; border-radius: 8px; padding: 1rem; }
+        .property-details { font-size: 0.875rem; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-white"><i class="bi bi-house"></i> Home</a></li>
+                    <li class="breadcrumb-item"><a href="Workflow.html" class="text-white">Workflow</a></li>
+                    <li class="breadcrumb-item active text-white-50" aria-current="page">Workflow</li>
+                </ol>
+            </nav>
+        </div>
+    </nav>
+
+    <div class="container my-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h1 class="h3 mb-0"><i class="bi bi-file-earmark-code"></i> Workflow</h1>
+                        <small>Version 1.0.0</small>
+                    </div>
+                    <div class="card-body">
+                        <div class="row mb-4">
+                            <div class="col-md-3">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Domain</h6>
+                                        <span class="badge bg-primary">Core</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Flow</h6>
+                                        <span class="badge bg-info">Workflow</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Flow Version</h6>
+                                        <span class="badge bg-secondary">1.0.0</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h6 class="card-title">File Path</h6>
+                                        <code class="small">Core/Workflow/Workflow.1.0.0.json</code>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div class="mb-4">
+                            <h5><i class="bi bi-tags"></i> Tags</h5>
+                            <div class="d-flex gap-1 flex-wrap">
+                                <span class="badge bg-light text-dark">Core</span> <span class="badge bg-light text-dark">Workflow</span> <span class="badge bg-light text-dark">Lifecycle</span> <span class="badge bg-light text-dark">Repository</span> <span class="badge bg-light text-dark">Meta</span>
+                            </div>
+                        </div>
+                        
+
+                        
+
+                        
+
+                        
+          <div class="plantuml-diagram">
+            <h4><i class="bi bi-diagram-3"></i> Workflow Diagram</h4>
+            <img src="http://www.plantuml.com/plantuml/svg/hLNHRjCm57tFLro9DwHqBKKQgWHQMCVUnhGE4AhwuCOtgnN7hXodrK1yItzXU-UDzh-uIPoaGwIP2Y-nxpsEpxd7rybPQfcnMIBXYpPn9FMw6ZqhhCGwtKnyM0rw_LxVIsEXbiom16WJY_3T0vZasvrhgGsyc9_Y8EIKl53SfQ8typdlK-ez2-CxexC6YIAEfpcY3KVZiiFXa58VjB9NB448Z63I9IRY6yBWDKM1jKRCCujD-fNtmoj5SSCYwnLF6C7j3Ro5MvPA5iCuCrcIrT355K7Z8fZaRzR0PpIfq6fY3MNlxccLqa5eAUKe60KhzCgX8WbYAwAAeuOAag2CIfOQwgHPiZJDUTnO4Lspj25gi8BfseKbLGDsSd6KQ95xRgou9a8AbOZTfkJRWqltNEZygy43TDENC_3zTr2P7HgaDVwwQaAbIOrMGBmn7RLaSvGZE2zMDIrv0ji74XN4syVTPli87sMsszZCq1khfzoZXXeW3HUOi15CfnMVN_0JwbDhPxQti7GpMi3PZBQmzqiSGQJDcXdkeUAGAtQzanTMdsynoNtvUqc1WrkBKbHNqLGIgJRHLLkdiDpvaJle5atbURfBSLBUcstkB_N1i-XJb573xQp8oPjMvDXXpBXUSD2QuXhyapLxykf3ovQyNTcd0ZoewlBNJnMYb7Y4NPL7JmIPBhjkdcVNLrI2e_eF7RKlixdop8IB_6FLqkmbUhZNpMuZLaSvLydumxbGqqQjjXKe2Rb48o2GnvbnHZFwcNg_0G00" 
+                 alt="Workflow Diagram" class="img-fluid" 
+                 style="max-width: 100%; background: white; padding: 1rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+          </div>
+
+                        
+                        <div class="mb-4">
+                            <h5><i class="bi bi-link-45deg"></i> References</h5>
+                            <div class="list-group">
+                                
+                                    <div class="list-group-item">
+                                        <code>Transition.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                                    <div class="list-group-item">
+                                        <code>Label.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                                    <div class="list-group-item">
+                                        <code>Reference.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                                    <div class="list-group-item">
+                                        <code>Transition.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                                    <div class="list-group-item">
+                                        <code>Reference.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                                    <div class="list-group-item">
+                                        <code>Reference.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                                    <div class="list-group-item">
+                                        <code>Transition.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                                    <div class="list-group-item">
+                                        <code>State.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                                    <div class="list-group-item">
+                                        <code>Reference.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <div class="mb-4">
+                            <h5><i class="bi bi-diagram-2"></i> Schema Documentation</h5>
+                            <div class="schema-documentation">
+                                
+      <div class="schema-simple mb-2 ">
+        <div class="d-flex align-items-center">
+          <span class="badge bg-dark me-2">flow</span>
+          <span class="text-muted">No description</span>
+        </div>
+        
+      </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h6><i class="bi bi-code-slash"></i> Raw JSON Schema</h6>
+                                <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#rawSchema-Workflow-1.0.0">
+                                    <i class="bi bi-eye"></i> Toggle Raw JSON
+                                </button>
+                            </div>
+                            <div class="collapse" id="rawSchema-Workflow-1.0.0">
+                                <pre class="json-viewer p-3"><code>{
+  "timeout": null,
+  "type": "flow",
+  "labels": {
+    "en": "Workflow Lifecycle Management",
+    "tr": "İş Akışı Yaşam Döngüsü Yönetimi"
+  },
+  "functions": [],
+  "sharedTransitions": [],
+  "extensions": [],
+  "features": [],
+  "startTransition": {
+    "key": "create-workflow",
+    "target": "draft",
+    "labels": {
+      "en": "Create Workflow",
+      "tr": "İş Akışı Oluştur"
+    },
+    "versionStrategy": {
+      "strategy": "noAction"
+    },
+    "schema": {
+      "key": "workflow-creation-input",
+      "domain": "Core",
+      "workflow": "Workflow",
+      "version": "1.0.0"
+    },
+    "onExecute": [],
+    "views": [],
+    "type": "forward"
+  },
+  "states": [
+    {
+      "key": "draft",
+      "labels": {
+        "en": "Draft State",
+        "tr": "Taslak Durumu"
+      },
+      "transitions": [
+        {
+          "key": "activate",
+          "target": "active",
+          "labels": {
+            "en": "Activate Workflow",
+            "tr": "İş Akışını Aktifleştir"
+          },
+          "versionStrategy": {
+            "strategy": "noAction"
+          },
+          "onExecute": [],
+          "views": [],
+          "type": "forward"
+        },
+        {
+          "key": "delete",
+          "target": null,
+          "labels": {
+            "en": "Delete Draft",
+            "tr": "Taslağı Sil"
+          },
+          "versionStrategy": {
+            "strategy": "noAction"
+          },
+          "onExecute": [],
+          "views": [],
+          "type": "self"
+        }
+      ],
+      "views": [],
+      "responses": [],
+      "onFirstEntry": [],
+      "onFirstExit": [],
+      "onEntry": [],
+      "onExit": [],
+      "versionStrategy": {
+        "strategy": "noAction"
+      },
+      "type": "start"
+    },
+    {
+      "key": "active",
+      "labels": {
+        "en": "Active State",
+        "tr": "Aktif Durumu"
+      },
+      "transitions": [
+        {
+          "key": "deactivate",
+          "target": "passive",
+          "labels": {
+            "en": "Deactivate Workflow",
+            "tr": "İş Akışını Pasifleştir"
+          },
+          "versionStrategy": {
+            "strategy": "noAction"
+          },
+          "onExecute": [],
+          "views": [],
+          "type": "forward"
+        },
+        {
+          "key": "update",
+          "target": "active",
+          "labels": {
+            "en": "Update Workflow",
+            "tr": "İş Akışını Güncelle"
+          },
+          "versionStrategy": {
+            "strategy": "noAction"
+          },
+          "onExecute": [],
+          "views": [],
+          "type": "self"
+        }
+      ],
+      "views": [],
+      "responses": [],
+      "onFirstEntry": [],
+      "onFirstExit": [],
+      "onEntry": [],
+      "onExit": [],
+      "versionStrategy": {
+        "strategy": "noAction"
+      },
+      "type": "normal"
+    },
+    {
+      "key": "passive",
+      "labels": {
+        "en": "Passive State",
+        "tr": "Pasif Durumu"
+      },
+      "transitions": [
+        {
+          "key": "reactivate",
+          "target": "active",
+          "labels": {
+            "en": "Reactivate Workflow",
+            "tr": "İş Akışını Yeniden Aktifleştir"
+          },
+          "versionStrategy": {
+            "strategy": "noAction"
+          },
+          "onExecute": [],
+          "views": [],
+          "type": "forward"
+        },
+        {
+          "key": "archive",
+          "target": "deleted",
+          "labels": {
+            "en": "Archive Workflow",
+            "tr": "İş Akışını Arşivle"
+          },
+          "versionStrategy": {
+            "strategy": "noAction"
+          },
+          "onExecute": [],
+          "views": [],
+          "type": "self"
+        }
+      ],
+      "views": [],
+      "responses": [],
+      "onFirstEntry": [],
+      "onFirstExit": [],
+      "onEntry": [],
+      "onExit": [],
+      "versionStrategy": {
+        "strategy": "noAction"
+      },
+      "type": "finish"
+    },
+    {
+      "key": "deleted",
+      "labels": {
+        "en": "Deleted State",
+        "tr": "Silinmiş Durum"
+      },
+      "transitions": [
+        {
+          "key": "recover",
+          "target": "active",
+          "labels": {
+            "en": "Recover",
+            "tr": "Geri Al"
+          },
+          "versionStrategy": {
+            "strategy": "noAction"
+          },
+          "onExecute": [],
+          "views": [],
+          "type": "forward"
+        }
+      ],
+      "views": [],
+      "responses": [],
+      "onFirstEntry": [],
+      "onFirstExit": [],
+      "onEntry": [],
+      "onExit": [],
+      "versionStrategy": {
+        "strategy": "noAction"
+      },
+      "type": "finish"
+    }
+  ],
+  "modelSchema": {
+    "key": "Workflow",
+    "domain": "Core",
+    "workflow": "Schema",
+    "version": "1.0.0"
+  }
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</body>
+</html>

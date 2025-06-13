@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task v1.0.0 - @amorphie/definition-core</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f8f9fa; }
+        .json-viewer { background: #1e1e1e; color: #d4d4d4; border-radius: 8px; }
+        .workflow-docs { background: white; border-left: 4px solid #0d6efd; padding: 1.5rem; margin: 2rem 0; border-radius: 8px; }
+        .plantuml-diagram { text-align: center; margin: 2rem 0; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-white"><i class="bi bi-house"></i> Home</a></li>
+                    <li class="breadcrumb-item"><a href="Schema.html" class="text-white">Schema</a></li>
+                    <li class="breadcrumb-item active text-white-50" aria-current="page">Task</li>
+                </ol>
+            </nav>
+        </div>
+    </nav>
+
+    <div class="container my-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h1 class="h3 mb-0"><i class="bi bi-file-earmark-code"></i> Task</h1>
+                        <small>Version 1.0.0</small>
+                    </div>
+                    <div class="card-body">
+                        <div class="row mb-4">
+                            <div class="col-md-3">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Domain</h6>
+                                        <span class="badge bg-primary">Core</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Flow</h6>
+                                        <span class="badge bg-info">Schema</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Flow Version</h6>
+                                        <span class="badge bg-secondary">1.0.0</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h6 class="card-title">File Path</h6>
+                                        <code class="small">Core/Schema/Task.1.0.0.json</code>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div class="mb-4">
+                            <h5><i class="bi bi-tags"></i> Tags</h5>
+                            <div class="d-flex gap-1 flex-wrap">
+                                <span class="badge bg-light text-dark">Core</span> <span class="badge bg-light text-dark">Schema</span> <span class="badge bg-light text-dark">Task</span> <span class="badge bg-light text-dark">Dapr</span> <span class="badge bg-light text-dark">Binding</span>
+                            </div>
+                        </div>
+                        
+
+                        
+                        <div class="mb-4">
+                            <h5><i class="bi bi-info-circle"></i> Description</h5>
+                            <div class="alert alert-info">
+                                <p class="mb-0">Dapr binding tabanlı görev tanımı. Mikroservis çağrıları, HTTP istekleri, mesaj kuyruğu işlemleri için kullanılır.</p>
+                            </div>
+                        </div>
+                        
+
+                        
+
+                        
+
+                        
+
+                        <div class="mb-4">
+                            <h5><i class="bi bi-code-slash"></i> JSON Schema</h5>
+                            <pre class="json-viewer p-3"><code>{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.amorphie.com/core/task.json",
+  "title": "Task",
+  "description": "Dapr binding tabanlı görev tanımı. Mikroservis çağrıları, HTTP istekleri, mesaj kuyruğu işlemleri için kullanılır.",
+  "type": "object",
+  "properties": {
+    "binding": {
+      "type": "string",
+      "description": "Kullanılacak Dapr binding tipi",
+      "examples": [
+        "dapr.bindings.http",
+        "dapr.bindings.kafka",
+        "dapr.bindings.redis",
+        "dapr.bindings.postgresql",
+        "dapr.bindings.blob-storage",
+        "dapr.bindings.rabbitmq"
+      ]
+    },
+    "configuration": {
+      "type": "string",
+      "description": "Görev için kullanılacak konfigürasyon referansı",
+      "examples": [
+        "fora-services",
+        "banking-config",
+        "notification-config"
+      ]
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Binding tipine özel metadata bilgileri. Developer Dapr documentation'dan bakarak ilgili alanları ekler.",
+      "additionalProperties": true,
+      "examples": [
+        {
+          "url": "/api/service/endpoint/{param}",
+          "operation": "post",
+          "successResponses": [
+            200,
+            201
+          ],
+          "incident": false,
+          "timeout": "PT30S"
+        },
+        {
+          "topic": "user-events",
+          "partition": "user-{userId}",
+          "timeout": "PT30S",
+          "maxRetries": 3
+        },
+        {
+          "query": "INSERT INTO audit_log (user_id, action) VALUES (?, ?)",
+          "timeout": "PT10S"
+        }
+      ]
+    }
+  },
+  "required": [
+    "binding",
+    "configuration",
+    "metadata"
+  ],
+  "additionalProperties": false,
+  "examples": [
+    {
+      "binding": "dapr.bindings.http",
+      "configuration": "fora-services",
+      "metadata": {
+        "url": "/fora/DigitalServices/AccountService.svc/accounts/checking/new/{tckn}",
+        "operation": "post",
+        "successResponses": [
+          200,
+          467
+        ],
+        "incident": false
+      }
+    },
+    {
+      "binding": "dapr.bindings.kafka",
+      "configuration": "messaging-config",
+      "metadata": {
+        "topic": "user-notifications",
+        "partition": "user-{userId}",
+        "timeout": "PT30S"
+      }
+    },
+    {
+      "binding": "dapr.bindings.postgresql",
+      "configuration": "database-config",
+      "metadata": {
+        "query": "INSERT INTO audit_log (user_id, action, timestamp) VALUES (?, ?, ?)",
+        "timeout": "PT10S"
+      }
+    }
+  ]
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</body>
+</html>

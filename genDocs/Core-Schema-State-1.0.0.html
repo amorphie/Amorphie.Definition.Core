@@ -1,0 +1,1685 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>State v1.0.0 - @amorphie/definition-core</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f8f9fa; }
+        .json-viewer { background: #1e1e1e; color: #d4d4d4; border-radius: 8px; }
+        .workflow-docs { background: white; border-left: 4px solid #0d6efd; padding: 1.5rem; margin: 2rem 0; border-radius: 8px; }
+        .plantuml-diagram { text-align: center; margin: 2rem 0; }
+        .schema-documentation { background: #f8f9fa; border-radius: 8px; padding: 1rem; }
+        .schema-object { background: white; border-radius: 8px; padding: 1rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .nested-schema { background: #f8f9fa; }
+        .schema-array { background: #fff3cd; border-radius: 8px; padding: 1rem; }
+        .schema-conditional { background: #d1ecf1; border-radius: 8px; padding: 1rem; }
+        .property-details { font-size: 0.875rem; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-white"><i class="bi bi-house"></i> Home</a></li>
+                    <li class="breadcrumb-item"><a href="Schema.html" class="text-white">Schema</a></li>
+                    <li class="breadcrumb-item active text-white-50" aria-current="page">State</li>
+                </ol>
+            </nav>
+        </div>
+    </nav>
+
+    <div class="container my-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h1 class="h3 mb-0"><i class="bi bi-file-earmark-code"></i> State</h1>
+                        <small>Version 1.0.0</small>
+                    </div>
+                    <div class="card-body">
+                        <div class="row mb-4">
+                            <div class="col-md-3">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Domain</h6>
+                                        <span class="badge bg-primary">Core</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Flow</h6>
+                                        <span class="badge bg-info">Schema</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Flow Version</h6>
+                                        <span class="badge bg-secondary">1.0.0</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h6 class="card-title">File Path</h6>
+                                        <code class="small">Core/Schema/State.1.0.0.json</code>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div class="mb-4">
+                            <h5><i class="bi bi-tags"></i> Tags</h5>
+                            <div class="d-flex gap-1 flex-wrap">
+                                <span class="badge bg-light text-dark">Core</span> <span class="badge bg-light text-dark">State</span> <span class="badge bg-light text-dark">Workflow</span> <span class="badge bg-light text-dark">StateMachine</span>
+                            </div>
+                        </div>
+                        
+
+                        
+                        <div class="mb-4">
+                            <h5><i class="bi bi-info-circle"></i> Description</h5>
+                            <div class="alert alert-info">
+                                <p class="mb-0">Amorphie workflow state machine içindeki bir state'in tanımı. State'ler workflow'un temel yapı taşlarıdır.</p>
+                            </div>
+                        </div>
+                        
+
+                        
+
+                        
+
+                        
+                        <div class="mb-4">
+                            <h5><i class="bi bi-link-45deg"></i> References</h5>
+                            <div class="list-group">
+                                
+                                    <div class="list-group-item">
+                                        <code>Label.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                                    <div class="list-group-item">
+                                        <code>Transition.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                                    <div class="list-group-item">
+                                        <code>Reference.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                                    <div class="list-group-item">
+                                        <code>Code.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                                    <div class="list-group-item">
+                                        <code>Reference.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                                    <div class="list-group-item">
+                                        <code>Mapping.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                                    <div class="list-group-item">
+                                        <code>Reference.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                                    <div class="list-group-item">
+                                        <code>Mapping.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                                    <div class="list-group-item">
+                                        <code>Reference.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                                    <div class="list-group-item">
+                                        <code>Mapping.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                                    <div class="list-group-item">
+                                        <code>Reference.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                                    <div class="list-group-item">
+                                        <code>Mapping.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                                    <div class="list-group-item">
+                                        <code>VersionStrategy.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                                    <div class="list-group-item">
+                                        <code>Reference.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <div class="mb-4">
+                            <h5><i class="bi bi-diagram-2"></i> Schema Documentation</h5>
+                            <div class="schema-documentation">
+                                
+      <div class="schema-object mb-4 ">
+        <h6 class="text-primary"><i class="bi bi-box"></i> State Definition</h6>
+        <p class="text-muted small">Amorphie workflow state machine içindeki bir state'in tanımı. State'ler workflow'un temel yapı taşlarıdır.</p>
+        
+        <div class="table-responsive">
+          <table class="table table-sm table-bordered">
+            <thead class="table-primary">
+              <tr>
+                <th width="25%">Property</th>
+                <th width="15%">Type</th>
+                <th width="10%">Required</th>
+                <th width="50%">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+        <tr>
+          <td>
+            <code class="text-primary">key</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-success">string</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-check-circle text-success" title="Required"></i>
+          </td>
+          <td>
+            State'in anahtar değeri. Workflow içinde benzersiz olmalıdır.
+            <div class="mt-1"><small class="text-muted"><strong>Pattern:</strong> <code>^[a-z0-9-_]+$</code></small></div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="text-primary">labels</code>
+            <br><small class="text-muted">→ Label.1.0.0.json#/attributes</small>
+          </td>
+          <td>
+            <span class="badge bg-dark">reference</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-check-circle text-success" title="Required"></i>
+          </td>
+          <td>
+            State'in çoklu dil etiketleri
+            
+          </td>
+        </tr>
+          <tr>
+            <td colspan="4" class="nested-schema p-0">
+              <div class="border-start border-3 border-primary ps-3 py-2 ms-3" style="background-color: #f8f9fa;">
+                <small class="text-muted fw-bold">↳ labels details:</small>
+                
+      <div class="schema-reference mb-3 ms-3">
+        <div class="alert alert-info border-info">
+          <h6 class="text-info mb-2"><i class="bi bi-link-45deg"></i> Reference to: <code>Label.1.0.0.json#/attributes</code></h6>
+          <p class="text-muted small">State'in çoklu dil etiketleri</p>
+          <div class="mt-3">
+            <small class="text-muted fw-bold">Referenced schema details:</small>
+            <div class="border-start border-info border-2 ps-3 mt-2">
+              
+      <div class="schema-simple mb-2 ms-3">
+        <div class="d-flex align-items-center">
+          <span class="badge bg-info me-2">object</span>
+          <span class="text-muted">Çoklu dil desteği için kullanılan etiket yapısı. Her dil kodu için ayrı değer saklar.</span>
+        </div>
+        <div class="mt-1"><small class="text-muted"><strong>Examples:</strong> <code>{"en":"User Login","tr":"Kullanıcı Girişi"}</code>, <code>{"en":"Data Processing","tr":"Veri İşleme","de":"Datenverarbeitung"}</code>, <code>{"en-US":"American English Label","en-GB":"British English Label","tr":"Türkçe Etiket"}</code></small></div>
+      </div>
+            </div>
+          </div>
+        </div>
+      </div>
+              </div>
+            </td>
+          </tr>
+        <tr>
+          <td>
+            <code class="text-primary">transitions</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-secondary">array[reference]</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-check-circle text-success" title="Required"></i>
+          </td>
+          <td>
+            Bu state'den çıkış yapılabilecek geçişlerin listesi.
+            
+          </td>
+        </tr>
+          <tr>
+            <td colspan="4" class="nested-schema p-0">
+              <div class="border-start border-3 border-primary ps-3 py-2 ms-3" style="background-color: #f8f9fa;">
+                <small class="text-muted fw-bold">↳ transitions details:</small>
+                
+      <div class="schema-array mb-3 ms-3">
+        <h6 class="text-warning"><i class="bi bi-list"></i> Array of Items</h6>
+        <p class="text-muted small">Bu state'den çıkış yapılabilecek geçişlerin listesi.</p>
+        
+        <div class="border-start border-warning border-3 ps-3 py-2" style="background-color: #fff3cd;">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <small class="text-muted fw-bold">Each item in this array:</small>
+            <span class="badge bg-warning text-dark">Array Item</span>
+          </div>
+      <div class="schema-reference mb-3 ms-3">
+        <div class="alert alert-info border-info">
+          <h6 class="text-info mb-2"><i class="bi bi-link-45deg"></i> Reference to: <code>Transition.1.0.0.json#/attributes</code></h6>
+          
+          <div class="mt-2">
+            <small class="text-warning"><i class="bi bi-info-circle"></i> Schema details available but hidden to prevent deep nesting</small>
+          </div>
+        </div>
+      </div>
+        </div>
+        
+        <div class="array-constraints mt-2">
+          
+          
+          
+        </div>
+      </div>
+              </div>
+            </td>
+          </tr>
+        <tr>
+          <td>
+            <code class="text-primary">views</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-secondary">array[reference]</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-check-circle text-success" title="Required"></i>
+          </td>
+          <td>
+            Bu state ile ilişkili kullanıcı arayüzü view'larının referansları.
+            
+          </td>
+        </tr>
+          <tr>
+            <td colspan="4" class="nested-schema p-0">
+              <div class="border-start border-3 border-primary ps-3 py-2 ms-3" style="background-color: #f8f9fa;">
+                <small class="text-muted fw-bold">↳ views details:</small>
+                
+      <div class="schema-array mb-3 ms-3">
+        <h6 class="text-warning"><i class="bi bi-list"></i> Array of Items</h6>
+        <p class="text-muted small">Bu state ile ilişkili kullanıcı arayüzü view'larının referansları.</p>
+        
+        <div class="border-start border-warning border-3 ps-3 py-2" style="background-color: #fff3cd;">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <small class="text-muted fw-bold">Each item in this array:</small>
+            <span class="badge bg-warning text-dark">Array Item</span>
+          </div>
+      <div class="schema-reference mb-3 ms-3">
+        <div class="alert alert-info border-info">
+          <h6 class="text-info mb-2"><i class="bi bi-link-45deg"></i> Reference to: <code>Reference.1.0.0.json#/attributes</code></h6>
+          
+          <div class="mt-2">
+            <small class="text-warning"><i class="bi bi-info-circle"></i> Schema details available but hidden to prevent deep nesting</small>
+          </div>
+        </div>
+      </div>
+        </div>
+        
+        <div class="array-constraints mt-2">
+          
+          
+          
+        </div>
+      </div>
+              </div>
+            </td>
+          </tr>
+        <tr>
+          <td>
+            <code class="text-primary">responses</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-secondary">array[object]</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-check-circle text-success" title="Required"></i>
+          </td>
+          <td>
+            State'de workflow verilerinin görünüm katmanına nasıl döneceğini belirten mapping'ler.
+            
+          </td>
+        </tr>
+          <tr>
+            <td colspan="4" class="nested-schema p-0">
+              <div class="border-start border-3 border-primary ps-3 py-2 ms-3" style="background-color: #f8f9fa;">
+                <small class="text-muted fw-bold">↳ responses details:</small>
+                
+      <div class="schema-array mb-3 ms-3">
+        <h6 class="text-warning"><i class="bi bi-list"></i> Array of Items</h6>
+        <p class="text-muted small">State'de workflow verilerinin görünüm katmanına nasıl döneceğini belirten mapping'ler.</p>
+        
+        <div class="border-start border-warning border-3 ps-3 py-2" style="background-color: #fff3cd;">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <small class="text-muted fw-bold">Each item in this array:</small>
+            <span class="badge bg-warning text-dark">Array Item</span>
+          </div>
+      <div class="schema-object mb-4 ms-3">
+        
+        
+        
+        <div class="table-responsive">
+          <table class="table table-sm table-bordered">
+            <thead class="table-primary">
+              <tr>
+                <th width="25%">Property</th>
+                <th width="15%">Type</th>
+                <th width="10%">Required</th>
+                <th width="50%">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+        <tr>
+          <td>
+            <code class="text-primary">key</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-success">string</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-check-circle text-success" title="Required"></i>
+          </td>
+          <td>
+            Response mapping'in anahtar değeri.
+            
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="text-primary">mapping</code>
+            <br><small class="text-muted">→ Code.1.0.0.json#/attributes</small>
+          </td>
+          <td>
+            <span class="badge bg-dark">reference</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-check-circle text-success" title="Required"></i>
+          </td>
+          <td>
+            State'de workflow verilerinin dönüş şeklini belirleyen mapping kodu referansı.
+            
+          </td>
+        </tr>
+          <tr>
+            <td colspan="4" class="nested-schema p-0">
+              <div class="border-start border-3 border-primary ps-3 py-2 ms-3" style="background-color: #f8f9fa;">
+                <small class="text-muted fw-bold">↳ mapping details:</small>
+                
+      <div class="schema-reference mb-3 ms-3">
+        <div class="alert alert-info border-info">
+          <h6 class="text-info mb-2"><i class="bi bi-link-45deg"></i> Reference to: <code>Code.1.0.0.json#/attributes</code></h6>
+          <p class="text-muted small">State'de workflow verilerinin dönüş şeklini belirleyen mapping kodu referansı.</p>
+          <div class="mt-2">
+            <small class="text-warning"><i class="bi bi-info-circle"></i> Schema details available but hidden to prevent deep nesting</small>
+          </div>
+        </div>
+      </div>
+              </div>
+            </td>
+          </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+        </div>
+        
+        <div class="array-constraints mt-2">
+          
+          
+          
+        </div>
+      </div>
+              </div>
+            </td>
+          </tr>
+        <tr>
+          <td>
+            <code class="text-primary">onFirstEntry</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-secondary">array[object]</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-check-circle text-success" title="Required"></i>
+          </td>
+          <td>
+            State'e ilk kez girildiğinde çalıştırılacak görevler dizisi
+            
+          </td>
+        </tr>
+          <tr>
+            <td colspan="4" class="nested-schema p-0">
+              <div class="border-start border-3 border-primary ps-3 py-2 ms-3" style="background-color: #f8f9fa;">
+                <small class="text-muted fw-bold">↳ onFirstEntry details:</small>
+                
+      <div class="schema-array mb-3 ms-3">
+        <h6 class="text-warning"><i class="bi bi-list"></i> Array of Items</h6>
+        <p class="text-muted small">State'e ilk kez girildiğinde çalıştırılacak görevler dizisi</p>
+        
+        <div class="border-start border-warning border-3 ps-3 py-2" style="background-color: #fff3cd;">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <small class="text-muted fw-bold">Each item in this array:</small>
+            <span class="badge bg-warning text-dark">Array Item</span>
+          </div>
+      <div class="schema-object mb-4 ms-3">
+        
+        
+        
+        <div class="table-responsive">
+          <table class="table table-sm table-bordered">
+            <thead class="table-primary">
+              <tr>
+                <th width="25%">Property</th>
+                <th width="15%">Type</th>
+                <th width="10%">Required</th>
+                <th width="50%">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+        <tr>
+          <td>
+            <code class="text-primary">order</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-primary">integer</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-check-circle text-success" title="Required"></i>
+          </td>
+          <td>
+            Görevin çalışma sırası. Aynı sıradaki görevler paralel çalıştırılır.
+            
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="text-primary">task</code>
+            <br><small class="text-muted">→ Reference.1.0.0.json#/attributes</small>
+          </td>
+          <td>
+            <span class="badge bg-dark">reference</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-check-circle text-success" title="Required"></i>
+          </td>
+          <td>
+            Çalıştırılacak task referansı
+            
+          </td>
+        </tr>
+          <tr>
+            <td colspan="4" class="nested-schema p-0">
+              <div class="border-start border-3 border-primary ps-3 py-2 ms-3" style="background-color: #f8f9fa;">
+                <small class="text-muted fw-bold">↳ task details:</small>
+                
+      <div class="schema-reference mb-3 ms-3">
+        <div class="alert alert-info border-info">
+          <h6 class="text-info mb-2"><i class="bi bi-link-45deg"></i> Reference to: <code>Reference.1.0.0.json#/attributes</code></h6>
+          <p class="text-muted small">Çalıştırılacak task referansı</p>
+          <div class="mt-2">
+            <small class="text-warning"><i class="bi bi-info-circle"></i> Schema details available but hidden to prevent deep nesting</small>
+          </div>
+        </div>
+      </div>
+              </div>
+            </td>
+          </tr>
+        <tr>
+          <td>
+            <code class="text-primary">mapping</code>
+            <br><small class="text-muted">→ Mapping.1.0.0.json#/attributes</small>
+          </td>
+          <td>
+            <span class="badge bg-dark">reference</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-check-circle text-success" title="Required"></i>
+          </td>
+          <td>
+            Göreve iletilecek ve geri dönüşümde alınacak verilerin mapping tanımı
+            
+          </td>
+        </tr>
+          <tr>
+            <td colspan="4" class="nested-schema p-0">
+              <div class="border-start border-3 border-primary ps-3 py-2 ms-3" style="background-color: #f8f9fa;">
+                <small class="text-muted fw-bold">↳ mapping details:</small>
+                
+      <div class="schema-reference mb-3 ms-3">
+        <div class="alert alert-info border-info">
+          <h6 class="text-info mb-2"><i class="bi bi-link-45deg"></i> Reference to: <code>Mapping.1.0.0.json#/attributes</code></h6>
+          <p class="text-muted small">Göreve iletilecek ve geri dönüşümde alınacak verilerin mapping tanımı</p>
+          <div class="mt-2">
+            <small class="text-warning"><i class="bi bi-info-circle"></i> Schema details available but hidden to prevent deep nesting</small>
+          </div>
+        </div>
+      </div>
+              </div>
+            </td>
+          </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+        </div>
+        
+        <div class="array-constraints mt-2">
+          
+          
+          
+        </div>
+      </div>
+              </div>
+            </td>
+          </tr>
+        <tr>
+          <td>
+            <code class="text-primary">onFirstExit</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-secondary">array[object]</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-check-circle text-success" title="Required"></i>
+          </td>
+          <td>
+            State'den ilk kez çıkılırken çalıştırılacak görevler dizisi
+            
+          </td>
+        </tr>
+          <tr>
+            <td colspan="4" class="nested-schema p-0">
+              <div class="border-start border-3 border-primary ps-3 py-2 ms-3" style="background-color: #f8f9fa;">
+                <small class="text-muted fw-bold">↳ onFirstExit details:</small>
+                
+      <div class="schema-array mb-3 ms-3">
+        <h6 class="text-warning"><i class="bi bi-list"></i> Array of Items</h6>
+        <p class="text-muted small">State'den ilk kez çıkılırken çalıştırılacak görevler dizisi</p>
+        
+        <div class="border-start border-warning border-3 ps-3 py-2" style="background-color: #fff3cd;">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <small class="text-muted fw-bold">Each item in this array:</small>
+            <span class="badge bg-warning text-dark">Array Item</span>
+          </div>
+      <div class="schema-object mb-4 ms-3">
+        
+        
+        
+        <div class="table-responsive">
+          <table class="table table-sm table-bordered">
+            <thead class="table-primary">
+              <tr>
+                <th width="25%">Property</th>
+                <th width="15%">Type</th>
+                <th width="10%">Required</th>
+                <th width="50%">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+        <tr>
+          <td>
+            <code class="text-primary">order</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-primary">integer</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-check-circle text-success" title="Required"></i>
+          </td>
+          <td>
+            Görevin çalışma sırası. Aynı sıradaki görevler paralel çalıştırılır.
+            
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="text-primary">task</code>
+            <br><small class="text-muted">→ Reference.1.0.0.json#/attributes</small>
+          </td>
+          <td>
+            <span class="badge bg-dark">reference</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-check-circle text-success" title="Required"></i>
+          </td>
+          <td>
+            Çalıştırılacak task referansı
+            
+          </td>
+        </tr>
+          <tr>
+            <td colspan="4" class="nested-schema p-0">
+              <div class="border-start border-3 border-primary ps-3 py-2 ms-3" style="background-color: #f8f9fa;">
+                <small class="text-muted fw-bold">↳ task details:</small>
+                
+      <div class="schema-reference mb-3 ms-3">
+        <div class="alert alert-info border-info">
+          <h6 class="text-info mb-2"><i class="bi bi-link-45deg"></i> Reference to: <code>Reference.1.0.0.json#/attributes</code></h6>
+          <p class="text-muted small">Çalıştırılacak task referansı</p>
+          <div class="mt-2">
+            <small class="text-warning"><i class="bi bi-info-circle"></i> Schema details available but hidden to prevent deep nesting</small>
+          </div>
+        </div>
+      </div>
+              </div>
+            </td>
+          </tr>
+        <tr>
+          <td>
+            <code class="text-primary">mapping</code>
+            <br><small class="text-muted">→ Mapping.1.0.0.json#/attributes</small>
+          </td>
+          <td>
+            <span class="badge bg-dark">reference</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-check-circle text-success" title="Required"></i>
+          </td>
+          <td>
+            Göreve iletilecek ve geri dönüşümde alınacak verilerin mapping tanımı
+            
+          </td>
+        </tr>
+          <tr>
+            <td colspan="4" class="nested-schema p-0">
+              <div class="border-start border-3 border-primary ps-3 py-2 ms-3" style="background-color: #f8f9fa;">
+                <small class="text-muted fw-bold">↳ mapping details:</small>
+                
+      <div class="schema-reference mb-3 ms-3">
+        <div class="alert alert-info border-info">
+          <h6 class="text-info mb-2"><i class="bi bi-link-45deg"></i> Reference to: <code>Mapping.1.0.0.json#/attributes</code></h6>
+          <p class="text-muted small">Göreve iletilecek ve geri dönüşümde alınacak verilerin mapping tanımı</p>
+          <div class="mt-2">
+            <small class="text-warning"><i class="bi bi-info-circle"></i> Schema details available but hidden to prevent deep nesting</small>
+          </div>
+        </div>
+      </div>
+              </div>
+            </td>
+          </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+        </div>
+        
+        <div class="array-constraints mt-2">
+          
+          
+          
+        </div>
+      </div>
+              </div>
+            </td>
+          </tr>
+        <tr>
+          <td>
+            <code class="text-primary">onEntry</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-secondary">array[object]</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-check-circle text-success" title="Required"></i>
+          </td>
+          <td>
+            State'e her girildiğinde çalıştırılacak görevler dizisi
+            
+          </td>
+        </tr>
+          <tr>
+            <td colspan="4" class="nested-schema p-0">
+              <div class="border-start border-3 border-primary ps-3 py-2 ms-3" style="background-color: #f8f9fa;">
+                <small class="text-muted fw-bold">↳ onEntry details:</small>
+                
+      <div class="schema-array mb-3 ms-3">
+        <h6 class="text-warning"><i class="bi bi-list"></i> Array of Items</h6>
+        <p class="text-muted small">State'e her girildiğinde çalıştırılacak görevler dizisi</p>
+        
+        <div class="border-start border-warning border-3 ps-3 py-2" style="background-color: #fff3cd;">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <small class="text-muted fw-bold">Each item in this array:</small>
+            <span class="badge bg-warning text-dark">Array Item</span>
+          </div>
+      <div class="schema-object mb-4 ms-3">
+        
+        
+        
+        <div class="table-responsive">
+          <table class="table table-sm table-bordered">
+            <thead class="table-primary">
+              <tr>
+                <th width="25%">Property</th>
+                <th width="15%">Type</th>
+                <th width="10%">Required</th>
+                <th width="50%">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+        <tr>
+          <td>
+            <code class="text-primary">order</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-primary">integer</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-check-circle text-success" title="Required"></i>
+          </td>
+          <td>
+            Görevin çalışma sırası. Aynı sıradaki görevler paralel çalıştırılır.
+            
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="text-primary">task</code>
+            <br><small class="text-muted">→ Reference.1.0.0.json#/attributes</small>
+          </td>
+          <td>
+            <span class="badge bg-dark">reference</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-check-circle text-success" title="Required"></i>
+          </td>
+          <td>
+            Çalıştırılacak task referansı
+            
+          </td>
+        </tr>
+          <tr>
+            <td colspan="4" class="nested-schema p-0">
+              <div class="border-start border-3 border-primary ps-3 py-2 ms-3" style="background-color: #f8f9fa;">
+                <small class="text-muted fw-bold">↳ task details:</small>
+                
+      <div class="schema-reference mb-3 ms-3">
+        <div class="alert alert-info border-info">
+          <h6 class="text-info mb-2"><i class="bi bi-link-45deg"></i> Reference to: <code>Reference.1.0.0.json#/attributes</code></h6>
+          <p class="text-muted small">Çalıştırılacak task referansı</p>
+          <div class="mt-2">
+            <small class="text-warning"><i class="bi bi-info-circle"></i> Schema details available but hidden to prevent deep nesting</small>
+          </div>
+        </div>
+      </div>
+              </div>
+            </td>
+          </tr>
+        <tr>
+          <td>
+            <code class="text-primary">mapping</code>
+            <br><small class="text-muted">→ Mapping.1.0.0.json#/attributes</small>
+          </td>
+          <td>
+            <span class="badge bg-dark">reference</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-check-circle text-success" title="Required"></i>
+          </td>
+          <td>
+            Göreve iletilecek ve geri dönüşümde alınacak verilerin mapping tanımı
+            
+          </td>
+        </tr>
+          <tr>
+            <td colspan="4" class="nested-schema p-0">
+              <div class="border-start border-3 border-primary ps-3 py-2 ms-3" style="background-color: #f8f9fa;">
+                <small class="text-muted fw-bold">↳ mapping details:</small>
+                
+      <div class="schema-reference mb-3 ms-3">
+        <div class="alert alert-info border-info">
+          <h6 class="text-info mb-2"><i class="bi bi-link-45deg"></i> Reference to: <code>Mapping.1.0.0.json#/attributes</code></h6>
+          <p class="text-muted small">Göreve iletilecek ve geri dönüşümde alınacak verilerin mapping tanımı</p>
+          <div class="mt-2">
+            <small class="text-warning"><i class="bi bi-info-circle"></i> Schema details available but hidden to prevent deep nesting</small>
+          </div>
+        </div>
+      </div>
+              </div>
+            </td>
+          </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+        </div>
+        
+        <div class="array-constraints mt-2">
+          
+          
+          
+        </div>
+      </div>
+              </div>
+            </td>
+          </tr>
+        <tr>
+          <td>
+            <code class="text-primary">onExit</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-secondary">array[object]</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-check-circle text-success" title="Required"></i>
+          </td>
+          <td>
+            State'den her çıkılırken çalıştırılacak görevler dizisi
+            
+          </td>
+        </tr>
+          <tr>
+            <td colspan="4" class="nested-schema p-0">
+              <div class="border-start border-3 border-primary ps-3 py-2 ms-3" style="background-color: #f8f9fa;">
+                <small class="text-muted fw-bold">↳ onExit details:</small>
+                
+      <div class="schema-array mb-3 ms-3">
+        <h6 class="text-warning"><i class="bi bi-list"></i> Array of Items</h6>
+        <p class="text-muted small">State'den her çıkılırken çalıştırılacak görevler dizisi</p>
+        
+        <div class="border-start border-warning border-3 ps-3 py-2" style="background-color: #fff3cd;">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <small class="text-muted fw-bold">Each item in this array:</small>
+            <span class="badge bg-warning text-dark">Array Item</span>
+          </div>
+      <div class="schema-object mb-4 ms-3">
+        
+        
+        
+        <div class="table-responsive">
+          <table class="table table-sm table-bordered">
+            <thead class="table-primary">
+              <tr>
+                <th width="25%">Property</th>
+                <th width="15%">Type</th>
+                <th width="10%">Required</th>
+                <th width="50%">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+        <tr>
+          <td>
+            <code class="text-primary">order</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-primary">integer</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-check-circle text-success" title="Required"></i>
+          </td>
+          <td>
+            Görevin çalışma sırası. Aynı sıradaki görevler paralel çalıştırılır.
+            
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="text-primary">task</code>
+            <br><small class="text-muted">→ Reference.1.0.0.json#/attributes</small>
+          </td>
+          <td>
+            <span class="badge bg-dark">reference</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-check-circle text-success" title="Required"></i>
+          </td>
+          <td>
+            Çalıştırılacak task referansı
+            
+          </td>
+        </tr>
+          <tr>
+            <td colspan="4" class="nested-schema p-0">
+              <div class="border-start border-3 border-primary ps-3 py-2 ms-3" style="background-color: #f8f9fa;">
+                <small class="text-muted fw-bold">↳ task details:</small>
+                
+      <div class="schema-reference mb-3 ms-3">
+        <div class="alert alert-info border-info">
+          <h6 class="text-info mb-2"><i class="bi bi-link-45deg"></i> Reference to: <code>Reference.1.0.0.json#/attributes</code></h6>
+          <p class="text-muted small">Çalıştırılacak task referansı</p>
+          <div class="mt-2">
+            <small class="text-warning"><i class="bi bi-info-circle"></i> Schema details available but hidden to prevent deep nesting</small>
+          </div>
+        </div>
+      </div>
+              </div>
+            </td>
+          </tr>
+        <tr>
+          <td>
+            <code class="text-primary">mapping</code>
+            <br><small class="text-muted">→ Mapping.1.0.0.json#/attributes</small>
+          </td>
+          <td>
+            <span class="badge bg-dark">reference</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-check-circle text-success" title="Required"></i>
+          </td>
+          <td>
+            Göreve iletilecek ve geri dönüşümde alınacak verilerin mapping tanımı
+            
+          </td>
+        </tr>
+          <tr>
+            <td colspan="4" class="nested-schema p-0">
+              <div class="border-start border-3 border-primary ps-3 py-2 ms-3" style="background-color: #f8f9fa;">
+                <small class="text-muted fw-bold">↳ mapping details:</small>
+                
+      <div class="schema-reference mb-3 ms-3">
+        <div class="alert alert-info border-info">
+          <h6 class="text-info mb-2"><i class="bi bi-link-45deg"></i> Reference to: <code>Mapping.1.0.0.json#/attributes</code></h6>
+          <p class="text-muted small">Göreve iletilecek ve geri dönüşümde alınacak verilerin mapping tanımı</p>
+          <div class="mt-2">
+            <small class="text-warning"><i class="bi bi-info-circle"></i> Schema details available but hidden to prevent deep nesting</small>
+          </div>
+        </div>
+      </div>
+              </div>
+            </td>
+          </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+        </div>
+        
+        <div class="array-constraints mt-2">
+          
+          
+          
+        </div>
+      </div>
+              </div>
+            </td>
+          </tr>
+        <tr>
+          <td>
+            <code class="text-primary">versionStrategy</code>
+            <br><small class="text-muted">→ VersionStrategy.1.0.0.json#/attributes</small>
+          </td>
+          <td>
+            <span class="badge bg-dark">reference</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-check-circle text-success" title="Required"></i>
+          </td>
+          <td>
+            State'in versiyon yönetim stratejisi.
+            
+          </td>
+        </tr>
+          <tr>
+            <td colspan="4" class="nested-schema p-0">
+              <div class="border-start border-3 border-primary ps-3 py-2 ms-3" style="background-color: #f8f9fa;">
+                <small class="text-muted fw-bold">↳ versionStrategy details:</small>
+                
+      <div class="schema-reference mb-3 ms-3">
+        <div class="alert alert-info border-info">
+          <h6 class="text-info mb-2"><i class="bi bi-link-45deg"></i> Reference to: <code>VersionStrategy.1.0.0.json#/attributes</code></h6>
+          <p class="text-muted small">State'in versiyon yönetim stratejisi.</p>
+          <div class="mt-3">
+            <small class="text-muted fw-bold">Referenced schema details:</small>
+            <div class="border-start border-info border-2 ps-3 mt-2">
+              <div class="schema-conditional mb-3 ms-3">
+        <h6 class="text-info"><i class="bi bi-layers"></i> One Of (Choose one option)</h6>
+        <div class="accordion" id="oneOf-f5dope808">
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#oneOf-drg7efjgn-0">
+                <strong>Option 1:</strong> noAction
+                <small class="text-muted ms-2">- Version olusturmaz</small>
+              </button>
+            </h2>
+            <div id="oneOf-drg7efjgn-0" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                
+      <div class="schema-simple mb-2 ms-3">
+        <div class="d-flex align-items-center">
+          <span class="badge bg-dark me-2">unknown</span>
+          <span class="text-muted">Version olusturmaz</span>
+        </div>
+        <div class="mt-1"><small class="text-muted"><strong>Constant value:</strong> <code>noAction</code></small></div>
+      </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#oneOf-ho2yo8ds4-1">
+                <strong>Option 2:</strong> increaseMinor
+                <small class="text-muted ms-2">- Sadece minor versiyonu arttir ve patch versiyonu sifirlar.</small>
+              </button>
+            </h2>
+            <div id="oneOf-ho2yo8ds4-1" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                
+      <div class="schema-simple mb-2 ms-3">
+        <div class="d-flex align-items-center">
+          <span class="badge bg-dark me-2">unknown</span>
+          <span class="text-muted">Sadece minor versiyonu arttir ve patch versiyonu sifirlar.</span>
+        </div>
+        <div class="mt-1"><small class="text-muted"><strong>Constant value:</strong> <code>increaseMinor</code></small></div>
+      </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#oneOf-482naikhj-2">
+                <strong>Option 3:</strong> increaseMajor
+                <small class="text-muted ms-2">- Major versiyonu arttirir ve minor versiyonu sifirlar.</small>
+              </button>
+            </h2>
+            <div id="oneOf-482naikhj-2" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                
+      <div class="schema-simple mb-2 ms-3">
+        <div class="d-flex align-items-center">
+          <span class="badge bg-dark me-2">unknown</span>
+          <span class="text-muted">Major versiyonu arttirir ve minor versiyonu sifirlar.</span>
+        </div>
+        <div class="mt-1"><small class="text-muted"><strong>Constant value:</strong> <code>increaseMajor</code></small></div>
+      </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#oneOf-8f9fyf3xd-3">
+                <strong>Option 4:</strong> increasePatch
+                <small class="text-muted ms-2">- Sadece patch versiyonunu arttirir.</small>
+              </button>
+            </h2>
+            <div id="oneOf-8f9fyf3xd-3" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                
+      <div class="schema-simple mb-2 ms-3">
+        <div class="d-flex align-items-center">
+          <span class="badge bg-dark me-2">unknown</span>
+          <span class="text-muted">Sadece patch versiyonunu arttirir.</span>
+        </div>
+        <div class="mt-1"><small class="text-muted"><strong>Constant value:</strong> <code>increasePatch</code></small></div>
+      </div>
+              </div>
+            </div>
+          </div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+              </div>
+            </td>
+          </tr>
+        <tr>
+          <td>
+            <code class="text-primary">type</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-dark">oneOf</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-check-circle text-success" title="Required"></i>
+          </td>
+          <td>
+            State'in türü.
+            
+          </td>
+        </tr>
+          <tr>
+            <td colspan="4" class="nested-schema p-0">
+              <div class="border-start border-3 border-primary ps-3 py-2 ms-3" style="background-color: #f8f9fa;">
+                <small class="text-muted fw-bold">↳ type details:</small>
+                <div class="schema-conditional mb-3 ms-3">
+        <h6 class="text-info"><i class="bi bi-layers"></i> One Of (Choose one option)</h6>
+        <div class="accordion" id="oneOf-mzpvls9e9">
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#oneOf-uoz40x0yj-0">
+                <strong>Option 1:</strong> start
+                <small class="text-muted ms-2">- Workflow'un başlangıç state'i.</small>
+              </button>
+            </h2>
+            <div id="oneOf-uoz40x0yj-0" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                
+      <div class="schema-simple mb-2 ms-3">
+        <div class="d-flex align-items-center">
+          <span class="badge bg-dark me-2">unknown</span>
+          <span class="text-muted">Workflow'un başlangıç state'i.</span>
+        </div>
+        <div class="mt-1"><small class="text-muted"><strong>Constant value:</strong> <code>start</code></small></div>
+      </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#oneOf-wpq714vkf-1">
+                <strong>Option 2:</strong> wizard
+                <small class="text-muted ms-2">- Çok adımlı form state'i.</small>
+              </button>
+            </h2>
+            <div id="oneOf-wpq714vkf-1" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                
+      <div class="schema-simple mb-2 ms-3">
+        <div class="d-flex align-items-center">
+          <span class="badge bg-dark me-2">unknown</span>
+          <span class="text-muted">Çok adımlı form state'i.</span>
+        </div>
+        <div class="mt-1"><small class="text-muted"><strong>Constant value:</strong> <code>wizard</code></small></div>
+      </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#oneOf-hfozdi9bd-2">
+                <strong>Option 3:</strong> normal
+                <small class="text-muted ms-2">- Normal işlem state'i.</small>
+              </button>
+            </h2>
+            <div id="oneOf-hfozdi9bd-2" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                
+      <div class="schema-simple mb-2 ms-3">
+        <div class="d-flex align-items-center">
+          <span class="badge bg-dark me-2">unknown</span>
+          <span class="text-muted">Normal işlem state'i.</span>
+        </div>
+        <div class="mt-1"><small class="text-muted"><strong>Constant value:</strong> <code>normal</code></small></div>
+      </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#oneOf-4cm017ln9-3">
+                <strong>Option 4:</strong> finish
+                <small class="text-muted ms-2">- Workflow'un sonlandırıldığı final state'i.</small>
+              </button>
+            </h2>
+            <div id="oneOf-4cm017ln9-3" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                
+      <div class="schema-simple mb-2 ms-3">
+        <div class="d-flex align-items-center">
+          <span class="badge bg-dark me-2">unknown</span>
+          <span class="text-muted">Workflow'un sonlandırıldığı final state'i.</span>
+        </div>
+        <div class="mt-1"><small class="text-muted"><strong>Constant value:</strong> <code>finish</code></small></div>
+      </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#oneOf-ddtdq9vtt-4">
+                <strong>Option 5:</strong> subFlow
+                <small class="text-muted ms-2">- Alt workflow çağıran state.</small>
+              </button>
+            </h2>
+            <div id="oneOf-ddtdq9vtt-4" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                
+      <div class="schema-simple mb-2 ms-3">
+        <div class="d-flex align-items-center">
+          <span class="badge bg-dark me-2">unknown</span>
+          <span class="text-muted">Alt workflow çağıran state.</span>
+        </div>
+        <div class="mt-1"><small class="text-muted"><strong>Constant value:</strong> <code>subFlow</code></small></div>
+      </div>
+              </div>
+            </div>
+          </div></div></div>
+              </div>
+            </td>
+          </tr>
+        <tr>
+          <td>
+            <code class="text-primary">subFlow</code>
+            <br><small class="text-muted">→ Reference.1.0.0.json#/attributes</small>
+          </td>
+          <td>
+            <span class="badge bg-dark">reference</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-dash-circle text-muted" title="Optional"></i>
+          </td>
+          <td>
+            SubFlow state türü için çağrılacak alt workflow'un referansı.
+            
+          </td>
+        </tr>
+          <tr>
+            <td colspan="4" class="nested-schema p-0">
+              <div class="border-start border-3 border-primary ps-3 py-2 ms-3" style="background-color: #f8f9fa;">
+                <small class="text-muted fw-bold">↳ subFlow details:</small>
+                
+      <div class="schema-reference mb-3 ms-3">
+        <div class="alert alert-info border-info">
+          <h6 class="text-info mb-2"><i class="bi bi-link-45deg"></i> Reference to: <code>Reference.1.0.0.json#/attributes</code></h6>
+          <p class="text-muted small">SubFlow state türü için çağrılacak alt workflow'un referansı.</p>
+          <div class="mt-3">
+            <small class="text-muted fw-bold">Referenced schema details:</small>
+            <div class="border-start border-info border-2 ps-3 mt-2">
+              
+      <div class="schema-object mb-4 ms-3">
+        <h6 class="text-primary"><i class="bi bi-box"></i> Reference</h6>
+        <p class="text-muted small">Cross-domain kayıtlara referans vermek için kullanılan ortak şema. Farklı runtime'lar arasında referans mekanizması sağlar.</p>
+        
+        <div class="table-responsive">
+          <table class="table table-sm table-bordered">
+            <thead class="table-primary">
+              <tr>
+                <th width="25%">Property</th>
+                <th width="15%">Type</th>
+                <th width="10%">Required</th>
+                <th width="50%">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+        <tr>
+          <td>
+            <code class="text-primary">id</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-success">string</span>
+            <br><small class="text-info">uuid</small>
+          </td>
+          <td>
+            <i class="bi bi-dash-circle text-muted" title="Optional"></i>
+          </td>
+          <td>
+            Referans edilen kaydın benzersiz tanımlayıcısı (UUID v7 formatında)
+            
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="text-primary">key</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-success">string</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-dash-circle text-muted" title="Optional"></i>
+          </td>
+          <td>
+            Referans edilen kaydın anahtar değeri (okunabilir identifier)
+            
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="text-primary">domain</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-success">string</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-dash-circle text-muted" title="Optional"></i>
+          </td>
+          <td>
+            Referans edilen kaydın bulunduğu domain (cross-domain referanslar için zorunlu)
+            <div class="mt-1"><small class="text-muted"><strong>Examples:</strong> <code>"Core"</code>, <code>"IDM"</code>, <code>"Banking"</code>, <code>"Payment"</code></small></div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="text-primary">workflow</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-success">string</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-dash-circle text-muted" title="Optional"></i>
+          </td>
+          <td>
+            Referans edilen kaydın bulunduğu workflow adı
+            
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="text-primary">version</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-success">string</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-dash-circle text-muted" title="Optional"></i>
+          </td>
+          <td>
+            Referans edilen kaydın sürüm bilgisi (semantic versioning)
+            <div class="mt-1"><small class="text-muted"><strong>Pattern:</strong> <code>^\d+\.\d+(\.\d+)?$</code></small></div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="text-primary">metadata</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-info">object</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-dash-circle text-muted" title="Optional"></i>
+          </td>
+          <td>
+            İstemci tarafından serbest şekilde eklenebilecek metadata bilgileri (displayName, description vb.)
+            
+          </td>
+        </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+            </div>
+          </div>
+        </div>
+      </div>
+              </div>
+            </td>
+          </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h6><i class="bi bi-code-slash"></i> Raw JSON Schema</h6>
+                                <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#rawSchema-State-1.0.0">
+                                    <i class="bi bi-eye"></i> Toggle Raw JSON
+                                </button>
+                            </div>
+                            <div class="collapse" id="rawSchema-State-1.0.0">
+                                <pre class="json-viewer p-3"><code>{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.amorphie.com/core/state.json",
+  "title": "State Definition",
+  "description": "Amorphie workflow state machine içindeki bir state'in tanımı. State'ler workflow'un temel yapı taşlarıdır.",
+  "type": "object",
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "State'in anahtar değeri. Workflow içinde benzersiz olmalıdır.",
+      "pattern": "^[a-z0-9-_]+$"
+    },
+    "labels": {
+      "$ref": "Label.1.0.0.json#/attributes",
+      "description": "State'in çoklu dil etiketleri"
+    },
+    "transitions": {
+      "type": "array",
+      "items": {
+        "$ref": "Transition.1.0.0.json#/attributes"
+      },
+      "description": "Bu state'den çıkış yapılabilecek geçişlerin listesi."
+    },
+    "views": {
+      "type": "array",
+      "items": {
+        "$ref": "Reference.1.0.0.json#/attributes"
+      },
+      "description": "Bu state ile ilişkili kullanıcı arayüzü view'larının referansları."
+    },
+    "responses": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "Response mapping'in anahtar değeri."
+          },
+          "mapping": {
+            "$ref": "Code.1.0.0.json#/attributes",
+            "description": "State'de workflow verilerinin dönüş şeklini belirleyen mapping kodu referansı."
+          }
+        },
+        "required": [
+          "key",
+          "mapping"
+        ],
+        "additionalProperties": false
+      },
+      "description": "State'de workflow verilerinin görünüm katmanına nasıl döneceğini belirten mapping'ler."
+    },
+    "onFirstEntry": {
+      "type": "array",
+      "description": "State'e ilk kez girildiğinde çalıştırılacak görevler dizisi",
+      "items": {
+        "type": "object",
+        "properties": {
+          "order": {
+            "type": "integer",
+            "description": "Görevin çalışma sırası. Aynı sıradaki görevler paralel çalıştırılır."
+          },
+          "task": {
+            "$ref": "Reference.1.0.0.json#/attributes",
+            "description": "Çalıştırılacak task referansı"
+          },
+          "mapping": {
+            "$ref": "Mapping.1.0.0.json#/attributes",
+            "description": "Göreve iletilecek ve geri dönüşümde alınacak verilerin mapping tanımı"
+          }
+        },
+        "required": [
+          "order",
+          "task",
+          "mapping"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "onFirstExit": {
+      "type": "array",
+      "description": "State'den ilk kez çıkılırken çalıştırılacak görevler dizisi",
+      "items": {
+        "type": "object",
+        "properties": {
+          "order": {
+            "type": "integer",
+            "description": "Görevin çalışma sırası. Aynı sıradaki görevler paralel çalıştırılır."
+          },
+          "task": {
+            "$ref": "Reference.1.0.0.json#/attributes",
+            "description": "Çalıştırılacak task referansı"
+          },
+          "mapping": {
+            "$ref": "Mapping.1.0.0.json#/attributes",
+            "description": "Göreve iletilecek ve geri dönüşümde alınacak verilerin mapping tanımı"
+          }
+        },
+        "required": [
+          "order",
+          "task",
+          "mapping"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "onEntry": {
+      "type": "array",
+      "description": "State'e her girildiğinde çalıştırılacak görevler dizisi",
+      "items": {
+        "type": "object",
+        "properties": {
+          "order": {
+            "type": "integer",
+            "description": "Görevin çalışma sırası. Aynı sıradaki görevler paralel çalıştırılır."
+          },
+          "task": {
+            "$ref": "Reference.1.0.0.json#/attributes",
+            "description": "Çalıştırılacak task referansı"
+          },
+          "mapping": {
+            "$ref": "Mapping.1.0.0.json#/attributes",
+            "description": "Göreve iletilecek ve geri dönüşümde alınacak verilerin mapping tanımı"
+          }
+        },
+        "required": [
+          "order",
+          "task",
+          "mapping"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "onExit": {
+      "type": "array",
+      "description": "State'den her çıkılırken çalıştırılacak görevler dizisi",
+      "items": {
+        "type": "object",
+        "properties": {
+          "order": {
+            "type": "integer",
+            "description": "Görevin çalışma sırası. Aynı sıradaki görevler paralel çalıştırılır."
+          },
+          "task": {
+            "$ref": "Reference.1.0.0.json#/attributes",
+            "description": "Çalıştırılacak task referansı"
+          },
+          "mapping": {
+            "$ref": "Mapping.1.0.0.json#/attributes",
+            "description": "Göreve iletilecek ve geri dönüşümde alınacak verilerin mapping tanımı"
+          }
+        },
+        "required": [
+          "order",
+          "task",
+          "mapping"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "versionStrategy": {
+      "$ref": "VersionStrategy.1.0.0.json#/attributes",
+      "description": "State'in versiyon yönetim stratejisi."
+    },
+    "type": {
+      "oneOf": [
+        {
+          "const": "start",
+          "description": "Workflow'un başlangıç state'i."
+        },
+        {
+          "const": "wizard",
+          "description": "Çok adımlı form state'i."
+        },
+        {
+          "const": "normal",
+          "description": "Normal işlem state'i."
+        },
+        {
+          "const": "finish",
+          "description": "Workflow'un sonlandırıldığı final state'i."
+        },
+        {
+          "const": "subFlow",
+          "description": "Alt workflow çağıran state."
+        }
+      ],
+      "description": "State'in türü."
+    },
+    "subFlow": {
+      "$ref": "Reference.1.0.0.json#/attributes",
+      "description": "SubFlow state türü için çağrılacak alt workflow'un referansı."
+    }
+  },
+  "required": [
+    "key",
+    "labels",
+    "transitions",
+    "views",
+    "responses",
+    "onFirstEntry",
+    "onFirstExit",
+    "onEntry",
+    "onExit",
+    "versionStrategy",
+    "type"
+  ],
+  "additionalProperties": false
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</body>
+</html>

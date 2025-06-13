@@ -1,12 +1,12 @@
 {
-    "key": "View",
+    "key": "Schema",
     "version": "1.0.0",
     "domain": "Core",
     "flow": "Workflow",
     "flowVersion": "1.0.0",
     "tags": [
         "Core",
-        "View",
+        "Schema",
         "Lifecycle",
         "Repository"
     ],
@@ -14,27 +14,27 @@
         "timeout": null,
         "type": "flow",
         "labels": {
-            "en": "View Lifecycle Management",
-            "tr": "Görünüm Yaşam Döngüsü Yönetimi"
+            "en": "Schema Lifecycle Management",
+            "tr": "Şema Yaşam Döngüsü Yönetimi"
         },
         "functions": [],
         "sharedTransitions": [],
         "extensions": [],
         "features": [],
         "startTransition": {
-            "key": "create-view",
+            "key": "create-schema",
             "target": "draft",
             "labels": {
-                "en": "Create View",
-                "tr": "Görünüm Oluştur"
+                "en": "Create Schema",
+                "tr": "Şema Oluştur"
             },
             "versionStrategy": {
                 "strategy": "noAction"
             },
             "schema": {
-                "key": "view-creation-input",
+                "key": "schema-creation-input",
                 "domain": "Core",
-                "workflow": "View",
+                "workflow": "Schema",
                 "version": "1.0.0"
             },
             "onExecute": [],
@@ -53,8 +53,8 @@
                         "key": "activate",
                         "target": "active",
                         "labels": {
-                            "en": "Activate View",
-                            "tr": "Görünümü Aktifleştir"
+                            "en": "Activate Schema",
+                            "tr": "Şemayı Aktifleştir"
                         },
                         "versionStrategy": {
                             "strategy": "noAction"
@@ -78,7 +78,14 @@
                         "type": "self"
                     }
                 ],
-                "views": [],
+                "views": [
+                    {
+                        "key": "SchemaFullView",
+                        "domain": "Core",
+                        "workflow": "View",
+                        "version": "1.0.0"
+                    }
+                ],
                 "responses": [],
                 "onFirstEntry": [],
                 "onFirstExit": [],
@@ -100,8 +107,8 @@
                         "key": "deactivate",
                         "target": "passive",
                         "labels": {
-                            "en": "Deactivate View",
-                            "tr": "Görünümü Pasifleştir"
+                            "en": "Deactivate Schema",
+                            "tr": "Şemayı Pasifleştir"
                         },
                         "versionStrategy": {
                             "strategy": "noAction"
@@ -114,8 +121,8 @@
                         "key": "update",
                         "target": "active",
                         "labels": {
-                            "en": "Update View",
-                            "tr": "Görünümü Güncelle"
+                            "en": "Update Schema",
+                            "tr": "Şemayı Güncelle"
                         },
                         "versionStrategy": {
                             "strategy": "noAction"
@@ -125,7 +132,14 @@
                         "type": "self"
                     }
                 ],
-                "views": [],
+                "views": [
+                    {
+                        "key": "SchemaFullView",
+                        "domain": "Core",
+                        "workflow": "View",
+                        "version": "1.0.0"
+                    }
+                ],
                 "responses": [],
                 "onFirstEntry": [],
                 "onFirstExit": [],
@@ -147,8 +161,8 @@
                         "key": "reactivate",
                         "target": "active",
                         "labels": {
-                            "en": "Reactivate View",
-                            "tr": "Görünümü Yeniden Aktifleştir"
+                            "en": "Reactivate Schema",
+                            "tr": "Şemayı Yeniden Aktifleştir"
                         },
                         "versionStrategy": {
                             "strategy": "noAction"
@@ -159,10 +173,10 @@
                     },
                     {
                         "key": "archive",
-                        "target": "deleted",
+                        "target": null,
                         "labels": {
-                            "en": "Archive View",
-                            "tr": "Görünümü Arşivle"
+                            "en": "Archive Schema",
+                            "tr": "Şemayı Arşivle"
                         },
                         "versionStrategy": {
                             "strategy": "noAction"
@@ -172,40 +186,14 @@
                         "type": "self"
                     }
                 ],
-                "views": [],
-                "responses": [],
-                "onFirstEntry": [],
-                "onFirstExit": [],
-                "onEntry": [],
-                "onExit": [],
-                "versionStrategy": {
-                    "strategy": "noAction"
-                },
-                "type": "finish"
-            },
-            {
-                "key": "deleted",
-                "labels": {
-                    "en": "Deleted State",
-                    "tr": "Silinmiş Durum"
-                },
-                "transitions": [
+                "views": [
                     {
-                        "key": "recover",
-                        "target": "active",
-                        "labels": {
-                            "en": "Recover",
-                            "tr": "Geri Al"
-                        },
-                        "versionStrategy": {
-                            "strategy": "noAction"
-                        },
-                        "onExecute": [],
-                        "views": [],
-                        "type": "forward"
+                        "key": "SchemaFullView",
+                        "domain": "Core",
+                        "workflow": "View",
+                        "version": "1.0.0"
                     }
                 ],
-                "views": [],
                 "responses": [],
                 "onFirstEntry": [],
                 "onFirstExit": [],
@@ -218,10 +206,10 @@
             }
         ],
         "modelSchema": {
-            "key": "View",
+            "key": "Schema",
             "domain": "Core",
             "workflow": "Schema",
-            "version": "1.0.0"
+            "version": "1.1.0"
         }
     }
 }

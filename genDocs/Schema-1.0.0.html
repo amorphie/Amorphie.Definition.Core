@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schema v1.0.0 - @amorphie/definition-core</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f8f9fa; }
+        .json-viewer { background: #1e1e1e; color: #d4d4d4; border-radius: 8px; }
+        .workflow-docs { background: white; border-left: 4px solid #0d6efd; padding: 1.5rem; margin: 2rem 0; border-radius: 8px; }
+        .plantuml-diagram { text-align: center; margin: 2rem 0; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-white"><i class="bi bi-house"></i> Home</a></li>
+                    <li class="breadcrumb-item"><a href="Schema.html" class="text-white">Schema</a></li>
+                    <li class="breadcrumb-item active text-white-50" aria-current="page">Schema</li>
+                </ol>
+            </nav>
+        </div>
+    </nav>
+
+    <div class="container my-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h1 class="h3 mb-0"><i class="bi bi-file-earmark-code"></i> Schema</h1>
+                        <small>Version 1.0.0</small>
+                    </div>
+                    <div class="card-body">
+                        <div class="row mb-4">
+                            <div class="col-md-3">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Domain</h6>
+                                        <span class="badge bg-primary">Core</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Flow</h6>
+                                        <span class="badge bg-info">Schema</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Flow Version</h6>
+                                        <span class="badge bg-secondary">1.0.0</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h6 class="card-title">File Path</h6>
+                                        <code class="small">Core/Schema/Schema.1.0.0.json</code>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div class="mb-4">
+                            <h5><i class="bi bi-tags"></i> Tags</h5>
+                            <div class="d-flex gap-1 flex-wrap">
+                                <span class="badge bg-light text-dark">Core</span> <span class="badge bg-light text-dark">Schema</span> <span class="badge bg-light text-dark">MetaSchema</span> <span class="badge bg-light text-dark">Base</span>
+                            </div>
+                        </div>
+                        
+
+                        
+                        <div class="mb-4">
+                            <h5><i class="bi bi-info-circle"></i> Description</h5>
+                            <div class="alert alert-info">
+                                <p class="mb-0">Gerçek JSON Schema tanımının bulunduğu alan. Bu alan valid bir JSON Schema olmalıdır.</p>
+                            </div>
+                        </div>
+                        
+
+                        
+                        <div class="workflow-docs">
+                            <h5><i class="bi bi-journal-text"></i> Workflow Documentation</h5>
+                            <div class="markdown-content">
+                                <h1>Şema Yaşam Döngüsü Workflowu</h1>
+<h2>Genel Bakış</h2>
+<p>&lt;!-- Kullanıcı düzenlenebilir bölüm --&gt;
+Şema Yaşam Döngüsü Workflowu, Amorphie platformu içerisindeki JSON Schema tanımlarının tam yaşam döngüsünü yönetir. Bu workflow, şema tanımlarının doğru versiyonlama, doğrulama ve tüm domain projelerine dağıtımını sağlar.</p>
+<p>&lt;!-- OTOMATİK ÜRETİLMİŞ - MANUEL DÜZENLEME YAPMAYIN --&gt;</p>
+<h3>Mevcut Versiyonlar</h3>
+<ul>
+<li><strong>Versiyon 1.0.0</strong> (Güncel)</li>
+<li><strong>Domain</strong>: Core</li>
+<li><strong>Key</strong>: Schema</li>
+<li><strong>Tags</strong>: Core, Schema, Lifecycle, Repository</li>
+</ul>
+<h3>Durum Makinesi Diyagramı</h3>
+<pre><code class="language-plantuml">@startuml SchemaLifecycle
+[*] --&gt; draft : create-schema
+draft --&gt; active : activate
+draft --&gt; [*] : delete
+active --&gt; passive : deactivate
+active --&gt; active : update
+passive --&gt; active : reactivate
+passive --&gt; [*] : archive
+@enduml
+</code></pre>
+<h3>Durum Tanımları</h3>
+<h4>Taslak Durumu (start)</h4>
+<ul>
+<li><strong>Key</strong>: <code>draft</code></li>
+<li><strong>Tip</strong>: <code>start</code></li>
+<li><strong>Etiketler</strong>:
+<ul>
+<li>EN: &quot;Draft State&quot;</li>
+<li>TR: &quot;Taslak Durumu&quot;</li>
+</ul>
+</li>
+<li><strong>Mevcut Geçişler</strong>: <code>activate</code>, <code>delete</code></li>
+<li><strong>Görünümler</strong>: <a href="../../View/docs/SchemaFullView.md">SchemaFullView</a></li>
+</ul>
+<h4>Aktif Durum (normal)</h4>
+<ul>
+<li><strong>Key</strong>: <code>active</code></li>
+<li><strong>Tip</strong>: <code>normal</code></li>
+<li><strong>Etiketler</strong>:
+<ul>
+<li>EN: &quot;Active State&quot;</li>
+<li>TR: &quot;Aktif Durumu&quot;</li>
+</ul>
+</li>
+<li><strong>Mevcut Geçişler</strong>: <code>deactivate</code>, <code>update</code></li>
+<li><strong>Görünümler</strong>: <a href="../../View/docs/SchemaFullView.md">SchemaFullView</a></li>
+</ul>
+<h4>Pasif Durum (finish)</h4>
+<ul>
+<li><strong>Key</strong>: <code>passive</code></li>
+<li><strong>Tip</strong>: <code>normal</code></li>
+<li><strong>Etiketler</strong>:
+<ul>
+<li>EN: &quot;Passive State&quot;</li>
+<li>TR: &quot;Pasif Durumu&quot;</li>
+</ul>
+</li>
+<li><strong>Mevcut Geçişler</strong>: <code>reactivate</code>, <code>archive</code></li>
+<li><strong>Görünümler</strong>: <a href="../../View/docs/SchemaFullView.md">SchemaFullView</a></li>
+</ul>
+<h3>Geçiş Tanımları</h3>
+<h4>create-schema (Başlangıç Geçişi)</h4>
+<ul>
+<li><strong>Hedef</strong>: <code>draft</code></li>
+<li><strong>Tip</strong>: <code>forward</code></li>
+<li><strong>Etiketler</strong>:
+<ul>
+<li>EN: &quot;Create Schema&quot;</li>
+<li>TR: &quot;Şema Oluştur&quot;</li>
+</ul>
+</li>
+<li><strong>Şema</strong>: schema-creation-input (Core/Schema/1.0.0)</li>
+</ul>
+<h4>activate</h4>
+<ul>
+<li><strong>Kaynak</strong>: <code>draft</code> → <strong>Hedef</strong>: <code>active</code></li>
+<li><strong>Tip</strong>: <code>forward</code></li>
+<li><strong>Etiketler</strong>:
+<ul>
+<li>EN: &quot;Activate Schema&quot;</li>
+<li>TR: &quot;Şemayı Aktifleştir&quot;</li>
+</ul>
+</li>
+</ul>
+<h4>update</h4>
+<ul>
+<li><strong>Kaynak</strong>: <code>active</code> → <strong>Hedef</strong>: <code>active</code></li>
+<li><strong>Tip</strong>: <code>self</code></li>
+<li><strong>Etiketler</strong>:
+<ul>
+<li>EN: &quot;Update Schema&quot;</li>
+<li>TR: &quot;Şemayı Güncelle&quot;</li>
+</ul>
+</li>
+</ul>
+<h4>deactivate</h4>
+<ul>
+<li><strong>Kaynak</strong>: <code>active</code> → <strong>Hedef</strong>: <code>passive</code></li>
+<li><strong>Tip</strong>: <code>forward</code></li>
+<li><strong>Etiketler</strong>:
+<ul>
+<li>EN: &quot;Deactivate Schema&quot;</li>
+<li>TR: &quot;Şemayı Pasifleştir&quot;</li>
+</ul>
+</li>
+</ul>
+<h4>reactivate</h4>
+<ul>
+<li><strong>Kaynak</strong>: <code>passive</code> → <strong>Hedef</strong>: <code>active</code></li>
+<li><strong>Tip</strong>: <code>forward</code></li>
+<li><strong>Etiketler</strong>:
+<ul>
+<li>EN: &quot;Reactivate Schema&quot;</li>
+<li>TR: &quot;Şemayı Yeniden Aktifleştir&quot;</li>
+</ul>
+</li>
+</ul>
+<h4>delete</h4>
+<ul>
+<li><strong>Kaynak</strong>: <code>draft</code> → <strong>Hedef</strong>: <code>[TERMINATE]</code></li>
+<li><strong>Tip</strong>: <code>self</code></li>
+<li><strong>Etiketler</strong>:
+<ul>
+<li>EN: &quot;Delete Draft&quot;</li>
+<li>TR: &quot;Taslağı Sil&quot;</li>
+</ul>
+</li>
+</ul>
+<h4>archive</h4>
+<ul>
+<li><strong>Kaynak</strong>: <code>passive</code> → <strong>Hedef</strong>: <code>[TERMINATE]</code></li>
+<li><strong>Tip</strong>: <code>self</code></li>
+<li><strong>Etiketler</strong>:
+<ul>
+<li>EN: &quot;Archive Schema&quot;</li>
+<li>TR: &quot;Şemayı Arşivle&quot;</li>
+</ul>
+</li>
+</ul>
+<h3>Veri Modeli</h3>
+<p>Şema instanceları temel <a href="../../Schema/docs/Schema.md">Schema.1.0.0.json</a> tanımını kullanır.</p>
+<h3>Instances (Seed Data)</h3>
+<p><strong>Mevcut Schema Instanceları</strong>:</p>
+<ul>
+<li><a href="../../Schema/Code.1.0.0.json">Code.1.0.0.json</a> - Kod şeması</li>
+<li><a href="../../Schema/InstanceBase.1.0.0.json">InstanceBase.1.0.0.json</a> - Temel entity yapısı</li>
+<li><a href="../../Schema/Label.1.0.0.json">Label.1.0.0.json</a> - Çok dilli etiket şeması</li>
+<li><a href="../../Schema/Mapping.1.0.0.json">Mapping.1.0.0.json</a> - Mapping şeması</li>
+<li><a href="../../Schema/Reference.1.0.0.json">Reference.1.0.0.json</a> - Domain-arası referans şeması</li>
+<li><a href="../../Schema/Schema.1.0.0.json">Schema.1.0.0.json</a> - Meta-şema tanımı</li>
+<li><a href="../../Schema/State.1.0.0.json">State.1.0.0.json</a> - Durum şeması</li>
+<li><a href="../../Schema/Task.1.0.0.json">Task.1.0.0.json</a> - Görev şeması</li>
+<li><a href="../../Schema/Transition.1.0.0.json">Transition.1.0.0.json</a> - Geçiş şeması</li>
+<li><a href="../../Schema/VersionStrategy.1.0.0.json">VersionStrategy.1.0.0.json</a> - Versiyon stratejisi şeması</li>
+<li><a href="../../Schema/View.1.0.0.json">View.1.0.0.json</a> - Görünüm şeması</li>
+<li><a href="../../Schema/Workflow.1.0.0.json">Workflow.1.0.0.json</a> - Workflow şeması</li>
+</ul>
+<p>&lt;!-- SON OTOMATİK ÜRETİLMİŞ --&gt;</p>
+
+                            </div>
+                        </div>
+                        
+
+                        
+
+                        
+
+                        <div class="mb-4">
+                            <h5><i class="bi bi-code-slash"></i> JSON Schema</h5>
+                            <pre class="json-viewer p-3"><code>{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.amorphie.com/core/schema.json",
+  "title": "Schema Definition",
+  "description": "Gerçek JSON Schema tanımının bulunduğu alan. Bu alan valid bir JSON Schema olmalıdır.",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "format": "uri",
+      "description": "JSON Schema versiyonu"
+    },
+    "$id": {
+      "type": "string",
+      "format": "uri",
+      "description": "Şemanın benzersiz URI'si"
+    },
+    "title": {
+      "type": "string",
+      "description": "Şemanın başlığı"
+    },
+    "description": {
+      "type": "string",
+      "description": "Şemanın açıklaması"
+    },
+    "type": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "JSON Schema type tanımı"
+    }
+  },
+  "required": [
+    "$schema",
+    "$id",
+    "title",
+    "description",
+    "type"
+  ],
+  "additionalProperties": true
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</body>
+</html>

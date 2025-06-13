@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapping v1.0.0 - @amorphie/definition-core</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f8f9fa; }
+        .json-viewer { background: #1e1e1e; color: #d4d4d4; border-radius: 8px; }
+        .workflow-docs { background: white; border-left: 4px solid #0d6efd; padding: 1.5rem; margin: 2rem 0; border-radius: 8px; }
+        .plantuml-diagram { text-align: center; margin: 2rem 0; }
+        .schema-documentation { background: #f8f9fa; border-radius: 8px; padding: 1rem; }
+        .schema-object { background: white; border-radius: 8px; padding: 1rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .nested-schema { background: #f8f9fa; }
+        .schema-array { background: #fff3cd; border-radius: 8px; padding: 1rem; }
+        .schema-conditional { background: #d1ecf1; border-radius: 8px; padding: 1rem; }
+        .property-details { font-size: 0.875rem; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-white"><i class="bi bi-house"></i> Home</a></li>
+                    <li class="breadcrumb-item"><a href="Schema.html" class="text-white">Schema</a></li>
+                    <li class="breadcrumb-item active text-white-50" aria-current="page">Mapping</li>
+                </ol>
+            </nav>
+        </div>
+    </nav>
+
+    <div class="container my-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h1 class="h3 mb-0"><i class="bi bi-file-earmark-code"></i> Mapping</h1>
+                        <small>Version 1.0.0</small>
+                    </div>
+                    <div class="card-body">
+                        <div class="row mb-4">
+                            <div class="col-md-3">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Domain</h6>
+                                        <span class="badge bg-primary">Core</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Flow</h6>
+                                        <span class="badge bg-info">Schema</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Flow Version</h6>
+                                        <span class="badge bg-secondary">1.0.0</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h6 class="card-title">File Path</h6>
+                                        <code class="small">Core/Schema/Mapping.1.0.0.json</code>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div class="mb-4">
+                            <h5><i class="bi bi-tags"></i> Tags</h5>
+                            <div class="d-flex gap-1 flex-wrap">
+                                <span class="badge bg-light text-dark">Core</span> <span class="badge bg-light text-dark">Mapping</span> <span class="badge bg-light text-dark">DataTransformation</span> <span class="badge bg-light text-dark">Reference</span>
+                            </div>
+                        </div>
+                        
+
+                        
+                        <div class="mb-4">
+                            <h5><i class="bi bi-info-circle"></i> Description</h5>
+                            <div class="alert alert-info">
+                                <p class="mb-0">Veri dönüşüm mapping'leri için standart yapı. Input, output ve asenkron output mapping'lerini tanımlar.</p>
+                            </div>
+                        </div>
+                        
+
+                        
+
+                        
+
+                        
+                        <div class="mb-4">
+                            <h5><i class="bi bi-link-45deg"></i> References</h5>
+                            <div class="list-group">
+                                
+                                    <div class="list-group-item">
+                                        <code>Code.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                                    <div class="list-group-item">
+                                        <code>Code.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                                    <div class="list-group-item">
+                                        <code>Code.1.0.0.json#/attributes</code>
+                                    </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <div class="mb-4">
+                            <h5><i class="bi bi-diagram-2"></i> Schema Documentation</h5>
+                            <div class="schema-documentation">
+                                
+      <div class="schema-object mb-4 ">
+        <h6 class="text-primary"><i class="bi bi-box"></i> Data Mapping Definition</h6>
+        <p class="text-muted small">Veri dönüşüm mapping'leri için standart yapı. Input, output ve asenkron output mapping'lerini tanımlar.</p>
+        
+        <div class="table-responsive">
+          <table class="table table-sm table-bordered">
+            <thead class="table-primary">
+              <tr>
+                <th width="25%">Property</th>
+                <th width="15%">Type</th>
+                <th width="10%">Required</th>
+                <th width="50%">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+        <tr>
+          <td>
+            <code class="text-primary">input</code>
+            <br><small class="text-muted">→ Code.1.0.0.json#/attributes</small>
+          </td>
+          <td>
+            <span class="badge bg-dark">reference</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-check-circle text-success" title="Required"></i>
+          </td>
+          <td>
+            Göreve iletilecek veri mapping kodu. Gelen veriyi task'ın beklediği formata dönüştürür.
+            
+          </td>
+        </tr>
+          <tr>
+            <td colspan="4" class="nested-schema p-0">
+              <div class="border-start border-3 border-primary ps-3 py-2 ms-3" style="background-color: #f8f9fa;">
+                <small class="text-muted fw-bold">↳ input details:</small>
+                
+      <div class="schema-reference mb-3 ms-3">
+        <div class="alert alert-info border-info">
+          <h6 class="text-info mb-2"><i class="bi bi-link-45deg"></i> Reference to: <code>Code.1.0.0.json#/attributes</code></h6>
+          <p class="text-muted small">Göreve iletilecek veri mapping kodu. Gelen veriyi task'ın beklediği formata dönüştürür.</p>
+          <div class="mt-3">
+            <small class="text-muted fw-bold">Referenced schema details:</small>
+            <div class="border-start border-info border-2 ps-3 mt-2">
+              
+      <div class="schema-object mb-4 ms-3">
+        <h6 class="text-primary"><i class="bi bi-box"></i> Code Definition</h6>
+        <p class="text-muted small">Çalıştırılacak kod parçacığının tanımı. BASE64 formatında kod ve interface bilgisi içerir.</p>
+        
+        <div class="table-responsive">
+          <table class="table table-sm table-bordered">
+            <thead class="table-primary">
+              <tr>
+                <th width="25%">Property</th>
+                <th width="15%">Type</th>
+                <th width="10%">Required</th>
+                <th width="50%">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+        <tr>
+          <td>
+            <code class="text-primary">code</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-success">string</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-check-circle text-success" title="Required"></i>
+          </td>
+          <td>
+            Çalıştırılacak kodun BASE64 formatındaki hali
+            <div class="mt-1"><small class="text-muted"><strong>Pattern:</strong> <code>^[A-Za-z0-9+/]*={0,2}$</code></small></div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="text-primary">interface</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-success">string</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-check-circle text-success" title="Required"></i>
+          </td>
+          <td>
+            Kodun implement edeceği interface türü
+            
+          </td>
+        </tr>
+          <tr>
+            <td colspan="4" class="nested-schema p-0">
+              <div class="border-start border-3 border-primary ps-3 py-2 ms-3" style="background-color: #f8f9fa;">
+                <small class="text-muted fw-bold">↳ interface details:</small>
+                <div class="schema-conditional mb-3 ms-3">
+        <h6 class="text-info"><i class="bi bi-layers"></i> One Of (Choose one option)</h6>
+        <div class="accordion" id="oneOf-gshl8o5gv">
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#oneOf-ga822s9ho-0">
+                <strong>Option 1:</strong> TaskMapper
+                <small class="text-muted ms-2">- Task mapping işlemleri için kullanılan interface</small>
+              </button>
+            </h2>
+            <div id="oneOf-ga822s9ho-0" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                
+      <div class="schema-simple mb-2 ms-3">
+        <div class="d-flex align-items-center">
+          <span class="badge bg-dark me-2">unknown</span>
+          <span class="text-muted">Task mapping işlemleri için kullanılan interface</span>
+        </div>
+        <div class="mt-1"><small class="text-muted"><strong>Constant value:</strong> <code>TaskMapper</code></small></div>
+      </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#oneOf-enlnuek2x-1">
+                <strong>Option 2:</strong> ResponseDataMapper
+                <small class="text-muted ms-2">- Response data mapping işlemleri için kullanılan interface</small>
+              </button>
+            </h2>
+            <div id="oneOf-enlnuek2x-1" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                
+      <div class="schema-simple mb-2 ms-3">
+        <div class="d-flex align-items-center">
+          <span class="badge bg-dark me-2">unknown</span>
+          <span class="text-muted">Response data mapping işlemleri için kullanılan interface</span>
+        </div>
+        <div class="mt-1"><small class="text-muted"><strong>Constant value:</strong> <code>ResponseDataMapper</code></small></div>
+      </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#oneOf-v1nvvjft3-2">
+                <strong>Option 3:</strong> Script
+                <small class="text-muted ms-2">- Genel script çalıştırma için kullanılan interface</small>
+              </button>
+            </h2>
+            <div id="oneOf-v1nvvjft3-2" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                
+      <div class="schema-simple mb-2 ms-3">
+        <div class="d-flex align-items-center">
+          <span class="badge bg-dark me-2">unknown</span>
+          <span class="text-muted">Genel script çalıştırma için kullanılan interface</span>
+        </div>
+        <div class="mt-1"><small class="text-muted"><strong>Constant value:</strong> <code>Script</code></small></div>
+      </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#oneOf-tkxawt85l-3">
+                <strong>Option 4:</strong> ExtensionTaskMapper
+                <small class="text-muted ms-2">- Extension task mapping işlemleri için kullanılan interface</small>
+              </button>
+            </h2>
+            <div id="oneOf-tkxawt85l-3" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                
+      <div class="schema-simple mb-2 ms-3">
+        <div class="d-flex align-items-center">
+          <span class="badge bg-dark me-2">unknown</span>
+          <span class="text-muted">Extension task mapping işlemleri için kullanılan interface</span>
+        </div>
+        <div class="mt-1"><small class="text-muted"><strong>Constant value:</strong> <code>ExtensionTaskMapper</code></small></div>
+      </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#oneOf-7mhd9gxal-4">
+                <strong>Option 5:</strong> FunctionTaskMapper
+                <small class="text-muted ms-2">- Function task mapping işlemleri için kullanılan interface</small>
+              </button>
+            </h2>
+            <div id="oneOf-7mhd9gxal-4" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                
+      <div class="schema-simple mb-2 ms-3">
+        <div class="d-flex align-items-center">
+          <span class="badge bg-dark me-2">unknown</span>
+          <span class="text-muted">Function task mapping işlemleri için kullanılan interface</span>
+        </div>
+        <div class="mt-1"><small class="text-muted"><strong>Constant value:</strong> <code>FunctionTaskMapper</code></small></div>
+      </div>
+              </div>
+            </div>
+          </div></div></div>
+              </div>
+            </td>
+          </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+            </div>
+          </div>
+        </div>
+      </div>
+              </div>
+            </td>
+          </tr>
+        <tr>
+          <td>
+            <code class="text-primary">output</code>
+            <br><small class="text-muted">→ Code.1.0.0.json#/attributes</small>
+          </td>
+          <td>
+            <span class="badge bg-dark">reference</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-check-circle text-success" title="Required"></i>
+          </td>
+          <td>
+            Görevden dönecek veri mapping kodu. Task sonucunu workflow verisi formatına dönüştürür.
+            
+          </td>
+        </tr>
+          <tr>
+            <td colspan="4" class="nested-schema p-0">
+              <div class="border-start border-3 border-primary ps-3 py-2 ms-3" style="background-color: #f8f9fa;">
+                <small class="text-muted fw-bold">↳ output details:</small>
+                
+      <div class="schema-reference mb-3 ms-3">
+        <div class="alert alert-info border-info">
+          <h6 class="text-info mb-2"><i class="bi bi-link-45deg"></i> Reference to: <code>Code.1.0.0.json#/attributes</code></h6>
+          <p class="text-muted small">Görevden dönecek veri mapping kodu. Task sonucunu workflow verisi formatına dönüştürür.</p>
+          <div class="mt-3">
+            <small class="text-muted fw-bold">Referenced schema details:</small>
+            <div class="border-start border-info border-2 ps-3 mt-2">
+              
+      <div class="schema-object mb-4 ms-3">
+        <h6 class="text-primary"><i class="bi bi-box"></i> Code Definition</h6>
+        <p class="text-muted small">Çalıştırılacak kod parçacığının tanımı. BASE64 formatında kod ve interface bilgisi içerir.</p>
+        
+        <div class="table-responsive">
+          <table class="table table-sm table-bordered">
+            <thead class="table-primary">
+              <tr>
+                <th width="25%">Property</th>
+                <th width="15%">Type</th>
+                <th width="10%">Required</th>
+                <th width="50%">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+        <tr>
+          <td>
+            <code class="text-primary">code</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-success">string</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-check-circle text-success" title="Required"></i>
+          </td>
+          <td>
+            Çalıştırılacak kodun BASE64 formatındaki hali
+            <div class="mt-1"><small class="text-muted"><strong>Pattern:</strong> <code>^[A-Za-z0-9+/]*={0,2}$</code></small></div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="text-primary">interface</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-success">string</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-check-circle text-success" title="Required"></i>
+          </td>
+          <td>
+            Kodun implement edeceği interface türü
+            
+          </td>
+        </tr>
+          <tr>
+            <td colspan="4" class="nested-schema p-0">
+              <div class="border-start border-3 border-primary ps-3 py-2 ms-3" style="background-color: #f8f9fa;">
+                <small class="text-muted fw-bold">↳ interface details:</small>
+                <div class="schema-conditional mb-3 ms-3">
+        <h6 class="text-info"><i class="bi bi-layers"></i> One Of (Choose one option)</h6>
+        <div class="accordion" id="oneOf-6qnd1nh66">
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#oneOf-3nv45i255-0">
+                <strong>Option 1:</strong> TaskMapper
+                <small class="text-muted ms-2">- Task mapping işlemleri için kullanılan interface</small>
+              </button>
+            </h2>
+            <div id="oneOf-3nv45i255-0" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                
+      <div class="schema-simple mb-2 ms-3">
+        <div class="d-flex align-items-center">
+          <span class="badge bg-dark me-2">unknown</span>
+          <span class="text-muted">Task mapping işlemleri için kullanılan interface</span>
+        </div>
+        <div class="mt-1"><small class="text-muted"><strong>Constant value:</strong> <code>TaskMapper</code></small></div>
+      </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#oneOf-sle6ajsr0-1">
+                <strong>Option 2:</strong> ResponseDataMapper
+                <small class="text-muted ms-2">- Response data mapping işlemleri için kullanılan interface</small>
+              </button>
+            </h2>
+            <div id="oneOf-sle6ajsr0-1" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                
+      <div class="schema-simple mb-2 ms-3">
+        <div class="d-flex align-items-center">
+          <span class="badge bg-dark me-2">unknown</span>
+          <span class="text-muted">Response data mapping işlemleri için kullanılan interface</span>
+        </div>
+        <div class="mt-1"><small class="text-muted"><strong>Constant value:</strong> <code>ResponseDataMapper</code></small></div>
+      </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#oneOf-gah0zokft-2">
+                <strong>Option 3:</strong> Script
+                <small class="text-muted ms-2">- Genel script çalıştırma için kullanılan interface</small>
+              </button>
+            </h2>
+            <div id="oneOf-gah0zokft-2" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                
+      <div class="schema-simple mb-2 ms-3">
+        <div class="d-flex align-items-center">
+          <span class="badge bg-dark me-2">unknown</span>
+          <span class="text-muted">Genel script çalıştırma için kullanılan interface</span>
+        </div>
+        <div class="mt-1"><small class="text-muted"><strong>Constant value:</strong> <code>Script</code></small></div>
+      </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#oneOf-q3bd0wink-3">
+                <strong>Option 4:</strong> ExtensionTaskMapper
+                <small class="text-muted ms-2">- Extension task mapping işlemleri için kullanılan interface</small>
+              </button>
+            </h2>
+            <div id="oneOf-q3bd0wink-3" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                
+      <div class="schema-simple mb-2 ms-3">
+        <div class="d-flex align-items-center">
+          <span class="badge bg-dark me-2">unknown</span>
+          <span class="text-muted">Extension task mapping işlemleri için kullanılan interface</span>
+        </div>
+        <div class="mt-1"><small class="text-muted"><strong>Constant value:</strong> <code>ExtensionTaskMapper</code></small></div>
+      </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#oneOf-3mo6ddp9t-4">
+                <strong>Option 5:</strong> FunctionTaskMapper
+                <small class="text-muted ms-2">- Function task mapping işlemleri için kullanılan interface</small>
+              </button>
+            </h2>
+            <div id="oneOf-3mo6ddp9t-4" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                
+      <div class="schema-simple mb-2 ms-3">
+        <div class="d-flex align-items-center">
+          <span class="badge bg-dark me-2">unknown</span>
+          <span class="text-muted">Function task mapping işlemleri için kullanılan interface</span>
+        </div>
+        <div class="mt-1"><small class="text-muted"><strong>Constant value:</strong> <code>FunctionTaskMapper</code></small></div>
+      </div>
+              </div>
+            </div>
+          </div></div></div>
+              </div>
+            </td>
+          </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+            </div>
+          </div>
+        </div>
+      </div>
+              </div>
+            </td>
+          </tr>
+        <tr>
+          <td>
+            <code class="text-primary">asyncOutput</code>
+            <br><small class="text-muted">→ Code.1.0.0.json#/attributes</small>
+          </td>
+          <td>
+            <span class="badge bg-dark">reference</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-check-circle text-success" title="Required"></i>
+          </td>
+          <td>
+            Görevin asenkron dönüş veri mapping kodu. Async callback verisini workflow formatına dönüştürür.
+            
+          </td>
+        </tr>
+          <tr>
+            <td colspan="4" class="nested-schema p-0">
+              <div class="border-start border-3 border-primary ps-3 py-2 ms-3" style="background-color: #f8f9fa;">
+                <small class="text-muted fw-bold">↳ asyncOutput details:</small>
+                
+      <div class="schema-reference mb-3 ms-3">
+        <div class="alert alert-info border-info">
+          <h6 class="text-info mb-2"><i class="bi bi-link-45deg"></i> Reference to: <code>Code.1.0.0.json#/attributes</code></h6>
+          <p class="text-muted small">Görevin asenkron dönüş veri mapping kodu. Async callback verisini workflow formatına dönüştürür.</p>
+          <div class="mt-3">
+            <small class="text-muted fw-bold">Referenced schema details:</small>
+            <div class="border-start border-info border-2 ps-3 mt-2">
+              
+      <div class="schema-object mb-4 ms-3">
+        <h6 class="text-primary"><i class="bi bi-box"></i> Code Definition</h6>
+        <p class="text-muted small">Çalıştırılacak kod parçacığının tanımı. BASE64 formatında kod ve interface bilgisi içerir.</p>
+        
+        <div class="table-responsive">
+          <table class="table table-sm table-bordered">
+            <thead class="table-primary">
+              <tr>
+                <th width="25%">Property</th>
+                <th width="15%">Type</th>
+                <th width="10%">Required</th>
+                <th width="50%">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+        <tr>
+          <td>
+            <code class="text-primary">code</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-success">string</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-check-circle text-success" title="Required"></i>
+          </td>
+          <td>
+            Çalıştırılacak kodun BASE64 formatındaki hali
+            <div class="mt-1"><small class="text-muted"><strong>Pattern:</strong> <code>^[A-Za-z0-9+/]*={0,2}$</code></small></div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="text-primary">interface</code>
+            
+          </td>
+          <td>
+            <span class="badge bg-success">string</span>
+            
+          </td>
+          <td>
+            <i class="bi bi-check-circle text-success" title="Required"></i>
+          </td>
+          <td>
+            Kodun implement edeceği interface türü
+            
+          </td>
+        </tr>
+          <tr>
+            <td colspan="4" class="nested-schema p-0">
+              <div class="border-start border-3 border-primary ps-3 py-2 ms-3" style="background-color: #f8f9fa;">
+                <small class="text-muted fw-bold">↳ interface details:</small>
+                <div class="schema-conditional mb-3 ms-3">
+        <h6 class="text-info"><i class="bi bi-layers"></i> One Of (Choose one option)</h6>
+        <div class="accordion" id="oneOf-cvcwi132t">
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#oneOf-i5dv82pvh-0">
+                <strong>Option 1:</strong> TaskMapper
+                <small class="text-muted ms-2">- Task mapping işlemleri için kullanılan interface</small>
+              </button>
+            </h2>
+            <div id="oneOf-i5dv82pvh-0" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                
+      <div class="schema-simple mb-2 ms-3">
+        <div class="d-flex align-items-center">
+          <span class="badge bg-dark me-2">unknown</span>
+          <span class="text-muted">Task mapping işlemleri için kullanılan interface</span>
+        </div>
+        <div class="mt-1"><small class="text-muted"><strong>Constant value:</strong> <code>TaskMapper</code></small></div>
+      </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#oneOf-cxmawrvvz-1">
+                <strong>Option 2:</strong> ResponseDataMapper
+                <small class="text-muted ms-2">- Response data mapping işlemleri için kullanılan interface</small>
+              </button>
+            </h2>
+            <div id="oneOf-cxmawrvvz-1" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                
+      <div class="schema-simple mb-2 ms-3">
+        <div class="d-flex align-items-center">
+          <span class="badge bg-dark me-2">unknown</span>
+          <span class="text-muted">Response data mapping işlemleri için kullanılan interface</span>
+        </div>
+        <div class="mt-1"><small class="text-muted"><strong>Constant value:</strong> <code>ResponseDataMapper</code></small></div>
+      </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#oneOf-vjcct4sgi-2">
+                <strong>Option 3:</strong> Script
+                <small class="text-muted ms-2">- Genel script çalıştırma için kullanılan interface</small>
+              </button>
+            </h2>
+            <div id="oneOf-vjcct4sgi-2" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                
+      <div class="schema-simple mb-2 ms-3">
+        <div class="d-flex align-items-center">
+          <span class="badge bg-dark me-2">unknown</span>
+          <span class="text-muted">Genel script çalıştırma için kullanılan interface</span>
+        </div>
+        <div class="mt-1"><small class="text-muted"><strong>Constant value:</strong> <code>Script</code></small></div>
+      </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#oneOf-oj7mmsb8c-3">
+                <strong>Option 4:</strong> ExtensionTaskMapper
+                <small class="text-muted ms-2">- Extension task mapping işlemleri için kullanılan interface</small>
+              </button>
+            </h2>
+            <div id="oneOf-oj7mmsb8c-3" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                
+      <div class="schema-simple mb-2 ms-3">
+        <div class="d-flex align-items-center">
+          <span class="badge bg-dark me-2">unknown</span>
+          <span class="text-muted">Extension task mapping işlemleri için kullanılan interface</span>
+        </div>
+        <div class="mt-1"><small class="text-muted"><strong>Constant value:</strong> <code>ExtensionTaskMapper</code></small></div>
+      </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#oneOf-cntep2exw-4">
+                <strong>Option 5:</strong> FunctionTaskMapper
+                <small class="text-muted ms-2">- Function task mapping işlemleri için kullanılan interface</small>
+              </button>
+            </h2>
+            <div id="oneOf-cntep2exw-4" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                
+      <div class="schema-simple mb-2 ms-3">
+        <div class="d-flex align-items-center">
+          <span class="badge bg-dark me-2">unknown</span>
+          <span class="text-muted">Function task mapping işlemleri için kullanılan interface</span>
+        </div>
+        <div class="mt-1"><small class="text-muted"><strong>Constant value:</strong> <code>FunctionTaskMapper</code></small></div>
+      </div>
+              </div>
+            </div>
+          </div></div></div>
+              </div>
+            </td>
+          </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+            </div>
+          </div>
+        </div>
+      </div>
+              </div>
+            </td>
+          </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h6><i class="bi bi-code-slash"></i> Raw JSON Schema</h6>
+                                <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#rawSchema-Mapping-1.0.0">
+                                    <i class="bi bi-eye"></i> Toggle Raw JSON
+                                </button>
+                            </div>
+                            <div class="collapse" id="rawSchema-Mapping-1.0.0">
+                                <pre class="json-viewer p-3"><code>{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.amorphie.com/core/mapping.json",
+  "title": "Data Mapping Definition",
+  "description": "Veri dönüşüm mapping'leri için standart yapı. Input, output ve asenkron output mapping'lerini tanımlar.",
+  "type": "object",
+  "properties": {
+    "input": {
+      "$ref": "Code.1.0.0.json#/attributes",
+      "description": "Göreve iletilecek veri mapping kodu. Gelen veriyi task'ın beklediği formata dönüştürür."
+    },
+    "output": {
+      "$ref": "Code.1.0.0.json#/attributes",
+      "description": "Görevden dönecek veri mapping kodu. Task sonucunu workflow verisi formatına dönüştürür."
+    },
+    "asyncOutput": {
+      "$ref": "Code.1.0.0.json#/attributes",
+      "description": "Görevin asenkron dönüş veri mapping kodu. Async callback verisini workflow formatına dönüştürür."
+    }
+  },
+  "required": [
+    "input",
+    "output",
+    "asyncOutput"
+  ],
+  "additionalProperties": false
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</body>
+</html>
