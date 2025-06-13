@@ -45,6 +45,9 @@ MIT
 
 ## Workflow Model Kuralları
 
-- Hiçbir transition'ın target'ı null olamaz. Her transition bir state'e yönlenmelidir.
+- **Transition'larda `target` asla null olamaz (self dahil).**
+- Her transition bir state'e yönlendirilmelidir. `type: self` ise target bulunduğu state'in key'i olmalıdır.
 - Silme veya arşivleme işlemleri için deleted adında bir state tanımlanmalı ve ilgili transition'lar bu state'e yönlendirilmelidir.
-- deleted state'inden recover transition'ı ile active state'e dönüş sağlanmalıdır. 
+- deleted state'inden recover transition'ı ile active state'e dönüş sağlanmalıdır.
+- **State ve transition key'leri camelCase olmalıdır.**
+- Tüm modellerde (ör: state, transition, schema, vs.) key alanlarında camelCase kullanımı zorunludur. 

@@ -23,8 +23,8 @@
                 "pattern": "^[a-z0-9-_]+$"
             },
             "target": {
-                "type": ["string", "null"],
-                "description": "Geçiş başarılı tamamlandığında erişeceği state key'i. Null ise bulunduğu state kabul edilir (type=self)."
+                "type": "string",
+                "description": "Geçiş başarılı tamamlandığında erişeceği state key'i. Self tipinde de target aynı state'i göstermelidir. Null asla olamaz."
             },
             "labels": {
                 "$ref": "Label.1.0.0.json#/attributes",
@@ -155,19 +155,7 @@
             {
                 "if": {
                     "properties": {
-                        "type": {"const": "self"}
-                    }
-                },
-                "then": {
-                    "properties": {
-                        "target": {"type": "null"}
-                    }
-                }
-            },
-            {
-                "if": {
-                    "properties": {
-                        "type": {"enum": ["forward", "back"]}
+                        "type": {"enum": ["forward", "back", "self"]}
                     }
                 },
                 "then": {

@@ -436,3 +436,9 @@ GET /{domain}/workflows/{workflow}/instances/{instance}/transitions
 #### Feature Instance'ları
 - `approval-flow.1.0.0.json` - Onay akışı feature
 - `notification.1.0.0.json` - Bildirim feature 
+
+- **Transition'larda `target` asla null olamaz (self dahil).**
+- Her transition bir state'e yönlendirilmelidir. `type: self` ise target bulunduğu state'in key'i olmalıdır. 
+
+- **State ve transition key'leri camelCase olmalıdır.**
+- Tüm modellerde (ör: state, transition, schema, vs.) key alanlarında camelCase kullanımı zorunludur. 
