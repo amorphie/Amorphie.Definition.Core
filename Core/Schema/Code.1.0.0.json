@@ -1,58 +1,45 @@
 {
-    "key": "Code",
+    "key": "code",
     "version": "1.0.0",
-    "domain": "Core",
-    "flow": "Schema",
+    "domain": "core",
+    "flow": "sys-schemas",
     "flowVersion": "1.0.0",
     "tags": [
         "Core",
         "Schema",
         "Code",
-        "Task"
+        "Script"
     ],
     "attributes": {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "$id": "https://schemas.amorphie.com/core/code.json",
-        "title": "Code Definition",
-        "description": "Çalıştırılacak kod parçacığının tanımı. BASE64 formatında kod ve interface bilgisi içerir.",
+        "title": "Script Code Definition",
+        "description": "Script kod tanımları için kullanılan şema yapısı. Kod içeriği ve konumunu içerir.",
         "type": "object",
         "properties": {
             "code": {
                 "type": "string",
-                "description": "Çalıştırılacak kodun BASE64 formatındaki hali",
-                "pattern": "^[A-Za-z0-9+/]*={0,2}$"
+                "description": "Script kod içeriği"
             },
-            "interface": {
+            "location": {
                 "type": "string",
-                "description": "Kodun implement edeceği interface türü",
-                "oneOf": [
-                    {
-                        "const": "TaskMapper",
-                        "description": "Task mapping işlemleri için kullanılan interface"
-                    },
-                    {
-                        "const": "ResponseDataMapper",
-                        "description": "Response data mapping işlemleri için kullanılan interface"
-                    },
-                    {
-                        "const": "Script",
-                        "description": "Genel script çalıştırma için kullanılan interface"
-                    },
-                    {
-                        "const": "ExtensionTaskMapper",
-                        "description": "Extension task mapping işlemleri için kullanılan interface"
-                    },
-                    {
-                        "const": "FunctionTaskMapper",
-                        "description": "Function task mapping işlemleri için kullanılan interface"
-                    }
-                ]
+                "description": "Kod dosyasının konumu veya yolu"
             }
         },
         "required": [
             "code",
-            "interface"
+            "location"
         ],
-        "additionalProperties": false
+        "additionalProperties": false,
+        "examples": [
+            {
+                "code": "function processData(input) { return input.transform(); }",
+                "location": "./src/scripts/dataProcessor.js"
+            },
+            {
+                "code": "return input.userId > 0 && input.isActive;",
+                "location": "./src/rules/userValidation.js"
+            }
+        ]
     }
-} 
+}

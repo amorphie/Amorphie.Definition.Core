@@ -1,0 +1,133 @@
+{
+  "csharpExtensions.useCodeSnippetsOnMethodCreation": true,
+  "csharpExtensions.showHiddenFiles": false,
+  "csharpExtensions.skipNamespaceGeneration": true,
+  "omnisharp.enableAsyncCompletion": true,
+  "omnisharp.enableRoslynAnalyzers": true,
+  "omnisharp.useEditorFormattingSettings": true,
+  "omnisharp.useModernNet": true,
+  "omnisharp.script.enableScriptNuGetReferences": true,
+  "files.associations": {
+    "*.csx": "csharp"
+  },
+  "json.schemas": [
+    {
+      "fileMatch": [
+        "**/*.1.0.0.json",
+        "**/*.1.1.0.json",
+        "**/*.1.2.0.json",
+        "**/*.[0-9].[0-9].[0-9].json",
+        "**/workflow/**/*.json",
+        "**/workflows/**/*.json",
+        "**/*workflow*.json",
+        "**/*-workflow-*.json",
+        "**/*-flow-*.json"
+      ],
+      "url": "./.vscode/schemas/workflow-definition.schema.json"
+    },
+    {
+      "fileMatch": [
+        "**/Core/Schema/*.json"
+      ],
+      "url": "./.vscode/schemas/core-schema.schema.json"
+    }
+  ],
+  "files.watcherExclude": {
+    "**/node_modules/**": true,
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/bin/**": true,
+    "**/obj/**": true
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bin": true,
+    "**/obj": true
+  },
+  "emmet.includeLanguages": {
+    "csharp": "html"
+  },
+  "csharp.semanticHighlighting.enabled": true,
+  "csharp.inlayHints.enableInlayHintsForTypes": true,
+  "csharp.inlayHints.enableInlayHintsForLiteralParameters": true,
+  "csharp.inlayHints.enableInlayHintsForIndexerParameters": true,
+  "csharp.inlayHints.enableInlayHintsForObjectCreationParameters": true,
+  "csharp.inlayHints.enableInlayHintsForOtherParameters": true,
+  "csharp.inlayHints.enableInlayHintsForParameters": true,
+  "csharp.completion.showCompletionItemsFromUnimportedNamespaces": true,
+  "csharp.showOmnisharpLogOnError": true,
+  "csharp.suppressHiddenDiagnostics": false,
+  "csharp.dotnet.completion.showCompletionItemsFromUnimportedNamespaces": true,
+  "csharp.unitTests.runSettingsPath": "",
+  "dotnet.completion.showCompletionItemsFromUnimportedNamespaces": true,
+  "dotnet.formatting.organizeImportsOnFormat": true,
+  "json.validate.enable": true,
+  "json.format.enable": true,
+  "json.schemaDownload.enable": true,
+  "json.maxItemsComputed": 5000,
+  "json.colorDecorators.enable": true,
+  "json.trace.server": "messages",
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  "editor.suggest.showEnums": true,
+  "editor.suggest.showStructs": true,
+  "editor.suggest.showClasses": true,
+  "editor.suggest.showInterfaces": true,
+  "editor.suggest.showModules": true,
+  "editor.suggest.showProperties": true,
+  "editor.suggest.showValues": true,
+  "editor.suggest.showConstants": true,
+  "editor.parameterHints.enabled": true,
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": false,
+    "strings": true
+  },
+  "workbench.editorAssociations": {
+    "*.json": "default"
+  },
+  "problems.decorations.enabled": true,
+  "problems.showCurrentInStatus": true,
+  "problemMatchers": {
+    "workflow-linter": {
+      "owner": "workflow-linter",
+      "fileLocation": [
+        "relative",
+        "${workspaceFolder}"
+      ],
+      "pattern": [
+        {
+          "regexp": "^(.+?):(\\d+):(\\d+):\\s+(error|warning|info)\\s+(.+)$",
+          "file": 1,
+          "line": 2,
+          "column": 3,
+          "severity": 4,
+          "message": 5
+        }
+      ]
+    }
+  },
+  "editor.rulers": [
+    80,
+    120
+  ],
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": "active",
+  "editor.suggest.insertMode": "replace",
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features",
+    "editor.suggest.insertMode": "replace",
+    "editor.wordWrap": "on",
+    "editor.quickSuggestions": {
+      "strings": true
+    },
+    "editor.suggest.showWords": false
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  }
+}

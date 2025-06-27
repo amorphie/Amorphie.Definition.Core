@@ -1,0 +1,276 @@
+{
+    "key": "sys-functions",
+    "version": "1.0.0",
+    "domain": "core",
+    "flow": "sys-flows",
+    "flowVersion": "1.0.0",
+    "tags": [
+        "Core",
+        "Function",
+        "Lifecycle",
+        "Repository"
+    ],
+    "attributes": {
+        "timeout": null,
+        "type": "F",
+        "labels": [
+            {
+                "language": "en-US",
+                "label": "Function Lifecycle Management"
+            },
+            {
+                "language": "tr-TR",
+                "label": "Fonksiyon Yaşam Döngüsü Yönetimi"
+            }
+        ],
+        "functions": [],
+        "sharedTransitions": [],
+        "extensions": [],
+        "features": [],
+        "startTransition": {
+            "key": "create-function",
+            "target": "draft",
+            "triggerType": 0,
+            "labels": [
+                {
+                    "language": "en-US",
+                    "label": "Create Function"
+                },
+                {
+                    "language": "tr-TR",
+                    "label": "Fonksiyon Oluştur"
+                }
+            ],
+            "versionStrategy": "Minor",
+            "schema": {
+                "key": "function-creation-input",
+                "domain": "core",
+                "workflow": "Function",
+                "version": "1.0.0"
+            },
+            "onExecutionTasks": [],
+            "views": []
+        },
+        "states": [
+            {
+                "key": "draft",
+                "stateType": 1,
+                "labels": [
+                    {
+                        "language": "en-US",
+                        "label": "Draft State"
+                    },
+                    {
+                        "language": "tr-TR",
+                        "label": "Taslak Durumu"
+                    }
+                ],
+                "transitions": [
+                    {
+                        "key": "activate",
+                        "from": "draft",
+                        "target": "active",
+                        "triggerType": 1,
+                        "labels": [
+                            {
+                                "language": "en-US",
+                                "label": "Activate Function"
+                            },
+                            {
+                                "language": "tr-TR",
+                                "label": "Fonksiyonu Aktifleştir"
+                            }
+                        ],
+                        "versionStrategy": "Minor",
+                        "onExecutionTasks": [],
+                        "views": []
+                    },
+                    {
+                        "key": "delete",
+                        "from": "draft",
+                        "target": "deleted",
+                        "triggerType": 1,
+                        "labels": [
+                            {
+                                "language": "en-US",
+                                "label": "Delete Draft"
+                            },
+                            {
+                                "language": "tr-TR",
+                                "label": "Taslağı Sil"
+                            }
+                        ],
+                        "versionStrategy": "Minor",
+                        "onExecutionTasks": [],
+                        "views": []
+                    }
+                ],
+                "views": [],
+                "onEntries": [],
+                "onExitss": [],
+                "versionStrategy": "Minor"
+            },
+            {
+                "key": "active",
+                "stateType": 2,
+                "labels": [
+                    {
+                        "language": "en-US",
+                        "label": "Active State"
+                    },
+                    {
+                        "language": "tr-TR",
+                        "label": "Aktif Durumu"
+                    }
+                ],
+                "transitions": [
+                    {
+                        "key": "deactivate",
+                        "from": "active",
+                        "target": "passive",
+                        "triggerType": 1,
+                        "labels": [
+                            {
+                                "language": "en-US",
+                                "label": "Deactivate Function"
+                            },
+                            {
+                                "language": "tr-TR",
+                                "label": "Fonksiyonu Pasifleştir"
+                            }
+                        ],
+                        "versionStrategy": "Minor",
+                        "onExecutionTasks": [],
+                        "views": []
+                    },
+                    {
+                        "key": "update",
+                        "from": "active",
+                        "target": "active",
+                        "triggerType": 1,
+                        "labels": [
+                            {
+                                "language": "en-US",
+                                "label": "Update Function"
+                            },
+                            {
+                                "language": "tr-TR",
+                                "label": "Fonksiyonu Güncelle"
+                            }
+                        ],
+                        "versionStrategy": "Minor",
+                        "onExecutionTasks": [],
+                        "views": []
+                    }
+                ],
+                "views": [],
+                "onEntries": [],
+                "onExitss": [],
+                "versionStrategy": "Minor"
+            },
+            {
+                "key": "passive",
+                "stateType": 2,
+                "labels": [
+                    {
+                        "language": "en-US",
+                        "label": "Passive State"
+                    },
+                    {
+                        "language": "tr-TR",
+                        "label": "Pasif Durumu"
+                    }
+                ],
+                "transitions": [
+                    {
+                        "key": "reactivate",
+                        "from": "passive",
+                        "target": "active",
+                        "triggerType": 1,
+                        "labels": [
+                            {
+                                "language": "en-US",
+                                "label": "Reactivate Function"
+                            },
+                            {
+                                "language": "tr-TR",
+                                "label": "Fonksiyonu Yeniden Aktifleştir"
+                            }
+                        ],
+                        "versionStrategy": "Minor",
+                        "onExecutionTasks": [],
+                        "views": []
+                    },
+                    {
+                        "key": "archive",
+                        "from": "passive",
+                        "target": "deleted",
+                        "triggerType": 1,
+                        "labels": [
+                            {
+                                "language": "en-US",
+                                "label": "Archive Function"
+                            },
+                            {
+                                "language": "tr-TR",
+                                "label": "Fonksiyonu Arşivle"
+                            }
+                        ],
+                        "versionStrategy": "Minor",
+                        "onExecutionTasks": [],
+                        "views": []
+                    }
+                ],
+                "views": [],
+                "onEntries": [],
+                "onExitss": [],
+                "versionStrategy": "Minor"
+            },
+            {
+                "key": "deleted",
+                "stateType": 3,
+                "labels": [
+                    {
+                        "language": "en-US",
+                        "label": "Deleted State"
+                    },
+                    {
+                        "language": "tr-TR",
+                        "label": "Silinmiş Durum"
+                    }
+                ],
+                "transitions": [
+                    {
+                        "key": "recover",
+                        "from": "deleted",
+                        "target": "active",
+                        "triggerType": 1,
+                        "labels": [
+                            {
+                                "language": "en-US",
+                                "label": "Recover"
+                            },
+                            {
+                                "language": "tr-TR",
+                                "label": "Geri Al"
+                            }
+                        ],
+                        "versionStrategy": "Minor",
+                        "onExecutionTasks": [],
+                        "views": []
+                    }
+                ],
+                "views": [],
+                "onEntries": [],
+                "onExitss": [],
+                "versionStrategy": "Minor"
+            }
+        ],
+        "modelSchema": {
+            "key": "Function",
+            "domain": "core",
+            "workflow": "Schema",
+            "version": "1.0.0"
+        }
+    }
+}

@@ -1,8 +1,8 @@
 {
-    "key": "Workflow",
+    "key": "workflow",
     "version": "1.0.0",
-    "domain": "Core",
-    "flow": "Schema",
+    "domain": "core",
+    "flow": "sys-schemas",
     "flowVersion": "1.0.0",
     "tags": [
         "Core",
@@ -17,89 +17,155 @@
         "description": "Amorphie platformunda iş akışı tanımlarını yapılandıran şema. Sadece workflow attributes yapısını tanımlar.",
         "type": "object",
         "properties": {
-                            "timeout": {
-                                "$ref": "Transition.1.0.0.json#/attributes",
-                                "description": "Workflow genel timeout tanımı"
+            "timeout": {
+                "anyOf": [
+                    {
+                        "type": "object",
+                        "description": "Workflow timeout yapılandırması",
+                        "required": [
+                            "key",
+                            "target",
+                            "versionStrategy",
+                            "timer"
+                        ],
+                        "properties": {
+                            "key": {
+                                "type": "string",
+                                "description": "Timeout anahtar değeri",
+                                "pattern": "^[a-zA-Z0-9\\-]+$",
+                                "maxLength": 255
                             },
-                            "type": {
-                                "oneOf": [
-                                    {
-                                        "const": "flow",
-                                        "description": "Ana iş akışı türü"
-                                    },
-                                    {
-                                        "const": "subflow",
-                                        "description": "Alt iş akışı türü"
-                                    },
-                                    {
-                                        "const": "process",
-                                        "description": "İş süreci türü"
-                                    }
+                            "target": {
+                                "type": "string",
+                                "description": "Timeout durumunda hedef state",
+                                "pattern": "^[a-zA-Z0-9\\-]+$",
+                                "maxLength": 255
+                            },
+                            "versionStrategy": {
+                                "type": "string",
+                                "enum": [
+                                    "Minor",
+                                    "Major"
                                 ],
-                                "description": "Workflow'un türü"
+                                "description": "Timeout sonrası versiyon stratejisi",
+                                "maxLength": 50
                             },
-                            "labels": {
-                                "$ref": "Label.1.0.0.json#/attributes",
-                                "description": "Workflow'un çoklu dil etiketleri"
-                            },
-                            "functions": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "Reference.1.0.0.json#/attributes"
-                                },
-                                "description": "Workflow ile ilişkili function referansları"
-                            },
-                            "sharedTransitions": {
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "transition": {
-                                            "$ref": "Transition.1.0.0.json#/attributes",
-                                            "description": "Paylaşılan transition tanımı"
-                                        },
-                                        "availableIn": {
-                                            "type": "array",
-                                            "items": {
-                                                "type": "string"
-                                            },
-                                            "description": "Bu transition'ın kullanılabileceği state'lerin listesi"
-                                        }
+                            "timer": {
+                                "type": "object",
+                                "required": [
+                                    "reset",
+                                    "duration"
+                                ],
+                                "properties": {
+                                    "reset": {
+                                        "type": "string",
+                                        "description": "Timer reset stratejisi"
                                     },
-                                    "required": ["transition", "availableIn"],
-                                    "additionalProperties": false
+                                    "duration": {
+                                        "type": "string",
+                                        "pattern": "^P(?=\\d|T\\d)(\\d+Y)?(\\d+M)?(\\d+D)?(T(\\d+H)?(\\d+M)?(\\d+S)?)?$",
+                                        "description": "Süre bilgisi (ISO 8601 formatında)",
+                                        "maxLength": 100
+                                    }
                                 },
-                                "description": "Birden fazla state'de kullanılabilecek ortak transition'lar"
-                            },
-                            "extensions": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "Reference.1.0.0.json#/attributes"
-                                },
-                                "description": "Workflow ile ilişkili extension referansları"
-                            },
-                            "features": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "Reference.1.0.0.json#/attributes"
-                                },
-                                "description": "Workflow ile ilişkili feature referansları"
-                            },
-                            "startTransition": {
-                                "$ref": "Transition.1.0.0.json#/attributes",
-                                "description": "Workflow'u başlatan initial transition"
-                            },
-                            "states": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "State.1.0.0.json#/attributes"
-                                },
-                                "description": "Workflow'u oluşturan state'lerin listesi"
-                            },
-                            "modelSchema": {
-                                "$ref": "Reference.1.0.0.json#/attributes",
-                                "description": "Workflow'un kullandığı veri model şemasının referansı"
+                                "additionalProperties": false
                             }
+                        },
+                        "additionalProperties": false
+                    },
+                    {
+                        "type": "null"
+                    }
+                ],
+                "description": "Workflow genel timeout tanımı"
+            },
+            "type": {
+                "oneOf": [
+                    {
+                        "const": "C",
+                        "description": "Core workflow türü"
+                    },
+                    {
+                        "const": "F",
+                        "description": "Flow workflow türü"
+                    },
+                    {
+                        "const": "S",
+                        "description": "SubFlow workflow türü"
+                    },
+                    {
+                        "const": "P",
+                        "description": "Sub Process workflow türü"
+                    }
+                ],
+                "description": "Workflow'un türü"
+            },
+            "labels": {
+                "$ref": "Label.1.0.0.json#/attributes",
+                "description": "Workflow'un çoklu dil etiketleri"
+            },
+            "functions": {
+                "type": "array",
+                "items": {
+                    "$ref": "Reference.1.0.0.json#/attributes"
+                },
+                "description": "Workflow ile ilişkili function referansları"
+            },
+            "sharedTransitions": {
+                "type": "array",
+                "items": {
+                    "allOf": [
+                        {
+                            "$ref": "Transition.1.0.0.json#/attributes"
+                        },
+                        {
+                            "type": "object",
+                            "required": [
+                                "availableIn"
+                            ],
+                            "properties": {
+                                "availableIn": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "description": "Bu transition'ın kullanılabileceği state'lerin listesi"
+                                }
+                            }
+                        }
+                    ]
+                },
+                "description": "Birden fazla state'de kullanılabilecek ortak transition'lar"
+            },
+            "extensions": {
+                "type": "array",
+                "items": {
+                    "$ref": "Reference.1.0.0.json#/attributes"
+                },
+                "description": "Workflow ile ilişkili extension referansları"
+            },
+            "features": {
+                "type": "array",
+                "items": {
+                    "$ref": "Reference.1.0.0.json#/attributes"
+                },
+                "description": "Workflow ile ilişkili feature referansları"
+            },
+            "startTransition": {
+                "$ref": "Transition.1.0.0.json#/attributes",
+                "description": "Workflow'u başlatan initial transition"
+            },
+            "states": {
+                "type": "array",
+                "items": {
+                    "$ref": "State.1.0.0.json#/attributes"
+                },
+                "description": "Workflow'u oluşturan state'lerin listesi"
+            },
+            "modelSchema": {
+                "$ref": "Reference.1.0.0.json#/attributes",
+                "description": "Workflow'un kullandığı veri model şemasının referansı"
+            }
         },
         "required": [
             "timeout",
@@ -114,4 +180,4 @@
         ],
         "additionalProperties": false
     }
-} 
+}

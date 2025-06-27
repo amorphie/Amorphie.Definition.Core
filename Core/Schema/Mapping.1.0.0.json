@@ -1,36 +1,45 @@
 {
-    "key": "Mapping",
+    "key": "mapping",
     "version": "1.0.0",
-    "domain": "Core",
-    "flow": "Schema",
+    "domain": "core",
+    "flow": "sys-schemas",
     "flowVersion": "1.0.0",
     "tags": [
         "Core",
         "Mapping",
         "DataTransformation",
-        "Reference"
+        "Script"
     ],
     "attributes": {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "$id": "https://schemas.amorphie.com/core/mapping.json",
         "title": "Data Mapping Definition",
-        "description": "Veri dönüşüm mapping'leri için standart yapı. Input, output ve asenkron output mapping'lerini tanımlar.",
+        "description": "Veri dönüşüm mapping'leri için kod tanımı. Script kod içeriği ve konumunu içerir.",
         "type": "object",
         "properties": {
-            "input": {
-                "$ref": "Code.1.0.0.json#/attributes",
-                "description": "Göreve iletilecek veri mapping kodu. Gelen veriyi task'ın beklediği formata dönüştürür."
+            "code": {
+                "type": "string",
+                "description": "Mapping script kod içeriği"
             },
-            "output": {
-                "$ref": "Code.1.0.0.json#/attributes",
-                "description": "Görevden dönecek veri mapping kodu. Task sonucunu workflow verisi formatına dönüştürür."
-            },
-            "asyncOutput": {
-                "$ref": "Code.1.0.0.json#/attributes",
-                "description": "Görevin asenkron dönüş veri mapping kodu. Async callback verisini workflow formatına dönüştürür."
+            "location": {
+                "type": "string",
+                "description": "Mapping kod dosyasının konumu"
             }
         },
-        "required": ["input", "output", "asyncOutput"],
-        "additionalProperties": false
+        "required": [
+            "code",
+            "location"
+        ],
+        "additionalProperties": false,
+        "examples": [
+            {
+                "code": "return { userId: input.id, name: input.fullName };",
+                "location": "./src/mappings/userMapping.js"
+            },
+            {
+                "code": "return input.data.map(item => ({ id: item.key, value: item.val }));",
+                "location": "./src/mappings/dataTransform.js"
+            }
+        ]
     }
-} 
+}

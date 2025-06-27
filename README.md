@@ -22,11 +22,11 @@ npm install @amorphie/definition-core
 
 ```javascript
 // Schema tanımlarına erişim
-const referenceSchema = require('@amorphie/definition-core/Core/Schema/Reference.1.0.0.json');
-const stateSchema = require('@amorphie/definition-core/Core/Schema/State.1.0.0.json');
+const referenceSchema = require("@amorphie/definition-core/Core/Schema/Reference.1.0.0.json");
+const stateSchema = require("@amorphie/definition-core/Core/Schema/State.1.0.0.json");
 
 // Workflow tanımlarına erişim
-const schemaLifecycle = require('@amorphie/definition-core/Core/Workflow/Schema.1.0.0.json');
+const schemaLifecycle = require("@amorphie/definition-core/Core/Workflow/Schema.1.0.0.json");
 ```
 
 ## Önemli Dosyalar
@@ -41,7 +41,7 @@ Current: 1.0.0
 
 ## Lisans
 
-MIT 
+MIT
 
 ## Workflow Model Kuralları
 
@@ -50,4 +50,4 @@ MIT
 - Silme veya arşivleme işlemleri için deleted adında bir state tanımlanmalı ve ilgili transition'lar bu state'e yönlendirilmelidir.
 - deleted state'inden recover transition'ı ile active state'e dönüş sağlanmalıdır.
 - **State ve transition key'leri camelCase olmalıdır.**
-- Tüm modellerde (ör: state, transition, schema, vs.) key alanlarında camelCase kullanımı zorunludur. 
+- Tüm modellerde (ör: state, transition, schema, vs.) key alanlarında camelCase kullanımı zorunludur.

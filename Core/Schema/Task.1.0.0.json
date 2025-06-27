@@ -1,95 +1,350 @@
 {
-    "key": "Task",
+    "key": "task",
     "version": "1.0.0",
-    "domain": "Core",
-    "flow": "Schema",
+    "domain": "core",
+    "flow": "sys-schemas",
     "flowVersion": "1.0.0",
     "tags": [
         "Core",
         "Schema",
         "Task",
-        "Dapr",
-        "Binding"
+        "Polymorphic"
     ],
     "attributes": {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "$id": "https://schemas.amorphie.com/core/task.json",
-        "title": "Task",
-        "description": "Dapr binding tabanlı görev tanımı. Mikroservis çağrıları, HTTP istekleri, mesaj kuyruğu işlemleri için kullanılır.",
+        "title": "Task Definition",
+        "description": "Polimorfik task tanımları. Task tipine göre farklı konfigürasyon şemaları kullanır.",
         "type": "object",
         "properties": {
-            "binding": {
+            "type": {
                 "type": "string",
-                "description": "Kullanılacak Dapr binding tipi",
-                "examples": [
-                    "dapr.bindings.http",
-                    "dapr.bindings.kafka",
-                    "dapr.bindings.redis",
-                    "dapr.bindings.postgresql",
-                    "dapr.bindings.blob-storage",
-                    "dapr.bindings.rabbitmq"
-                ]
-            },
-            "configuration": {
-                "type": "string",
-                "description": "Görev için kullanılacak konfigürasyon referansı",
-                "examples": ["fora-services", "banking-config", "notification-config"]
-            },
-            "metadata": {
-                "type": "object",
-                "description": "Binding tipine özel metadata bilgileri. Developer Dapr documentation'dan bakarak ilgili alanları ekler.",
-                "additionalProperties": true,
-                "examples": [
-                    {
-                        "url": "/api/service/endpoint/{param}",
-                        "operation": "post",
-                        "successResponses": [200, 201],
-                        "incident": false,
-                        "timeout": "PT30S"
-                    },
-                    {
-                        "topic": "user-events",
-                        "partition": "user-{userId}",
-                        "timeout": "PT30S",
-                        "maxRetries": 3
-                    },
-                    {
-                        "query": "INSERT INTO audit_log (user_id, action) VALUES (?, ?)",
-                        "timeout": "PT10S"
-                    }
+                "description": "Task tipi (TaskType enum değeri string olarak)",
+                "enum": [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7"
                 ]
             }
         },
-        "required": ["binding", "configuration", "metadata"],
-        "additionalProperties": false,
-        "examples": [
+        "required": [
+            "type"
+        ],
+        "allOf": [
             {
-                "binding": "dapr.bindings.http",
-                "configuration": "fora-services",
-                "metadata": {
-                    "url": "/fora/DigitalServices/AccountService.svc/accounts/checking/new/{tckn}",
-                    "operation": "post",
-                    "successResponses": [200, 467],
-                    "incident": false
+                "if": {
+                    "properties": {
+                        "type": {
+                            "const": "1"
+                        }
+                    }
+                },
+                "then": {
+                    "title": "DaprHttpEndpoint Task",
+                    "properties": {
+                        "type": {
+                            "const": "1"
+                        },
+                        "endpointName": {
+                            "type": "string",
+                            "description": "HTTPEndpoint component adı",
+                            "minLength": 1
+                        },
+                        "path": {
+                            "type": "string",
+                            "description": "BaseUrl'e eklenecek path",
+                            "minLength": 1
+                        },
+                        "method": {
+                            "type": "string",
+                            "description": "HTTP metodu",
+                            "default": "GET"
+                        },
+                        "headers": {
+                            "description": "Ek header bilgileri JSON formatında"
+                        }
+                    },
+                    "required": [
+                        "type",
+                        "endpointName",
+                        "path"
+                    ],
+                    "additionalProperties": false
                 }
             },
             {
-                "binding": "dapr.bindings.kafka",
-                "configuration": "messaging-config",
-                "metadata": {
-                    "topic": "user-notifications",
-                    "partition": "user-{userId}",
-                    "timeout": "PT30S"
+                "if": {
+                    "properties": {
+                        "type": {
+                            "const": "2"
+                        }
+                    }
+                },
+                "then": {
+                    "title": "DaprBinding Task",
+                    "properties": {
+                        "type": {
+                            "const": "2"
+                        },
+                        "bindingName": {
+                            "type": "string",
+                            "description": "Binding adı",
+                            "minLength": 1
+                        },
+                        "operation": {
+                            "type": "string",
+                            "description": "Binding operasyonu",
+                            "minLength": 1
+                        },
+                        "metadata": {
+                            "description": "Binding metadata bilgileri"
+                        },
+                        "data": {
+                            "description": "Binding data bilgileri"
+                        }
+                    },
+                    "required": [
+                        "type",
+                        "bindingName",
+                        "operation"
+                    ],
+                    "additionalProperties": false
                 }
             },
             {
-                "binding": "dapr.bindings.postgresql",
-                "configuration": "database-config",
-                "metadata": {
-                    "query": "INSERT INTO audit_log (user_id, action, timestamp) VALUES (?, ?, ?)",
-                    "timeout": "PT10S"
+                "if": {
+                    "properties": {
+                        "type": {
+                            "const": "3"
+                        }
+                    }
+                },
+                "then": {
+                    "title": "DaprService Task",
+                    "properties": {
+                        "type": {
+                            "const": "3"
+                        },
+                        "appId": {
+                            "type": "string",
+                            "description": "Dapr App ID",
+                            "minLength": 1
+                        },
+                        "methodName": {
+                            "type": "string",
+                            "description": "Çağrılacak method adı",
+                            "minLength": 1
+                        },
+                        "httpVerb": {
+                            "type": "string",
+                            "description": "HTTP verb",
+                            "minLength": 1
+                        },
+                        "data": {
+                            "description": "Gönderilecek data"
+                        },
+                        "queryString": {
+                            "type": [
+                                "string",
+                                "null"
+                            ],
+                            "description": "Query string parametreleri"
+                        },
+                        "timeoutSeconds": {
+                            "type": "integer",
+                            "description": "Timeout süresi (saniye)",
+                            "default": 30,
+                            "minimum": 1
+                        }
+                    },
+                    "required": [
+                        "type",
+                        "appId",
+                        "methodName",
+                        "httpVerb"
+                    ],
+                    "additionalProperties": false
+                }
+            },
+            {
+                "if": {
+                    "properties": {
+                        "type": {
+                            "const": "4"
+                        }
+                    }
+                },
+                "then": {
+                    "title": "DaprPubSub Task",
+                    "properties": {
+                        "type": {
+                            "const": "4"
+                        },
+                        "pubSubName": {
+                            "type": "string",
+                            "description": "PubSub component adı",
+                            "minLength": 1
+                        },
+                        "topic": {
+                            "type": "string",
+                            "description": "Topic adı",
+                            "minLength": 1
+                        },
+                        "data": {
+                            "description": "Publish edilecek data"
+                        },
+                        "metadata": {
+                            "description": "PubSub metadata bilgileri"
+                        }
+                    },
+                    "required": [
+                        "type",
+                        "pubSubName",
+                        "topic"
+                    ],
+                    "additionalProperties": false
+                }
+            },
+            {
+                "if": {
+                    "properties": {
+                        "type": {
+                            "const": "5"
+                        }
+                    }
+                },
+                "then": {
+                    "title": "Human Task",
+                    "properties": {
+                        "type": {
+                            "const": "5"
+                        },
+                        "title": {
+                            "type": "string",
+                            "description": "Task başlığı",
+                            "minLength": 1
+                        },
+                        "instructions": {
+                            "type": "string",
+                            "description": "Task talimatları",
+                            "minLength": 1
+                        },
+                        "assignedTo": {
+                            "type": "string",
+                            "description": "Atanan kişi/grup",
+                            "minLength": 1
+                        },
+                        "dueDate": {
+                            "type": [
+                                "string",
+                                "null"
+                            ],
+                            "description": "Bitiş tarihi (ISO 8601 format)",
+                            "format": "date-time"
+                        },
+                        "form": {
+                            "description": "Form tanımı JSON formatında"
+                        },
+                        "reminderIntervalMinutes": {
+                            "type": "integer",
+                            "description": "Hatırlatma aralığı (dakika)",
+                            "minimum": 0
+                        },
+                        "escalationTimeoutMinutes": {
+                            "type": "integer",
+                            "description": "Escalation timeout (dakika)",
+                            "minimum": 0
+                        },
+                        "escalationAssignee": {
+                            "type": "string",
+                            "description": "Escalation atanacak kişi/grup"
+                        }
+                    },
+                    "required": [
+                        "type",
+                        "title",
+                        "instructions",
+                        "assignedTo"
+                    ],
+                    "additionalProperties": false
+                }
+            },
+            {
+                "if": {
+                    "properties": {
+                        "type": {
+                            "const": "6"
+                        }
+                    }
+                },
+                "then": {
+                    "title": "Http Task",
+                    "properties": {
+                        "type": {
+                            "const": "6"
+                        },
+                        "url": {
+                            "type": "string",
+                            "description": "HTTP URL",
+                            "minLength": 1,
+                            "format": "uri"
+                        },
+                        "method": {
+                            "type": "string",
+                            "description": "HTTP metodu",
+                            "default": "GET"
+                        },
+                        "headers": {
+                            "description": "HTTP header bilgileri JSON formatında"
+                        },
+                        "body": {
+                            "description": "HTTP body JSON formatında"
+                        },
+                        "timeoutSeconds": {
+                            "type": "integer",
+                            "description": "Timeout süresi (saniye)",
+                            "default": 30,
+                            "minimum": 1
+                        },
+                        "validateSsl": {
+                            "type": "boolean",
+                            "description": "SSL doğrulaması yapılsın mı",
+                            "default": true
+                        }
+                    },
+                    "required": [
+                        "type",
+                        "url"
+                    ],
+                    "additionalProperties": false
+                }
+            },
+            {
+                "if": {
+                    "properties": {
+                        "type": {
+                            "const": "7"
+                        }
+                    }
+                },
+                "then": {
+                    "title": "Script Task",
+                    "properties": {
+                        "type": {
+                            "const": "7"
+                        }
+                    },
+                    "required": [
+                        "type"
+                    ],
+                    "additionalProperties": false
                 }
             }
-        ]
+        ],
+        "additionalProperties": false
     }
-} 
+}

@@ -1,8 +1,8 @@
 {
-    "key": "Reference",
+    "key": "reference",
     "version": "1.0.0",
-    "domain": "Core",
-    "flow": "Schema",
+    "domain": "core",
+    "flow": "sys-schemas",
     "flowVersion": "1.0.0",
     "tags": [
         "Core",
@@ -17,77 +17,63 @@
         "description": "Cross-domain kayıtlara referans vermek için kullanılan ortak şema. Farklı runtime'lar arasında referans mekanizması sağlar.",
         "type": "object",
         "properties": {
-            "id": {
-                "type": "string",
-                "format": "uuid",
-                "description": "Referans edilen kaydın benzersiz tanımlayıcısı (UUID v7 formatında)"
-            },
             "key": {
                 "type": "string",
-                "description": "Referans edilen kaydın anahtar değeri (okunabilir identifier)"
+                "description": "Referans edilen kaydın anahtar değeri (okunabilir identifier)",
+                "pattern": "^[a-zA-Z0-9\\-]+$",
+                "maxLength": 255
             },
             "domain": {
                 "type": "string",
                 "description": "Referans edilen kaydın bulunduğu domain (cross-domain referanslar için zorunlu)",
-                "examples": ["Core", "IDM", "Banking", "Payment"]
+                "pattern": "^[a-zA-Z\\-]+$",
+                "maxLength": 100,
+                "examples": [
+                    "core",
+                    "idm",
+                    "banking",
+                    "payment"
+                ]
             },
-            "workflow": {
+            "flow": {
                 "type": "string",
-                "description": "Referans edilen kaydın bulunduğu workflow adı"
+                "description": "Referans edilen kaydın bulunduğu flow adı",
+                "pattern": "^[a-z\\-]+$",
+                "maxLength": 100
             },
             "version": {
                 "type": "string",
-                "pattern": "^\\d+\\.\\d+(\\.\\d+)?$",
-                "description": "Referans edilen kaydın sürüm bilgisi (semantic versioning)"
-            },
-            "metadata": {
-                "type": "object",
-                "description": "İstemci tarafından serbest şekilde eklenebilecek metadata bilgileri (displayName, description vb.)",
-                "additionalProperties": true
+                "pattern": "^\\d+\\.\\d+\\.\\d+$",
+                "description": "Referans edilen kaydın sürüm bilgisi (semantic versioning MAJOR.MINOR.PATCH formatında)",
+                "maxLength": 50
             }
         },
-        "anyOf": [
-            {
-                "required": ["id"]
-            },
-            {
-                "required": ["key"]
-            }
+        "required": [
+            "key",
+            "domain",
+            "flow",
+            "version"
         ],
         "additionalProperties": false,
         "examples": [
             {
-                "id": "01234567-89ab-cdef-0123-456789abcdef",
-                "domain": "IDM",
-                "workflow": "UserAuthentication",
-                "version": "1.0.0",
-                "metadata": {
-                    "displayName": "Mobil Uygulama Kullanıcısı",
-                    "channel": "mobile",
-                    "priority": "high"
-                }
+                "key": "user-authentication-workflow",
+                "domain": "idm",
+                "flow": "user-authentication",
+                "version": "1.0.0"
             },
             {
                 "key": "user-login-state",
-                "domain": "Core",
-                "workflow": "Authentication",
-                "version": "2.1.0",
-                "metadata": {
-                    "displayName": "Kullanıcı Giriş Durumu",
-                    "timeout": 300,
-                    "retryable": true
-                }
+                "domain": "core",
+                "flow": "authentication",
+                "version": "2.1.0"
             },
             {
-                "id": "98765432-10ab-cdef-9876-543210abcdef",
                 "key": "payment-validation-task",
-                "domain": "Banking",
-                "workflow": "PaymentProcess",
-                "version": "1.2.3",
-                "metadata": {
-                    "description": "Ödeme doğrulama görevi"
-                }
+                "domain": "banking",
+                "flow": "payment-process",
+                "version": "1.2.3"
             }
         ]
     }
-} 
+}
