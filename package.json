@@ -1,6 +1,6 @@
 {
   "name": "@amorphie/definition-core",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Amorphie platform core definitions with developer tools",
   "keywords": [
     "amorphie",
@@ -50,6 +50,10 @@
   "dependencies": {
     "fs-extra": "^11.3.0",
     "path": "^0.12.7"
+  },
+  "peerDependencies": {
+    "ajv": "^8.12.0",
+    "ajv-formats": "^2.1.1"
   },
   "engines": {
     "node": ">=16.0.0"
