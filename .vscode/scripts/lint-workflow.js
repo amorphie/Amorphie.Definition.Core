@@ -207,7 +207,9 @@ class WorkflowLinter {
     try {
       // Check if file should be processed
       if (!this.isRelevantFile(filePath)) {
-        console.log(`⏭️ Skipping: ${filePath} (not a workflow JSON)`);
+        if (this.verbose) {
+          console.log(`⏭️ Skipping: ${filePath} (not a workflow JSON)`);
+        }
         return;
       }
 
@@ -286,6 +288,19 @@ class WorkflowLinter {
   determineSchema(filePath, json) {
     const fileName = path.basename(filePath);
 
+    // Directory-based matching first
+    if (filePath.includes("/Core/Schema/")) {
+      return "core-schema.schema.json";
+    }
+
+    if (
+      filePath.includes("/Core/Workflow/") ||
+      filePath.includes("/workflow/") ||
+      filePath.includes("/Workflow/")
+    ) {
+      return "workflow-definition.schema.json";
+    }
+
     // Version pattern matching
     if (/\.\d+\.\d+\.\d+\.json$/.test(fileName)) {
       if (json.attributes && json.attributes.states) {
@@ -294,15 +309,14 @@ class WorkflowLinter {
       if (json.key && json.version && json.domain) {
         return "core-schema.schema.json";
       }
+      if (json.key && json.version) {
+        return "core-schema.schema.json";
+      }
     }
 
-    // Directory-based matching
-    if (filePath.includes("/Core/Schema/")) {
+    // Fallback for any workflow-like file
+    if (json.key && json.version) {
       return "core-schema.schema.json";
-    }
-
-    if (filePath.includes("/workflow/") || filePath.includes("/Workflow/")) {
-      return "workflow-definition.schema.json";
     }
 
     return null;

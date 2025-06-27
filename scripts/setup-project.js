@@ -92,6 +92,32 @@ async function setupProject() {
       "📦 Core schemas available via @amorphie/definition-core module"
     );
 
+    // Install required dependencies for linting and validation
+    try {
+      const { execSync } = require("child_process");
+      console.log("\n📦 Installing validation dependencies...");
+
+      // Check if package.json exists in target directory
+      const packageJsonPath = path.join(targetDir, "package.json");
+      if (fs.existsSync(packageJsonPath)) {
+        execSync("npm install ajv@^8.12.0 ajv-formats@^2.1.1 --save-dev", {
+          cwd: targetDir,
+          stdio: "inherit",
+        });
+        console.log("✅ Validation dependencies installed");
+      } else {
+        console.log(
+          "⚠️  No package.json found - please install dependencies manually:"
+        );
+        console.log("   npm install ajv@^8.12.0 ajv-formats@^2.1.1 --save-dev");
+      }
+    } catch (error) {
+      console.log("⚠️  Dependency installation failed:", error.message);
+      console.log(
+        "   Please install manually: npm install ajv@^8.12.0 ajv-formats@^2.1.1 --save-dev"
+      );
+    }
+
     // Setup git hooks for linting
     try {
       const { setupGitHooks } = require("./setup-git-hooks");
@@ -106,7 +132,8 @@ async function setupProject() {
     console.log("");
     console.log("📝 What was installed:");
     console.log("   • VSCode tasks, snippets, and settings");
-    console.log("   • Workflow validation scripts");
+    console.log("   • Workflow validation and linting scripts");
+    console.log("   • Validation dependencies (ajv, ajv-formats)");
     console.log("   • CSX template files in .vscode/examples/");
     console.log("   • Core schemas (accessible via module API)");
     console.log("   • Cursor AI rules");
