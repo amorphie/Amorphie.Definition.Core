@@ -138,6 +138,13 @@ async function setupProject() {
     console.log("   • Core schemas (accessible via module API)");
     console.log("   • Cursor AI rules");
     console.log("");
+    console.log(
+      "⚠️  IMPORTANT: If linting fails with 'Cannot find module ajv':"
+    );
+    console.log(
+      "   Run: npm install ajv@^8.12.0 ajv-formats@^2.1.1 --save-dev"
+    );
+    console.log("");
     console.log("🚀 Next steps:");
     console.log("   • Open your project in VSCode");
     console.log(
