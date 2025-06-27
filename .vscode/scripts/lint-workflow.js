@@ -157,7 +157,8 @@ class WorkflowLinter {
       .replace(/\*\*/g, "__DOUBLE_STAR__") // Temporarily replace **
       .replace(/\*/g, "__SINGLE_STAR__") // Temporarily replace *
       .replace(/\?/g, "__QUESTION__") // Temporarily replace ?
-      .replace(/[.+^${}()|[\]\\]/g, "\\$&") // Escape regex special chars
+      .replace(/[+^${}()|[\]\\]/g, "\\$&") // Escape regex special chars (excluding . for now)
+      .replace(/\./g, "\\.") // Escape dots
       .replace(/__DOUBLE_STAR__/g, ".*") // ** -> .* (matches any path including empty)
       .replace(/__SINGLE_STAR__/g, "[^/]*") // * -> [^/]*
       .replace(/__QUESTION__/g, "[^/]"); // ? -> [^/]
