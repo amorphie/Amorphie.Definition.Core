@@ -30,10 +30,13 @@
     ],
     "include": [
         "**/Core/**/*.json",
+        "**/workflow/*.json",
         "**/workflow/**/*.json",
+        "**/workflows/*.json",
         "**/workflows/**/*.json",
+        "**/Workflow/*.json",
         "**/Workflow/**/*.json",
-        "**/*.[0-9].[0-9].[0-9].json",
+        "**/*.*.*.json",
         "**/*workflow*.json",
         "**/*-workflow-*.json",
         "**/*-flow-*.json"
