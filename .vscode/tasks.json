@@ -1,0 +1,331 @@
+{
+    "version": "2.0.0",
+    "inputs": [
+        {
+            "id": "fileNameCsx",
+            "description": "Enter the file name (without .csx extension)",
+            "default": "MyWorkflowFile",
+            "type": "promptString"
+        },
+        {
+            "id": "fileName",
+            "description": "Enter file name (without extension)",
+            "default": "NewMapping",
+            "type": "promptString"
+        },
+        {
+            "id": "workflowPath",
+            "description": "Enter workflow file or directory path (leave empty for workflow/)",
+            "default": "${file}",
+            "type": "promptString"
+        }
+    ],
+    "tasks": [
+        {
+            "label": "Validate Workflow JSON",
+            "type": "shell",
+            "command": "node",
+            "args": [
+                "${workspaceFolder}/.vscode/scripts/validate-workflow.js",
+                "${input:workflowPath}"
+            ],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": [],
+            "detail": "Validates workflow JSON files against schema and business rules"
+        },
+        {
+            "label": "Validate All Workflow JSONs",
+            "type": "shell",
+            "command": "node",
+            "args": [
+                "${workspaceFolder}/.vscode/scripts/validate-workflow.js",
+                "${workspaceFolder}/Core/Workflow"
+            ],
+            "group": {
+                "kind": "test",
+                "isDefault": false
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": true
+            },
+            "problemMatcher": [
+                {
+                    "owner": "workflow-validator",
+                    "fileLocation": [
+                        "relative",
+                        "${workspaceFolder}"
+                    ],
+                    "pattern": [
+                        {
+                            "regexp": "^✗ (.*)$",
+                            "file": 1
+                        },
+                        {
+                            "regexp": "^\\s+✗ Error \\d+: (.*)$",
+                            "message": 1
+                        },
+                        {
+                            "regexp": "^\\s+Line: (\\d+)$",
+                            "line": 1
+                        },
+                        {
+                            "regexp": "^\\s+Issue: (.*)$",
+                            "message": 1
+                        }
+                    ]
+                }
+            ],
+            "detail": "Validates all workflow JSON files in the examples directory"
+        },
+        {
+            "label": "Update Current Workflow CSX",
+            "type": "shell",
+            "command": "node",
+            "args": [
+                "${workspaceFolder}/.vscode/scripts/update-workflow-rules.js",
+                "${fileDirname}",
+                "${fileBasename}"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": [],
+            "detail": "Updates the currently active workflow JSON file with encoded CSX rules"
+        },
+        {
+            "label": "Update All Workflow CSX",
+            "type": "shell",
+            "command": "node",
+            "args": [
+                "${workspaceFolder}/.vscode/scripts/update-all-workflows.js"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": [],
+            "detail": "Updates all workflow JSON files in the examples directory"
+        },
+        {
+            "label": "Watch Workflow Changes",
+            "type": "shell",
+            "command": "node",
+            "args": [
+                "${workspaceFolder}/.vscode/scripts/watch-workflows.js"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": [],
+            "detail": "Watches for CSX file changes and automatically updates workflow JSON files",
+            "isBackground": true
+        },
+        {
+            "label": "Create Mapping CSX",
+            "type": "shell",
+            "command": "node",
+            "args": [
+                "${workspaceFolder}/.vscode/scripts/create-workflow-file.js",
+                "mapping",
+                "${input:fileNameCsx}"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": [],
+            "detail": "Creates a new workflow mapping CSX file in the current directory"
+        },
+        {
+            "label": "Create Rule CSX",
+            "type": "shell",
+            "command": "node",
+            "args": [
+                "${workspaceFolder}/.vscode/scripts/create-workflow-file.js",
+                "rule",
+                "${input:fileNameCsx}"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": [],
+            "detail": "Creates a new workflow rule CSX file in the current directory"
+        },
+        {
+            "label": "Lint Current JSON",
+            "type": "shell",
+            "command": "node",
+            "args": [
+                "${workspaceFolder}/.vscode/scripts/lint-workflow.js",
+                "${file}"
+            ],
+            "group": {
+                "kind": "test",
+                "isDefault": false
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": true
+            },
+            "problemMatcher": [
+                {
+                    "owner": "workflow-linter",
+                    "fileLocation": [
+                        "relative",
+                        "${workspaceFolder}"
+                    ],
+                    "pattern": [
+                        {
+                            "regexp": "^\\s*(.+?):(\\d+):(\\d+):\\s+(error|warning)\\s+(.+)$",
+                            "file": 1,
+                            "line": 2,
+                            "column": 3,
+                            "severity": 4,
+                            "message": 5
+                        }
+                    ]
+                }
+            ],
+            "detail": "Lints the currently open JSON file with advanced validation"
+        },
+        {
+            "label": "Lint All JSON Files",
+            "type": "shell",
+            "command": "node",
+            "args": [
+                "${workspaceFolder}/.vscode/scripts/lint-workflow.js",
+                "${workspaceFolder}"
+            ],
+            "group": {
+                "kind": "test",
+                "isDefault": false
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": true
+            },
+            "problemMatcher": [
+                {
+                    "owner": "workflow-linter",
+                    "fileLocation": [
+                        "relative",
+                        "${workspaceFolder}"
+                    ],
+                    "pattern": [
+                        {
+                            "regexp": "^\\s*(.+?):(\\d+):(\\d+):\\s+(error|warning)\\s+(.+)$",
+                            "file": 1,
+                            "line": 2,
+                            "column": 3,
+                            "severity": 4,
+                            "message": 5
+                        }
+                    ]
+                }
+            ],
+            "detail": "Lints all JSON files in the workspace with advanced validation"
+        },
+        {
+            "label": "Lint on Save (Watch)",
+            "type": "shell",
+            "command": "nodemon",
+            "args": [
+                "--watch",
+                "${workspaceFolder}",
+                "--ext",
+                "json",
+                "--exec",
+                "node ${workspaceFolder}/.vscode/scripts/lint-workflow.js"
+            ],
+            "group": "test",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": [
+                {
+                    "owner": "workflow-linter",
+                    "fileLocation": [
+                        "relative",
+                        "${workspaceFolder}"
+                    ],
+                    "pattern": [
+                        {
+                            "regexp": "^\\s*(.+?):(\\d+):(\\d+):\\s+(error|warning)\\s+(.+)$",
+                            "file": 1,
+                            "line": 2,
+                            "column": 3,
+                            "severity": 4,
+                            "message": 5
+                        }
+                    ]
+                }
+            ],
+            "detail": "Watches for JSON file changes and automatically lints them",
+            "isBackground": true,
+            "runOptions": {
+                "runOn": "folderOpen"
+            }
+        }
+    ]
+}

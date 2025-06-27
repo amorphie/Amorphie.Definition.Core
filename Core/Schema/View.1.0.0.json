@@ -1,8 +1,8 @@
 {
-    "key": "View",
+    "key": "view",
     "version": "1.0.0",
-    "domain": "Core",
-    "flow": "Schema",
+    "domain": "core",
+    "flow": "sys-schemas",
     "flowVersion": "1.0.0",
     "tags": [
         "Core",
@@ -14,102 +14,56 @@
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "$id": "https://schemas.amorphie.com/core/view.json",
         "title": "View Definition",
-        "description": "Amorphie platformunda kullanıcı arayüzü view tanımları için şema. Dinamik UI render edilebilir içerik ve gösterim şekli bilgilerini içerir.",
+        "description": "Amorphie platformunda view tanımları için şema. View içerik türü, hedef ve içerik bilgilerini içerir.",
         "type": "object",
         "properties": {
             "type": {
-                "type": "string",
-                "description": "View'in render teknolojisi veya türü",
+                "type": "integer",
+                "description": "View içerik türü",
                 "oneOf": [
                     {
-                        "const": "dynamic-flutter",
-                        "description": "Flutter ile dinamik render edilecek view"
+                        "const": 1,
+                        "description": "Json içerik türü"
                     },
                     {
-                        "const": "dynamic-html",
-                        "description": "HTML olarak dinamik render edilecek view"
+                        "const": 2,
+                        "description": "Html içerik türü"
                     },
                     {
-                        "const": "static-html",
-                        "description": "Statik HTML içerik"
-                    },
-                    {
-                        "const": "native",
-                        "description": "Platform native view referansı"
+                        "const": 3,
+                        "description": "Markdown içerik türü"
                     }
                 ]
             },
-            "display": {
-                "type": "string",
-                "description": "View'in ekranda gösterim şekli",
+            "target": {
+                "type": "integer",
+                "description": "View'in hedef aldığı workflow component türü",
                 "oneOf": [
                     {
-                        "const": "full-page",
-                        "description": "Tam sayfa olarak gösterilir"
+                        "const": 1,
+                        "description": "State hedefli view"
                     },
                     {
-                        "const": "popup",
-                        "description": "Popup/modal olarak gösterilir"
+                        "const": 2,
+                        "description": "Transition hedefli view"
                     },
                     {
-                        "const": "bottom-sheet",
-                        "description": "Alt taraftan açılan sheet olarak gösterilir"
-                    },
-                    {
-                        "const": "top-sheet",
-                        "description": "Üst taraftan açılan sheet olarak gösterilir"
-                    },
-                    {
-                        "const": "drawer",
-                        "description": "Yan menü/drawer olarak gösterilir"
-                    },
-                    {
-                        "const": "inline",
-                        "description": "Sayfa içinde inline olarak gösterilir"
+                        "const": 3,
+                        "description": "Task hedefli view"
                     }
                 ]
             },
             "content": {
                 "type": "string",
-                "description": "View'in render edilecek içeriği. Flutter/HTML/Native kod içerir."
-            },
-            "metadata": {
-                "type": "object",
-                "description": "View'e özgü ek metadata bilgileri",
-                "properties": {
-                    "minHeight": {
-                        "type": "integer",
-                        "description": "Minimum yükseklik (pixel)"
-                    },
-                    "maxHeight": {
-                        "type": "integer",
-                        "description": "Maksimum yükseklik (pixel)"
-                    },
-                    "dismissible": {
-                        "type": "boolean",
-                        "description": "Kullanıcı tarafından kapatılabilir mi?"
-                    },
-                    "backdrop": {
-                        "type": "boolean",
-                        "description": "Arka plan gösterilsin mi?"
-                    },
-                    "animation": {
-                        "type": "string",
-                        "description": "Açılış/kapanış animasyon türü"
-                    }
-                },
-                "additionalProperties": true
-            },
-            "labels": {
-                "$ref": "Label.1.0.0.json#/attributes",
-                "description": "View'in çoklu dil başlıkları"
+                "description": "View'in içeriği. Json, Html veya Markdown formatında olabilir.",
+                "minLength": 1
             }
         },
         "required": [
             "type",
-            "display",
+            "target",
             "content"
         ],
         "additionalProperties": false
     }
-} 
+}

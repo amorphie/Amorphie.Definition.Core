@@ -1,0 +1,276 @@
+{
+    "key": "sys-tasks",
+    "version": "1.0.0",
+    "domain": "core",
+    "flow": "sys-flows",
+    "flowVersion": "1.0.0",
+    "tags": [
+        "Core",
+        "Task",
+        "Lifecycle",
+        "Repository"
+    ],
+    "attributes": {
+        "timeout": null,
+        "type": "F",
+        "labels": [
+            {
+                "language": "en-US",
+                "label": "Task Lifecycle Management"
+            },
+            {
+                "language": "tr-TR",
+                "label": "Görev Yaşam Döngüsü Yönetimi"
+            }
+        ],
+        "functions": [],
+        "sharedTransitions": [],
+        "extensions": [],
+        "features": [],
+        "startTransition": {
+            "key": "create-task",
+            "target": "draft",
+            "triggerType": 0,
+            "labels": [
+                {
+                    "language": "en-US",
+                    "label": "Create Task"
+                },
+                {
+                    "language": "tr-TR",
+                    "label": "Görev Oluştur"
+                }
+            ],
+            "versionStrategy": "Minor",
+            "schema": {
+                "key": "task-creation-input",
+                "domain": "core",
+                "workflow": "Task",
+                "version": "1.0.0"
+            },
+            "onExecutionTasks": [],
+            "views": []
+        },
+        "states": [
+            {
+                "key": "draft",
+                "stateType": 1,
+                "labels": [
+                    {
+                        "language": "en-US",
+                        "label": "Draft State"
+                    },
+                    {
+                        "language": "tr-TR",
+                        "label": "Taslak Durumu"
+                    }
+                ],
+                "transitions": [
+                    {
+                        "key": "activate",
+                        "from": "draft",
+                        "target": "active",
+                        "triggerType": 1,
+                        "labels": [
+                            {
+                                "language": "en-US",
+                                "label": "Activate Task"
+                            },
+                            {
+                                "language": "tr-TR",
+                                "label": "Görevi Aktifleştir"
+                            }
+                        ],
+                        "versionStrategy": "Minor",
+                        "onExecutionTasks": [],
+                        "views": []
+                    },
+                    {
+                        "key": "delete",
+                        "from": "draft",
+                        "target": "draft",
+                        "triggerType": 1,
+                        "labels": [
+                            {
+                                "language": "en-US",
+                                "label": "Delete Draft"
+                            },
+                            {
+                                "language": "tr-TR",
+                                "label": "Taslağı Sil"
+                            }
+                        ],
+                        "versionStrategy": "Minor",
+                        "onExecutionTasks": [],
+                        "views": []
+                    }
+                ],
+                "views": [],
+                "onEntries": [],
+                "onExits": [],
+                "versionStrategy": "Minor"
+            },
+            {
+                "key": "active",
+                "stateType": 2,
+                "labels": [
+                    {
+                        "language": "en-US",
+                        "label": "Active State"
+                    },
+                    {
+                        "language": "tr-TR",
+                        "label": "Aktif Durumu"
+                    }
+                ],
+                "transitions": [
+                    {
+                        "key": "deactivate",
+                        "from": "active",
+                        "target": "passive",
+                        "triggerType": 1,
+                        "labels": [
+                            {
+                                "language": "en-US",
+                                "label": "Deactivate Task"
+                            },
+                            {
+                                "language": "tr-TR",
+                                "label": "Görevi Pasifleştir"
+                            }
+                        ],
+                        "versionStrategy": "Minor",
+                        "onExecutionTasks": [],
+                        "views": []
+                    },
+                    {
+                        "key": "update",
+                        "from": "active",
+                        "target": "active",
+                        "triggerType": 1,
+                        "labels": [
+                            {
+                                "language": "en-US",
+                                "label": "Update Task"
+                            },
+                            {
+                                "language": "tr-TR",
+                                "label": "Görevi Güncelle"
+                            }
+                        ],
+                        "versionStrategy": "Minor",
+                        "onExecutionTasks": [],
+                        "views": []
+                    }
+                ],
+                "views": [],
+                "onEntries": [],
+                "onExits": [],
+                "versionStrategy": "Minor"
+            },
+            {
+                "key": "passive",
+                "stateType": 2,
+                "labels": [
+                    {
+                        "language": "en-US",
+                        "label": "Passive State"
+                    },
+                    {
+                        "language": "tr-TR",
+                        "label": "Pasif Durumu"
+                    }
+                ],
+                "transitions": [
+                    {
+                        "key": "reactivate",
+                        "from": "passive",
+                        "target": "active",
+                        "triggerType": 1,
+                        "labels": [
+                            {
+                                "language": "en-US",
+                                "label": "Reactivate Task"
+                            },
+                            {
+                                "language": "tr-TR",
+                                "label": "Görevi Yeniden Aktifleştir"
+                            }
+                        ],
+                        "versionStrategy": "Minor",
+                        "onExecutionTasks": [],
+                        "views": []
+                    },
+                    {
+                        "key": "archive",
+                        "from": "passive",
+                        "target": "deleted",
+                        "triggerType": 1,
+                        "labels": [
+                            {
+                                "language": "en-US",
+                                "label": "Archive Task"
+                            },
+                            {
+                                "language": "tr-TR",
+                                "label": "Görevi Arşivle"
+                            }
+                        ],
+                        "versionStrategy": "Minor",
+                        "onExecutionTasks": [],
+                        "views": []
+                    }
+                ],
+                "views": [],
+                "onEntries": [],
+                "onExits": [],
+                "versionStrategy": "Minor"
+            },
+            {
+                "key": "deleted",
+                "stateType": 3,
+                "labels": [
+                    {
+                        "language": "en-US",
+                        "label": "Deleted State"
+                    },
+                    {
+                        "language": "tr-TR",
+                        "label": "Silinmiş Durum"
+                    }
+                ],
+                "transitions": [
+                    {
+                        "key": "recover",
+                        "from": "deleted",
+                        "target": "active",
+                        "triggerType": 1,
+                        "labels": [
+                            {
+                                "language": "en-US",
+                                "label": "Recover"
+                            },
+                            {
+                                "language": "tr-TR",
+                                "label": "Geri Al"
+                            }
+                        ],
+                        "versionStrategy": "Minor",
+                        "onExecutionTasks": [],
+                        "views": []
+                    }
+                ],
+                "views": [],
+                "onEntries": [],
+                "onExits": [],
+                "versionStrategy": "Minor"
+            }
+        ],
+        "modelSchema": {
+            "key": "Task",
+            "domain": "core",
+            "workflow": "Schema",
+            "version": "1.0.0"
+        }
+    }
+}

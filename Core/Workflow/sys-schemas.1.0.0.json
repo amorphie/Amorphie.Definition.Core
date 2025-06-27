@@ -1,0 +1,303 @@
+{
+    "key": "sys-schemas",
+    "version": "1.0.0",
+    "domain": "core",
+    "flow": "sys-flows",
+    "flowVersion": "1.0.0",
+    "tags": [
+        "Core",
+        "Schema",
+        "Lifecycle",
+        "Repository"
+    ],
+    "attributes": {
+        "timeout": null,
+        "type": "F",
+        "labels": [
+            {
+                "language": "en-US",
+                "label": "Schema Lifecycle Management"
+            },
+            {
+                "language": "tr-TR",
+                "label": "Şema Yaşam Döngüsü Yönetimi"
+            }
+        ],
+        "functions": [],
+        "sharedTransitions": [],
+        "extensions": [],
+        "features": [],
+        "startTransition": {
+            "key": "create-schema",
+            "target": "draft",
+            "triggerType": 0,
+            "labels": [
+                {
+                    "language": "en-US",
+                    "label": "Create Schema"
+                },
+                {
+                    "language": "tr-TR",
+                    "label": "Şema Oluştur"
+                }
+            ],
+            "versionStrategy": "Minor",
+            "schema": {
+                "key": "schema-creation-input",
+                "domain": "core",
+                "workflow": "Schema",
+                "version": "1.0.0"
+            },
+            "onExecutionTasks": [],
+            "views": []
+        },
+        "states": [
+            {
+                "key": "draft",
+                "stateType": 1,
+                "labels": [
+                    {
+                        "language": "en-US",
+                        "label": "Draft State"
+                    },
+                    {
+                        "language": "tr-TR",
+                        "label": "Taslak Durumu"
+                    }
+                ],
+                "transitions": [
+                    {
+                        "key": "activate",
+                        "from": "draft",
+                        "target": "active",
+                        "triggerType": 1,
+                        "labels": [
+                            {
+                                "language": "en-US",
+                                "label": "Activate Schema"
+                            },
+                            {
+                                "language": "tr-TR",
+                                "label": "Şemayı Aktifleştir"
+                            }
+                        ],
+                        "versionStrategy": "Minor",
+                        "onExecutionTasks": [],
+                        "views": []
+                    },
+                    {
+                        "key": "delete",
+                        "from": "draft",
+                        "target": "deleted",
+                        "triggerType": 1,
+                        "labels": [
+                            {
+                                "language": "en-US",
+                                "label": "Delete Draft"
+                            },
+                            {
+                                "language": "tr-TR",
+                                "label": "Taslağı Sil"
+                            }
+                        ],
+                        "versionStrategy": "Minor",
+                        "onExecutionTasks": [],
+                        "views": []
+                    }
+                ],
+                "views": [
+                    {
+                        "key": "SchemaFullView",
+                        "domain": "core",
+                        "workflow": "View",
+                        "version": "1.0.0",
+                        "viewType": 1,
+                        "viewTarget": 1
+                    }
+                ],
+                "onEntries": [],
+                "onExits": [],
+                "versionStrategy": "Minor"
+            },
+            {
+                "key": "active",
+                "stateType": 2,
+                "labels": [
+                    {
+                        "language": "en-US",
+                        "label": "Active State"
+                    },
+                    {
+                        "language": "tr-TR",
+                        "label": "Aktif Durumu"
+                    }
+                ],
+                "transitions": [
+                    {
+                        "key": "deactivate",
+                        "from": "active",
+                        "target": "passive",
+                        "triggerType": 1,
+                        "labels": [
+                            {
+                                "language": "en-US",
+                                "label": "Deactivate Schema"
+                            },
+                            {
+                                "language": "tr-TR",
+                                "label": "Şemayı Pasifleştir"
+                            }
+                        ],
+                        "versionStrategy": "Minor",
+                        "onExecutionTasks": [],
+                        "views": []
+                    },
+                    {
+                        "key": "update",
+                        "from": "active",
+                        "target": "active",
+                        "triggerType": 1,
+                        "labels": [
+                            {
+                                "language": "en-US",
+                                "label": "Update Schema"
+                            },
+                            {
+                                "language": "tr-TR",
+                                "label": "Şemayı Güncelle"
+                            }
+                        ],
+                        "versionStrategy": "Minor",
+                        "onExecutionTasks": [],
+                        "views": []
+                    }
+                ],
+                "views": [
+                    {
+                        "key": "SchemaFullView",
+                        "domain": "core",
+                        "workflow": "View",
+                        "version": "1.0.0",
+                        "viewType": 1,
+                        "viewTarget": 1
+                    }
+                ],
+                "onEntries": [],
+                "onExits": [],
+                "versionStrategy": "Minor"
+            },
+            {
+                "key": "passive",
+                "stateType": 2,
+                "labels": [
+                    {
+                        "language": "en-US",
+                        "label": "Passive State"
+                    },
+                    {
+                        "language": "tr-TR",
+                        "label": "Pasif Durumu"
+                    }
+                ],
+                "transitions": [
+                    {
+                        "key": "reactivate",
+                        "from": "passive",
+                        "target": "active",
+                        "triggerType": 1,
+                        "labels": [
+                            {
+                                "language": "en-US",
+                                "label": "Reactivate Schema"
+                            },
+                            {
+                                "language": "tr-TR",
+                                "label": "Şemayı Yeniden Aktifleştir"
+                            }
+                        ],
+                        "versionStrategy": "Minor",
+                        "onExecutionTasks": [],
+                        "views": []
+                    },
+                    {
+                        "key": "archive",
+                        "from": "passive",
+                        "target": "deleted",
+                        "triggerType": 1,
+                        "labels": [
+                            {
+                                "language": "en-US",
+                                "label": "Archive Schema"
+                            },
+                            {
+                                "language": "tr-TR",
+                                "label": "Şemayı Arşivle"
+                            }
+                        ],
+                        "versionStrategy": "Minor",
+                        "onExecutionTasks": [],
+                        "views": []
+                    }
+                ],
+                "views": [
+                    {
+                        "key": "SchemaFullView",
+                        "domain": "core",
+                        "workflow": "View",
+                        "version": "1.0.0",
+                        "viewType": 1,
+                        "viewTarget": 1
+                    }
+                ],
+                "onEntries": [],
+                "onExits": [],
+                "versionStrategy": "Minor"
+            },
+            {
+                "key": "deleted",
+                "stateType": 3,
+                "labels": [
+                    {
+                        "language": "en-US",
+                        "label": "Deleted State"
+                    },
+                    {
+                        "language": "tr-TR",
+                        "label": "Silinmiş Durum"
+                    }
+                ],
+                "transitions": [
+                    {
+                        "key": "recover",
+                        "from": "deleted",
+                        "target": "active",
+                        "triggerType": 1,
+                        "labels": [
+                            {
+                                "language": "en-US",
+                                "label": "Recover"
+                            },
+                            {
+                                "language": "tr-TR",
+                                "label": "Geri Al"
+                            }
+                        ],
+                        "versionStrategy": "Minor",
+                        "onExecutionTasks": [],
+                        "views": []
+                    }
+                ],
+                "views": [],
+                "onEntries": [],
+                "onExits": [],
+                "versionStrategy": "Minor"
+            }
+        ],
+        "modelSchema": {
+            "key": "Schema",
+            "domain": "core",
+            "workflow": "Schema",
+            "version": "1.0.0"
+        }
+    }
+}

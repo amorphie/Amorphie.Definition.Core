@@ -1,0 +1,29 @@
+{
+    "key": "version-strategy",
+    "version": "1.0.0",
+    "domain": "core",
+    "flow": "sys-schemas",
+    "flowVersion": "1.0.0",
+    "tags": [
+        "Core",
+        "Schema",
+        "VersionStrategy",
+        "Workflow"
+    ],
+    "attributes": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://schemas.amorphie.com/core/version-strategy.json",
+        "title": "Version Strategy",
+        "description": "Workflow versiyonlama stratejisi tanımı. Major veya Minor versiyon artışını belirler.",
+        "type": "string",
+        "enum": [
+            "Major",
+            "Minor"
+        ],
+        "description": "Versiyon artış stratejisi. Major=büyük değişiklik, Minor=küçük değişiklik",
+        "examples": [
+            "Major",
+            "Minor"
+        ]
+    }
+}

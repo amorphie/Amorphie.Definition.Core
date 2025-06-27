@@ -1,13 +1,62 @@
 {
   "name": "@amorphie/definition-core",
   "version": "1.0.1",
-  "description": "Amorphie platform core definitions",
+  "description": "Amorphie platform core definitions with developer tools",
+  "keywords": [
+    "amorphie",
+    "workflow",
+    "schema",
+    "vscode",
+    "template"
+  ],
+  "scripts": {
+    "validate": "node .vscode/scripts/validate-workflow.js",
+    "validate:all": "node .vscode/scripts/validate-workflow.js Core/",
+    "validate:watch": "nodemon --watch Core/ --ext json --exec \"npm run validate:all\"",
+    "lint": "node .vscode/scripts/lint-workflow.js",
+    "lint:json": "node .vscode/scripts/lint-workflow.js .",
+    "lint:fix": "node .vscode/scripts/lint-workflow.js . --fix",
+    "lint:watch": "nodemon --watch . --ext json --exec \"npm run lint:json\"",
+    "test": "npm run lint:json",
+    "pretest": "echo 'Running JSON linting before tests...'",
+    "prebuild": "npm run lint:json",
+    "build": "echo 'Building package...' && npm run lint:json",
+    "prepublishOnly": "npm run test",
+    "setup:hooks": "node scripts/setup-git-hooks.js",
+    "install-deps": "npm install",
+    "setup": "node scripts/setup-project.js",
+    "postinstall": "npm run setup"
+  },
+  "bin": {
+    "amorphie-setup": "./scripts/setup-project.js"
+  },
   "files": [
     "Core/**/*",
+    ".vscode/**/*",
+    "examples/**/*",
+    "scripts/**/*",
     ".cursorrules",
-    ".cursor/**/*"
+    "README.md",
+    "SETUP.md"
   ],
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
-  }
-} 
+  },
+  "devDependencies": {
+    "ajv": "^8.12.0",
+    "ajv-formats": "^2.1.1",
+    "nodemon": "^3.0.2"
+  },
+  "dependencies": {
+    "fs-extra": "^11.3.0",
+    "path": "^0.12.7"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/amorphie/definition-core.git"
+  },
+  "main": "index.js"
+}

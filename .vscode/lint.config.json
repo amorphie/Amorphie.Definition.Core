@@ -1,0 +1,62 @@
+{
+    "ignore": [
+        "**/node_modules/**",
+        "**/.git/**",
+        "**/.vscode/**",
+        "**/bin/**",
+        "**/obj/**",
+        "**/dist/**",
+        "**/build/**",
+        "**/coverage/**",
+        "**/temp/**",
+        "**/tmp/**",
+        "**/logs/**",
+        "**/.nyc_output/**",
+        "**/package.json",
+        "**/package-lock.json",
+        "**/tsconfig.json",
+        "**/jest.config.json",
+        "**/webpack.config.json",
+        "**/*.config.json",
+        "**/genDocs/**",
+        "**/.gitignore",
+        "**/.cursorrules",
+        "**/README.md",
+        "**/SETUP.md",
+        "**/PUBLISHING.md",
+        "**/RULES.md",
+        "**/.gitattributes",
+        "**/plantuml-debug.txt"
+    ],
+    "include": [
+        "**/Core/**/*.json",
+        "**/workflow/**/*.json",
+        "**/workflows/**/*.json",
+        "**/Workflow/**/*.json",
+        "**/*.[0-9].[0-9].[0-9].json",
+        "**/*workflow*.json",
+        "**/*-workflow-*.json",
+        "**/*-flow-*.json"
+    ],
+    "rules": {
+        "filename-consistency": true,
+        "reference-integrity": true,
+        "version-consistency": true,
+        "label-completeness": true,
+        "state-machine-validation": true,
+        "schema-validation": true
+    },
+    "requiredLanguages": [
+        "en-US",
+        "tr-TR"
+    ],
+    "allowedWorkflowTypes": [
+        "Schema",
+        "Workflow",
+        "Task",
+        "View",
+        "Function"
+    ],
+    "maxFileSize": "10MB",
+    "verbose": false
+}

@@ -1,0 +1,645 @@
+{
+  "Basic Workflow": {
+    "prefix": "workflow-basic",
+    "body": [
+      "{",
+      "  \"key\": \"$1\",",
+      "  \"tags\": [\"$2\"],",
+      "  \"attributes\": {",
+      "    \"type\": \"${3|F,C,S,P|}\",",
+      "    \"labels\": [",
+      "      {",
+      "        \"label\": \"$4\",",
+      "        \"language\": \"en-US\"",
+      "      },",
+      "      {",
+      "        \"label\": \"$5\",",
+      "        \"language\": \"tr-TR\"",
+      "      }",
+      "    ],",
+      "    \"startTransition\": {",
+      "      \"key\": \"start\",",
+      "      \"target\": \"$6\",",
+      "      \"triggerType\": 0,",
+      "      \"labels\": [",
+      "        {",
+      "          \"label\": \"Start\",",
+      "          \"language\": \"en-US\"",
+      "        }",
+      "      ],",
+      "      \"versionStrategy\": \"Minor\"",
+      "    },",
+      "    \"states\": [",
+      "      $0",
+      "    ]",
+      "  }",
+      "}"
+    ],
+    "description": "Create a basic workflow structure"
+  },
+  "Initial State": {
+    "prefix": "state-initial",
+    "body": [
+      "{",
+      "  \"key\": \"$1\",",
+      "  \"stateType\": 1,",
+      "  \"versionStrategy\": \"Minor\",",
+      "  \"labels\": [",
+      "    {",
+      "      \"label\": \"$2\",",
+      "      \"language\": \"en-US\"",
+      "    },",
+      "    {",
+      "      \"label\": \"$3\",",
+      "      \"language\": \"tr-TR\"",
+      "    }",
+      "  ],",
+      "  \"transitions\": [",
+      "    $0",
+      "  ]",
+      "}"
+    ],
+    "description": "Create an initial state"
+  },
+  "Intermediate State": {
+    "prefix": "state-intermediate",
+    "body": [
+      "{",
+      "  \"key\": \"$1\",",
+      "  \"stateType\": 2,",
+      "  \"versionStrategy\": \"Minor\",",
+      "  \"labels\": [",
+      "    {",
+      "      \"label\": \"$2\",",
+      "      \"language\": \"en-US\"",
+      "    },",
+      "    {",
+      "      \"label\": \"$3\",",
+      "      \"language\": \"tr-TR\"",
+      "    }",
+      "  ],",
+      "  \"transitions\": [",
+      "    $0",
+      "  ]",
+      "}"
+    ],
+    "description": "Create an intermediate state"
+  },
+  "Final State": {
+    "prefix": "state-final",
+    "body": [
+      "{",
+      "  \"key\": \"$1\",",
+      "  \"stateType\": 3,",
+      "  \"stateSubType\": ${2|1,2,3|},",
+      "  \"versionStrategy\": \"Minor\",",
+      "  \"labels\": [",
+      "    {",
+      "      \"label\": \"$3\",",
+      "      \"language\": \"en-US\"",
+      "    },",
+      "    {",
+      "      \"label\": \"$4\",",
+      "      \"language\": \"tr-TR\"",
+      "    }",
+      "  ],",
+      "  \"transitions\": []",
+      "}"
+    ],
+    "description": "Create a final state"
+  },
+  "Manual Transition": {
+    "prefix": "transition-manual",
+    "body": [
+      "{",
+      "  \"key\": \"$1\",",
+      "  \"from\": \"$2\",",
+      "  \"target\": \"$3\",",
+      "  \"triggerType\": 0,",
+      "  \"availableIn\": [],",
+      "  \"schema\": null,",
+      "  \"labels\": [",
+      "    {",
+      "      \"label\": \"$4\",",
+      "      \"language\": \"en-US\"",
+      "    },",
+      "    {",
+      "      \"label\": \"$5\",",
+      "      \"language\": \"tr-TR\"",
+      "    }",
+      "  ],",
+      "  \"versionStrategy\": \"Minor\"",
+      "}"
+    ],
+    "description": "Create a manual transition"
+  },
+  "Automatic Transition": {
+    "prefix": "transition-auto",
+    "body": [
+      "{",
+      "  \"key\": \"$1\",",
+      "  \"from\": \"$2\",",
+      "  \"target\": \"$3\",",
+      "  \"triggerType\": 1,",
+      "  \"availableIn\": [],",
+      "  \"schema\": null,",
+      "  \"rule\": {",
+      "    \"location\": \"./src/$4.csx\",",
+      "    \"code\": \"$5\"",
+      "  },",
+      "  \"labels\": [",
+      "    {",
+      "      \"label\": \"$6\",",
+      "      \"language\": \"en-US\"",
+      "    },",
+      "    {",
+      "      \"label\": \"$7\",",
+      "      \"language\": \"tr-TR\"",
+      "    }",
+      "  ],",
+      "  \"versionStrategy\": \"Minor\"",
+      "}"
+    ],
+    "description": "Create an automatic transition with rule"
+  },
+  "OnEntry Task": {
+    "prefix": "task-onentry",
+    "body": [
+      "{",
+      "  \"order\": ${1|1,2,3,4,5|},",
+      "  \"task\": {",
+      "    \"key\": \"$2\",",
+      "    \"domain\": \"$3\",",
+      "    \"flow\": \"$4\",",
+      "    \"version\": \"1.0.0\"",
+      "  },",
+      "  \"mapping\": {",
+      "    \"location\": \"./src/$5.csx\",",
+      "    \"code\": \"$6\"",
+      "  }",
+      "}"
+    ],
+    "description": "Create an onEntry task"
+  },
+  "Timeout Configuration": {
+    "prefix": "timeout-config",
+    "body": [
+      "\"timeout\": {",
+      "  \"key\": \"timeout\",",
+      "  \"target\": \"$1\",",
+      "  \"versionStrategy\": \"Minor\",",
+      "  \"timer\": {",
+      "    \"reset\": \"${2|N,R|}\",",
+      "    \"duration\": \"${3|PT1H,PT30M,PT15M,PT5M|}\"",
+      "  }",
+      "}"
+    ],
+    "description": "Create timeout configuration"
+  },
+  "Shared Transition": {
+    "prefix": "shared-transition",
+    "body": [
+      "{",
+      "  \"key\": \"$1\",",
+      "  \"triggerType\": ${2|0,1|},",
+      "  \"labels\": [",
+      "    {",
+      "      \"label\": \"$3\",",
+      "      \"language\": \"en-US\"",
+      "    },",
+      "    {",
+      "      \"label\": \"$4\",",
+      "      \"language\": \"tr-TR\"",
+      "    }",
+      "  ],",
+      "  \"target\": \"$5\",",
+      "  \"versionStrategy\": \"Minor\",",
+      "  \"availableIn\": [",
+      "    \"$6\"",
+      "  ]",
+      "}"
+    ],
+    "description": "Create a shared transition"
+  },
+  "Labels Array": {
+    "prefix": "labels",
+    "body": [
+      "\"labels\": [",
+      "  {",
+      "    \"label\": \"$1\",",
+      "    \"language\": \"${2|en-US,tr-TR,en-GB,de-DE,fr-FR|}\"",
+      "  },",
+      "  {",
+      "    \"label\": \"$3\",",
+      "    \"language\": \"${4|tr-TR,en-US,en-GB,de-DE,fr-FR|}\"",
+      "  }$0",
+      "]"
+    ],
+    "description": "Create labels array with multiple languages"
+  },
+  "Single Label": {
+    "prefix": "label",
+    "body": [
+      "{",
+      "  \"label\": \"$1\",",
+      "  \"language\": \"${2|en-US,tr-TR,en-GB,de-DE,fr-FR|}\"",
+      "}"
+    ],
+    "description": "Create a single language label"
+  },
+  "Function Reference": {
+    "prefix": "function-ref",
+    "body": [
+      "{",
+      "  \"key\": \"$1\",",
+      "  \"domain\": \"${2|amorphie,bbt,custom|}\",",
+      "  \"flow\": \"sys-functions\",",
+      "  \"version\": \"1.0.0\"",
+      "}"
+    ],
+    "description": "Create a function reference"
+  },
+  "Extension Reference": {
+    "prefix": "extension-ref",
+    "body": [
+      "{",
+      "  \"key\": \"$1\",",
+      "  \"domain\": \"${2|amorphie,bbt,custom|}\",",
+      "  \"flow\": \"sys-extensions\",",
+      "  \"version\": \"1.0.0\"",
+      "}"
+    ],
+    "description": "Create an extension reference"
+  },
+  "Task Reference": {
+    "prefix": "task-ref",
+    "body": [
+      "{",
+      "  \"key\": \"$1\",",
+      "  \"domain\": \"${2|amorphie,bbt,custom|}\",",
+      "  \"flow\": \"sys-tasks\",",
+      "  \"version\": \"1.0.0\"",
+      "}"
+    ],
+    "description": "Create a task reference"
+  },
+  "Mapping Object": {
+    "prefix": "mapping",
+    "body": [
+      "\"mapping\": {",
+      "  \"location\": \"./src/$1.csx\",",
+      "  \"code\": \"$2\"",
+      "}"
+    ],
+    "description": "Create a mapping object"
+  },
+  "Rule Object": {
+    "prefix": "rule",
+    "body": [
+      "\"rule\": {",
+      "  \"location\": \"./src/$1.csx\",",
+      "  \"code\": \"$2\"",
+      "}"
+    ],
+    "description": "Create a rule object"
+  },
+  "OnEntries Array": {
+    "prefix": "onentries",
+    "body": [
+      "\"onEntries\": [",
+      "  {",
+      "    \"order\": ${1|1,2,3,4,5|},",
+      "    \"task\": {",
+      "      \"key\": \"$2\",",
+      "      \"domain\": \"$3\",",
+      "      \"flow\": \"$4\",",
+      "      \"version\": \"1.0.0\"",
+      "    },",
+      "    \"mapping\": {",
+      "      \"location\": \"./src/$5.csx\",",
+      "      \"code\": \"$6\"",
+      "    }",
+      "  }$0",
+      "]"
+    ],
+    "description": "Create onEntries array"
+  },
+  "OnExits Array": {
+    "prefix": "onexits",
+    "body": [
+      "\"onExits\": [",
+      "  {",
+      "    \"order\": ${1|1,2,3,4,5|},",
+      "    \"task\": {",
+      "      \"key\": \"$2\",",
+      "      \"domain\": \"$3\",",
+      "      \"flow\": \"$4\",",
+      "      \"version\": \"1.0.0\"",
+      "    },",
+      "    \"mapping\": {",
+      "      \"location\": \"./src/$5.csx\",",
+      "      \"code\": \"$6\"",
+      "    }",
+      "  }$0",
+      "]"
+    ],
+    "description": "Create onExits array"
+  },
+  "OnExecutionTasks Array": {
+    "prefix": "onexecutiontasks",
+    "body": [
+      "\"onExecutionTasks\": [",
+      "  {",
+      "    \"order\": ${1|1,2,3,4,5|},",
+      "    \"task\": {",
+      "      \"key\": \"$2\",",
+      "      \"domain\": \"$3\",",
+      "      \"flow\": \"$4\",",
+      "      \"version\": \"1.0.0\"",
+      "    },",
+      "    \"mapping\": {",
+      "      \"location\": \"./src/$5.csx\",",
+      "      \"code\": \"$6\"",
+      "    }",
+      "  }$0",
+      "]"
+    ],
+    "description": "Create onExecutionTasks array"
+  },
+  "Transitions Array": {
+    "prefix": "transitions",
+    "body": [
+      "\"transitions\": [",
+      "  {",
+      "    \"key\": \"$1\",",
+      "    \"from\": \"$2\",",
+      "    \"target\": \"$3\",",
+      "    \"triggerType\": ${4|0,1,2,3|},",
+      "    \"availableIn\": [],",
+      "    \"schema\": null,",
+      "    \"labels\": [",
+      "      {",
+      "        \"label\": \"$5\",",
+      "        \"language\": \"en-US\"",
+      "      },",
+      "      {",
+      "        \"label\": \"$6\",",
+      "        \"language\": \"tr-TR\"",
+      "      }",
+      "    ],",
+      "    \"versionStrategy\": \"Minor\"",
+      "  }$0",
+      "]"
+    ],
+    "description": "Create transitions array"
+  },
+  "Functions Array": {
+    "prefix": "functions",
+    "body": [
+      "\"functions\": [",
+      "  {",
+      "    \"key\": \"$1\",",
+      "    \"domain\": \"${2|amorphie,bbt,custom|}\",",
+      "    \"flow\": \"sys-functions\",",
+      "    \"version\": \"1.0.0\"",
+      "  }$0",
+      "]"
+    ],
+    "description": "Create functions array"
+  },
+  "Extensions Array": {
+    "prefix": "extensions",
+    "body": [
+      "\"extensions\": [",
+      "  {",
+      "    \"key\": \"$1\",",
+      "    \"domain\": \"${2|amorphie,bbt,custom|}\",",
+      "    \"flow\": \"sys-extensions\",",
+      "    \"version\": \"1.0.0\"",
+      "  }$0",
+      "]"
+    ],
+    "description": "Create extensions array"
+  },
+  "View Reference": {
+    "prefix": "view-ref",
+    "body": [
+      "{",
+      "  \"key\": \"$1\",",
+      "  \"domain\": \"${2|amorphie,bbt,custom|}\",",
+      "  \"flow\": \"sys-views\",",
+      "  \"version\": \"1.0.0\"",
+      "}"
+    ],
+    "description": "Create a view reference"
+  },
+  "Schema Reference": {
+    "prefix": "schema-ref",
+    "body": [
+      "{",
+      "  \"key\": \"$1\",",
+      "  \"domain\": \"${2|amorphie,bbt,custom|}\",",
+      "  \"flow\": \"sys-schemas\",",
+      "  \"version\": \"1.0.0\"",
+      "}"
+    ],
+    "description": "Create a schema reference"
+  },
+  "View - JSON Content": {
+    "prefix": "view-json",
+    "body": [
+      "{",
+      "  \"type\": 1,",
+      "  \"target\": ${1|1,2,3|},",
+      "  \"content\": \"$2\"",
+      "}"
+    ],
+    "description": "Create a JSON view definition"
+  },
+  "View - HTML Content": {
+    "prefix": "view-html",
+    "body": [
+      "{",
+      "  \"type\": 2,",
+      "  \"target\": ${1|1,2,3|},",
+      "  \"content\": \"<div>$2</div>\"",
+      "}"
+    ],
+    "description": "Create an HTML view definition"
+  },
+  "View - Markdown Content": {
+    "prefix": "view-markdown",
+    "body": [
+      "{",
+      "  \"type\": 3,",
+      "  \"target\": ${1|1,2,3|},",
+      "  \"content\": \"# $2\\n\\n$3\"",
+      "}"
+    ],
+    "description": "Create a Markdown view definition"
+  },
+  "Schema Definition": {
+    "prefix": "schema-def",
+    "body": [
+      "{",
+      "  \"\\$schema\": \"https://json-schema.org/draft/2020-12/schema\",",
+      "  \"\\$id\": \"https://schemas.amorphie.com/$1/$2.json\",",
+      "  \"title\": \"$3\",",
+      "  \"description\": \"$4\",",
+      "  \"type\": \"${5|object,array,string,number,boolean|}\",",
+      "  \"properties\": {",
+      "    $6",
+      "  },",
+      "  \"required\": [$7],",
+      "  \"additionalProperties\": ${8|false,true|}",
+      "}"
+    ],
+    "description": "Create a JSON Schema definition"
+  },
+  "Task - Dapr HTTP Endpoint": {
+    "prefix": "task-dapr-http",
+    "body": [
+      "{",
+      "  \"type\": \"1\",",
+      "  \"endpointName\": \"$1\",",
+      "  \"path\": \"$2\",",
+      "  \"method\": \"${3|GET,POST,PUT,DELETE,PATCH|}\",",
+      "  \"headers\": {",
+      "    $4",
+      "  }",
+      "}"
+    ],
+    "description": "Create a Dapr HTTP Endpoint task"
+  },
+  "Task - Dapr Binding": {
+    "prefix": "task-dapr-binding",
+    "body": [
+      "{",
+      "  \"type\": \"2\",",
+      "  \"bindingName\": \"$1\",",
+      "  \"operation\": \"$2\",",
+      "  \"metadata\": {",
+      "    $3",
+      "  },",
+      "  \"data\": {",
+      "    $4",
+      "  }",
+      "}"
+    ],
+    "description": "Create a Dapr Binding task"
+  },
+  "Task - Dapr Service": {
+    "prefix": "task-dapr-service",
+    "body": [
+      "{",
+      "  \"type\": \"3\",",
+      "  \"appId\": \"$1\",",
+      "  \"methodName\": \"$2\",",
+      "  \"httpVerb\": \"${3|GET,POST,PUT,DELETE,PATCH|}\",",
+      "  \"data\": {",
+      "    $4",
+      "  },",
+      "  \"queryString\": \"$5\",",
+      "  \"timeoutSeconds\": ${6|30,60,120,300|}",
+      "}"
+    ],
+    "description": "Create a Dapr Service task"
+  },
+  "Task - Dapr PubSub": {
+    "prefix": "task-dapr-pubsub",
+    "body": [
+      "{",
+      "  \"type\": \"4\",",
+      "  \"pubSubName\": \"$1\",",
+      "  \"topic\": \"$2\",",
+      "  \"data\": {",
+      "    $3",
+      "  },",
+      "  \"metadata\": {",
+      "    $4",
+      "  }",
+      "}"
+    ],
+    "description": "Create a Dapr PubSub task"
+  },
+  "Task - Human Task": {
+    "prefix": "task-human",
+    "body": [
+      "{",
+      "  \"type\": \"5\",",
+      "  \"title\": \"$1\",",
+      "  \"instructions\": \"$2\",",
+      "  \"assignedTo\": \"$3\",",
+      "  \"dueDate\": \"$4\",",
+      "  \"form\": {",
+      "    $5",
+      "  },",
+      "  \"reminderIntervalMinutes\": ${6|15,30,60,120|},",
+      "  \"escalationTimeoutMinutes\": ${7|60,120,240,480|},",
+      "  \"escalationAssignee\": \"$8\"",
+      "}"
+    ],
+    "description": "Create a Human task"
+  },
+  "Task - HTTP Task": {
+    "prefix": "task-http",
+    "body": [
+      "{",
+      "  \"type\": \"6\",",
+      "  \"url\": \"$1\",",
+      "  \"method\": \"${2|GET,POST,PUT,DELETE,PATCH|}\",",
+      "  \"headers\": {",
+      "    \"Content-Type\": \"application/json\",",
+      "    $3",
+      "  },",
+      "  \"body\": {",
+      "    $4",
+      "  },",
+      "  \"timeoutSeconds\": ${5|30,60,120,300|},",
+      "  \"validateSsl\": ${6|true,false|}",
+      "}"
+    ],
+    "description": "Create an HTTP task"
+  },
+  "Task - Script Task": {
+    "prefix": "task-script",
+    "body": [
+      "{",
+      "  \"type\": \"7\"",
+      "}"
+    ],
+    "description": "Create a Script task"
+  },
+  "Schema Property Definition": {
+    "prefix": "schema-property",
+    "body": [
+      "\"$1\": {",
+      "  \"type\": \"${2|string,number,integer,boolean,object,array|}\",",
+      "  \"description\": \"$3\",",
+      "  ${4:\"minLength\": 1,}",
+      "  ${5:\"default\": \"$6\"}",
+      "}"
+    ],
+    "description": "Create a schema property definition"
+  },
+  "Schema Enum with OneOf": {
+    "prefix": "schema-enum-oneof",
+    "body": [
+      "\"$1\": {",
+      "  \"type\": \"${2|string,integer|}\",",
+      "  \"description\": \"$3\",",
+      "  \"oneOf\": [",
+      "    {",
+      "      \"const\": \"$4\",",
+      "      \"description\": \"$5\"",
+      "    },",
+      "    {",
+      "      \"const\": \"$6\",",
+      "      \"description\": \"$7\"",
+      "    }$0",
+      "  ]",
+      "}"
+    ],
+    "description": "Create an enum property with oneOf pattern"
+  }
+} 
