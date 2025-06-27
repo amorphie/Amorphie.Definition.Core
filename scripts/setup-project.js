@@ -10,13 +10,35 @@ const path = require("path");
 
 async function setupProject() {
   try {
-    // Get the target project directory (where the package is installed)
-    const targetDir = process.cwd();
-
     // Get the package directory
     const packageDir = path.dirname(__dirname);
 
+    // Get the target project directory (where the package is installed)
+    // When running as postinstall, cwd is the package directory
+    // We need to find the actual project root
+    let targetDir = process.cwd();
+
+    // If we're in node_modules, go up to find the project root
+    if (targetDir.includes("node_modules")) {
+      const nodeModulesIndex = targetDir.indexOf("node_modules");
+      targetDir = targetDir.substring(0, nodeModulesIndex);
+    }
+
     console.log("🚀 Setting up Amorphie Definition Core...");
+    console.log(`📂 Package directory: ${packageDir}`);
+    console.log(`📂 Target directory: ${targetDir}`);
+
+    // Check if we're running setup on the package itself (development mode)
+    if (path.resolve(targetDir) === path.resolve(packageDir)) {
+      console.log("📦 Running in development mode - setup not needed");
+      console.log("✅ Project is already configured for development");
+      console.log("");
+      console.log("🚀 Available commands:");
+      console.log("   • npm run validate - Validate workflow definitions");
+      console.log("   • npm run lint - Lint JSON files");
+      console.log("   • npm run build - Build and test package");
+      return;
+    }
 
     // Copy .vscode configuration if it doesn't exist
     const vscodeSrc = path.join(packageDir, ".vscode");
@@ -24,8 +46,15 @@ async function setupProject() {
 
     if (fs.existsSync(vscodeSrc)) {
       if (!fs.existsSync(vscodeDest)) {
-        await fs.copy(vscodeSrc, vscodeDest);
-        console.log("✅ VSCode configuration copied");
+        try {
+          await fs.copy(vscodeSrc, vscodeDest);
+          console.log("✅ VSCode configuration copied");
+        } catch (copyError) {
+          console.error(`❌ Error copying VSCode config: ${copyError.message}`);
+          console.error(`   Source: ${vscodeSrc}`);
+          console.error(`   Destination: ${vscodeDest}`);
+          throw copyError;
+        }
       } else {
         // Merge or update specific files
         await mergeVSCodeConfig(vscodeSrc, vscodeDest);
@@ -122,7 +151,14 @@ async function mergeVSCodeConfig(srcDir, destDir) {
         );
       }
 
-      await fs.copy(srcFile, destFile);
+      try {
+        await fs.copy(srcFile, destFile);
+      } catch (copyError) {
+        console.error(`❌ Error copying ${fileName}: ${copyError.message}`);
+        console.error(`   Source: ${srcFile}`);
+        console.error(`   Destination: ${destFile}`);
+        throw copyError;
+      }
     }
   }
 
