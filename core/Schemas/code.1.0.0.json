@@ -1,0 +1,48 @@
+{
+  "key": "code",
+  "version": "1.0.0",
+  "domain": "core",
+  "flow": "sys-schemas",
+  "flowVersion": "1.0.0",
+  "tags": [
+    "Core",
+    "Schema",
+    "Code",
+    "Script"
+  ],
+  "attributes": {
+    "type": "code",
+    "schema": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "$id": "https://schemas.amorphie.com/core/code.json",
+      "title": "Script Code Definition",
+      "description": "Script kod tanımları için kullanılan şema yapısı. Kod içeriği ve konumunu içerir.",
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "Script kod içeriği"
+        },
+        "location": {
+          "type": "string",
+          "description": "Kod dosyasının konumu veya yolu"
+        }
+      },
+      "required": [
+        "code",
+        "location"
+      ],
+      "additionalProperties": false,
+      "examples": [
+        {
+          "code": "function processData(input) { return input.transform(); }",
+          "location": "./src/scripts/dataProcessor.js"
+        },
+        {
+          "code": "return input.userId > 0 && input.isActive;",
+          "location": "./src/rules/userValidation.js"
+        }
+      ]
+    }
+  }
+}

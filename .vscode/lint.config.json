@@ -1,65 +1,61 @@
 {
-    "ignore": [
-        "**/node_modules/**",
-        "**/.git/**",
-        "**/.vscode/**",
-        "**/bin/**",
-        "**/obj/**",
-        "**/dist/**",
-        "**/build/**",
-        "**/coverage/**",
-        "**/temp/**",
-        "**/tmp/**",
-        "**/logs/**",
-        "**/.nyc_output/**",
-        "**/package.json",
-        "**/package-lock.json",
-        "**/tsconfig.json",
-        "**/jest.config.json",
-        "**/webpack.config.json",
-        "**/*.config.json",
-        "**/genDocs/**",
-        "**/.gitignore",
-        "**/.cursorrules",
-        "**/README.md",
-        "**/SETUP.md",
-        "**/PUBLISHING.md",
-        "**/RULES.md",
-        "**/.gitattributes",
-        "**/plantuml-debug.txt"
-    ],
-    "include": [
-        "**/Core/**/*.json",
-        "**/workflow/*.json",
-        "**/workflow/**/*.json",
-        "**/workflows/*.json",
-        "**/workflows/**/*.json",
-        "**/Workflow/*.json",
-        "**/Workflow/**/*.json",
-        "**/*.*.*.json",
-        "**/*workflow*.json",
-        "**/*-workflow-*.json",
-        "**/*-flow-*.json"
-    ],
-    "rules": {
-        "filename-consistency": true,
-        "reference-integrity": true,
-        "version-consistency": true,
-        "label-completeness": true,
-        "state-machine-validation": true,
-        "schema-validation": true
-    },
-    "requiredLanguages": [
-        "en-US",
-        "tr-TR"
-    ],
-    "allowedWorkflowTypes": [
-        "Schema",
-        "Workflow",
-        "Task",
-        "View",
-        "Function"
-    ],
-    "maxFileSize": "10MB",
-    "verbose": false
-}
+  "domain": "core",
+  "ignore": [
+    "**/node_modules/**",
+    "**/.git/**",
+    "**/.vscode/**",
+    "**/dist/**",
+    "**/build/**",
+    "**/coverage/**",
+    "**/temp/**",
+    "**/tmp/**",
+    "**/logs/**",
+    "**/package.json",
+    "**/package-lock.json",
+    "**/tsconfig.json",
+    "**/jest.config.json",
+    "**/webpack.config.json",
+    "**/*.config.json",
+    "**/.gitignore",
+    "**/.cursorrules",
+    "**/README.md"
+  ],
+  "include": [
+    "**/core/**/*.json",
+    "**/core/Workflows/*.json",
+    "**/core/Functions/*.json",
+    "**/core/Views/*.json",
+    "**/core/Extensions/*.json",
+    "**/core/Schemas/*.json",
+    "**/core/Tasks/*.json",
+    "**/*{domainName.toLowerCase()}*.json"
+  ],
+  "rules": {
+    "filename-consistency": true,
+    "domain-validation": true,
+    "version-consistency": true,
+    "schema-validation": true,
+    "business-rules": true
+  },
+  "requiredLanguages": [
+    "en-US",
+    "tr-TR"
+  ],
+  "allowedComponentTypes": [
+    "Workflow",
+    "Function", 
+    "View",
+    "Extension",
+    "Schema",
+    "Task"
+  ],
+  "domainSpecific": {
+    "enforceNamingPrefix": true,
+    "requireDomainField": true,
+    "validateComponentPaths": true,
+    "checkCrossReferences": true
+  },
+  "maxFileSize": "10MB",
+  "verbose": false,
+  "outputFormat": "detailed"
+} 

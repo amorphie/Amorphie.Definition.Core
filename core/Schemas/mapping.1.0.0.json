@@ -1,0 +1,48 @@
+{
+  "key": "mapping",
+  "version": "1.0.0",
+  "domain": "core",
+  "flow": "sys-schemas",
+  "flowVersion": "1.0.0",
+  "tags": [
+    "Core",
+    "Mapping",
+    "DataTransformation",
+    "Script"
+  ],
+  "attributes": {
+    "type": "mapping",
+    "schema": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "$id": "https://schemas.amorphie.com/core/mapping.json",
+      "title": "Data Mapping Definition",
+      "description": "Veri dönüşüm mapping'leri için kod tanımı. Script kod içeriği ve konumunu içerir.",
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "Mapping script kod içeriği"
+        },
+        "location": {
+          "type": "string",
+          "description": "Mapping kod dosyasının konumu"
+        }
+      },
+      "required": [
+        "code",
+        "location"
+      ],
+      "additionalProperties": false,
+      "examples": [
+        {
+          "code": "return { userId: input.id, name: input.fullName };",
+          "location": "./src/mappings/userMapping.js"
+        },
+        {
+          "code": "return input.data.map(item => ({ id: item.key, value: item.val }));",
+          "location": "./src/mappings/dataTransform.js"
+        }
+      ]
+    }
+  }
+}

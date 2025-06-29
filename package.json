@@ -1,66 +1,39 @@
 {
   "name": "@amorphie/definition-core",
-  "version": "1.0.7",
-  "description": "Amorphie platform core definitions with developer tools",
+  "version": "1.0.0",
+  "description": "Amorphie platform core definitions",
   "keywords": [
     "amorphie",
     "workflow",
-    "schema",
-    "vscode",
-    "template"
+    "vnext"
   ],
+  "main": "index.js",
   "scripts": {
-    "validate": "node .vscode/scripts/validate-workflow.js",
-    "validate:all": "node .vscode/scripts/validate-workflow.js Core/",
-    "validate:watch": "nodemon --watch Core/ --ext json --exec \"npm run validate:all\"",
-    "lint": "node .vscode/scripts/lint-workflow.js",
-    "lint:json": "node .vscode/scripts/lint-workflow.js .",
-    "lint:fix": "node .vscode/scripts/lint-workflow.js . --fix",
-    "lint:watch": "nodemon --watch . --ext json --exec \"npm run lint:json\"",
-    "test": "npm run lint:json",
-    "pretest": "echo 'Running JSON linting before tests...'",
-    "prebuild": "npm run lint:json",
-    "build": "echo 'Building package...' && npm run lint:json",
-    "prepublishOnly": "npm run test",
-    "setup:hooks": "node scripts/setup-git-hooks.js",
-    "install-deps": "npm install",
-    "setup": "node scripts/setup-project.js",
-    "postinstall": "npm run setup"
+    "test": "npm run lint:domain",
+    "validate": "node .vscode/scripts/validate-component.js ${file} core",
+    "validate:all": "node .vscode/scripts/validate-component.js core core",
+    "validate:verbose": "node .vscode/scripts/validate-component.js core core --verbose",
+    "lint": "node .vscode/scripts/lint-domain.js core",
+    "lint:domain": "node .vscode/scripts/lint-domain.js core",
+    "lint:verbose": "node .vscode/scripts/lint-domain.js core --verbose",
+    "pretest": "echo 'Running core domain linting before tests...'",
+    "prebuild": "npm run lint:domain",
+    "build": "echo 'Building core domain package...' && npm run lint:domain",
+    "prepublishOnly": "npm run test"
   },
-  "bin": {
-    "amorphie-setup": "scripts/setup-project.js"
-  },
-  "files": [
-    "Core/**/*",
-    ".vscode/**/*",
-    "examples/**/*",
-    "scripts/**/*",
-    ".cursorrules",
-    "README.md",
-    "SETUP.md"
-  ],
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
+  "author": "Amorphie Team",
+  "license": "MIT",
+  "dependencies": {},
   "devDependencies": {
     "ajv": "^8.12.0",
     "ajv-formats": "^2.1.1",
-    "nodemon": "^3.0.2"
+    "nodemon": "^3.0.1"
   },
-  "dependencies": {
-    "fs-extra": "^11.3.0",
-    "path": "^0.12.7"
-  },
-  "peerDependencies": {
-    "ajv": "^8.12.0",
-    "ajv-formats": "^2.1.1"
-  },
-  "engines": {
-    "node": ">=16.0.0"
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/amorphie/definition-core.git"
-  },
-  "main": "index.js"
+  }
 }

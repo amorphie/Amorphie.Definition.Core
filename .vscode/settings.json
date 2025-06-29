@@ -1,104 +1,114 @@
 {
-  "csharpExtensions.useCodeSnippetsOnMethodCreation": true,
-  "csharpExtensions.showHiddenFiles": false,
-  "csharpExtensions.skipNamespaceGeneration": true,
-  "omnisharp.enableAsyncCompletion": true,
-  "omnisharp.enableRoslynAnalyzers": true,
-  "omnisharp.useEditorFormattingSettings": true,
-  "omnisharp.useModernNet": true,
-  "omnisharp.script.enableScriptNuGetReferences": true,
-  "files.associations": {
-    "*.csx": "csharp"
-  },
+  // ================================
+  // Amorphie core Domain Settings
+  // ================================
+  
+  // Domain Configuration
+  "amorphie.domain": "core",
+  "amorphie.projectRoot": "./",
+  "amorphie.configFile": "./amorphie.config.json",
+  
+  // JSON Schema mappings for domain components
   "json.schemas": [
     {
-      "fileMatch": [
-        "**/*.1.0.0.json",
-        "**/*.1.1.0.json",
-        "**/*.1.2.0.json",
-        "**/*.[0-9].[0-9].[0-9].json",
-        "**/workflow/**/*.json",
-        "**/workflows/**/*.json",
-        "**/*workflow*.json",
-        "**/*-workflow-*.json",
-        "**/*-flow-*.json"
-      ],
+      "fileMatch": ["**/core/Workflows/*.json"],
       "url": "./.vscode/schemas/workflow-definition.schema.json"
     },
     {
-      "fileMatch": [
-        "**/Core/Schema/*.json"
-      ],
-      "url": "./.vscode/schemas/core-schema.schema.json"
+      "fileMatch": ["**/core/Functions/*.json"],
+      "url": "./.vscode/schemas/function-definition.schema.json"
+    },
+    {
+      "fileMatch": ["**/core/Views/*.json"],
+      "url": "./.vscode/schemas/view-definition.schema.json"
+    },
+    {
+      "fileMatch": ["**/core/Extensions/*.json"],
+      "url": "./.vscode/schemas/extension-definition.schema.json"
+    },
+    {
+      "fileMatch": ["**/core/Schemas/*.json"],
+      "url": "./.vscode/schemas/schema-definition.schema.json"
+    },
+    {
+      "fileMatch": ["**/core/Tasks/*.json"],
+      "url": "./.vscode/schemas/task-definition.schema.json"
     }
   ],
-  "files.watcherExclude": {
-    "**/node_modules/**": true,
-    "**/.git/objects/**": true,
-    "**/.git/subtree-cache/**": true,
-    "**/bin/**": true,
-    "**/obj/**": true
+  
+  // File Associations
+  "files.associations": {
+    "*.json": "jsonc",
+    "*.{domainName.toLowerCase()}.*.json": "json",
+    "*.workflow.js": "javascript",
+    "*.function.js": "javascript",
+    "*.task.js": "javascript",
+    "*.extension.js": "javascript",
+    "*.view.js": "javascript",
+    "*.schema.js": "javascript"
   },
-  "search.exclude": {
-    "**/node_modules": true,
-    "**/bin": true,
-    "**/obj": true
-  },
-  "emmet.includeLanguages": {
-    "csharp": "html"
-  },
-  "csharp.semanticHighlighting.enabled": true,
-  "csharp.inlayHints.enableInlayHintsForTypes": true,
-  "csharp.inlayHints.enableInlayHintsForLiteralParameters": true,
-  "csharp.inlayHints.enableInlayHintsForIndexerParameters": true,
-  "csharp.inlayHints.enableInlayHintsForObjectCreationParameters": true,
-  "csharp.inlayHints.enableInlayHintsForOtherParameters": true,
-  "csharp.inlayHints.enableInlayHintsForParameters": true,
-  "csharp.completion.showCompletionItemsFromUnimportedNamespaces": true,
-  "csharp.showOmnisharpLogOnError": true,
-  "csharp.suppressHiddenDiagnostics": false,
-  "csharp.dotnet.completion.showCompletionItemsFromUnimportedNamespaces": true,
-  "csharp.unitTests.runSettingsPath": "",
-  "dotnet.completion.showCompletionItemsFromUnimportedNamespaces": true,
-  "dotnet.formatting.organizeImportsOnFormat": true,
-  "json.validate.enable": true,
-  "json.format.enable": true,
-  "json.schemaDownload.enable": true,
-  "json.maxItemsComputed": 5000,
-  "json.colorDecorators.enable": true,
-  "json.trace.server": "messages",
+  
+  // JavaScript/TypeScript Development
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "typescript.suggest.autoImports": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "javascript.suggest.autoImports": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  
+  // Editor Settings
   "editor.formatOnSave": true,
   "editor.formatOnPaste": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll": "explicit",
     "source.organizeImports": "explicit"
   },
-  "editor.suggest.showEnums": true,
-  "editor.suggest.showStructs": true,
-  "editor.suggest.showClasses": true,
-  "editor.suggest.showInterfaces": true,
-  "editor.suggest.showModules": true,
-  "editor.suggest.showProperties": true,
-  "editor.suggest.showValues": true,
-  "editor.suggest.showConstants": true,
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+  "editor.rulers": [80, 120],
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": "active",
+  "editor.suggest.insertMode": "replace",
   "editor.parameterHints.enabled": true,
   "editor.quickSuggestions": {
     "other": true,
     "comments": false,
     "strings": true
   },
-  "workbench.editorAssociations": {
-    "*.json": "default"
+  
+  // File Management
+  "files.eol": "\n",
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "files.watcherExclude": {
+    "**/node_modules/**": true,
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/dist/**": true,
+    "**/build/**": true,
+    "**/coverage/**": true
   },
-  "problems.decorations.enabled": true,
-  "problems.showCurrentInStatus": true,
+  
+  // Search & Find
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/build": true,
+    "**/coverage": true,
+    "**/.git": true
+  },
+  
+  // JSON Language Features
+  "json.validate.enable": true,
+  "json.format.enable": true,
+  "json.schemaDownload.enable": true,
+  "json.maxItemsComputed": 5000,
+  "json.colorDecorators.enable": true,
+  
+  // Problem Matchers for core Domain
   "problemMatchers": {
-    "workflow-linter": {
-      "owner": "workflow-linter",
-      "fileLocation": [
-        "relative",
-        "${workspaceFolder}"
-      ],
+    "core-linter": {
+      "owner": "core-linter",
+      "fileLocation": ["relative", "${workspaceFolder}/core"],
       "pattern": [
         {
           "regexp": "^(.+?):(\\d+):(\\d+):\\s+(error|warning|info)\\s+(.+)$",
@@ -109,15 +119,28 @@
           "message": 5
         }
       ]
+    },
+    "core-validator": {
+      "owner": "core-validator",
+      "fileLocation": ["relative", "${workspaceFolder}/core"],
+      "pattern": [
+        {
+          "regexp": "^✗ (.*)$",
+          "file": 1
+        },
+        {
+          "regexp": "^\\s+✗ Error \\d+: (.*)$",
+          "message": 1
+        },
+        {
+          "regexp": "^\\s+Line: (\\d+)$",
+          "line": 1
+        }
+      ]
     }
   },
-  "editor.rulers": [
-    80,
-    120
-  ],
-  "editor.bracketPairColorization.enabled": true,
-  "editor.guides.bracketPairs": "active",
-  "editor.suggest.insertMode": "replace",
+  
+  // Language-Specific Settings
   "[json]": {
     "editor.defaultFormatter": "vscode.json-language-features",
     "editor.suggest.insertMode": "replace",
@@ -129,5 +152,18 @@
   },
   "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  
+  // Visual Enhancements
+  "problems.decorations.enabled": true,
+  "problems.showCurrentInStatus": true,
+  "workbench.editorAssociations": {
+    "*.json": "default"
   }
-}
+} 
