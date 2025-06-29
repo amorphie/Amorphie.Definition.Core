@@ -1,25 +1,55 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://bbt.workflow/schemas/workflow-definition.schema.json",
-  "title": "BBT Workflow Definition",
-  "description": "Schema for BBT Workflow Definition JSON files",
+  "$id": "https://amorphie.com/schemas/workflow-definition.schema.json",
+  "title": "Amorphie Workflow Definition",
+  "description": "Schema for Amorphie Workflow Component Definition JSON files (sys-flows flow)",
   "type": "object",
   "required": [
     "key",
+    "version",
+    "domain",
+    "flow",
+    "flowVersion",
+    "tags",
     "attributes"
   ],
   "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "JSON Schema reference"
+    },
     "key": {
       "type": "string",
-      "description": "Unique identifier for the workflow",
+      "description": "Workflow key identifier",
       "pattern": "^[a-z0-9-]+$"
+    },
+    "version": {
+      "type": "string",
+      "description": "Version in Major.Minor.Patch format",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "domain": {
+      "type": "string",
+      "description": "Domain identifier",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "flow": {
+      "type": "string",
+      "description": "Flow identifier for workflows",
+      "const": "sys-flows"
+    },
+    "flowVersion": {
+      "type": "string",
+      "description": "Flow version",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
     },
     "tags": {
       "type": "array",
-      "description": "Tags for categorizing the workflow",
+      "description": "Workflow tags",
       "items": {
         "type": "string"
-      }
+      },
+      "minItems": 1
     },
     "attributes": {
       "type": "object",

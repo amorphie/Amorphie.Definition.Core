@@ -1,14 +1,14 @@
-# Amorphie Definition Core - Cursor Rules
+# core Domain Project Rules for Cursor AI
 
 ## Project Structure Rules
 - Every folder represents a workflow (Schema, View, Task, Function, etc.)
 - Files inside folders are instances of that workflow
-- All files must follow semantic versioning: `[Name].[Version].json` (e.g., `State.1.0.0.json`)
+- All files must follow semantic versioning: `[name].[Version].json` (e.g., `task-example.1.0.0.json`)
 
 ### File Naming Convention (Linter Rule)
 - Definition file names MUST be composed of: `key` + `.` + `version` + `.json`
 - The filename must exactly match the combination of the definition's `key` attribute and `version` attribute
-- Example: If key="Schema" and version="1.0.0", filename must be `Schema.1.0.0.json`
+- Example: If key="schema" and version="1.0.0", filename must be `schema.1.0.0.json`
 - This ensures consistency and enables automated validation/linting
 
 ## Schema Instance Pattern Rules
@@ -21,7 +21,8 @@
 ### Business Process Properties
 - State, Transition, Workflow definitions inside attributes MUST include `labels`
 - View instances MAY include `labels` in attributes
-- Use Label.1.0.0.json#/attributes reference for i18n support
+- Use label.1.0.0.json#/attributes reference for i18n support
+- Payload example {"label": "Example", "language": "en-US"}
 
 ## Reference Pattern Rules
 
@@ -34,7 +35,7 @@
   - Task → workflow: "Task"
 
 ### Reference Format
-- Always use local file references: `Reference.1.0.0.json#/attributes`
+- Always use local file references: `reference.1.0.0.json#/attributes`
 - Never use: `https://schemas.amorphie.com/...`
 - Use `#/attributes` to reference the schema inside attributes
 
@@ -51,8 +52,8 @@ Use oneOf + const + description instead of enum arrays:
 
 ### Required Properties
 - Always define required fields explicitly
-- State schema requires: `key`, `labels`, `transitions`, `views`, `responses`, etc.
-- Transition schema requires: `key`, `labels`, `versionStrategy`, `onExecute`, `type`
+- State schema requires: `key`, `labels`, `transitions`, `views`, etc.
+- Transition schema requires: `key`, `labels`, `versionStrategy`, `onExecutionTask`, `type`
 
 ## Workflow Lifecycle Pattern
 
@@ -75,20 +76,20 @@ All lifecycle workflows must have:
 All workflows reference schemas in Schema workflow:
 ```json
 "modelSchema": {
-  "key": "Schema",
-  "domain": "Core",
-  "workflow": "Schema",  // Always points to Schema workflow
+  "key": "reference",
+  "domain": "core",
+  "workflow": "schema",  // Always points to Schema workflow
   "version": "1.0.0"
 }
 ```
 
 ## Task Array Pattern
-For onEntry, onExit, onFirstEntry, onFirstExit:
+For onEntries, onExits:
 ```json
 {
   "order": 1,
-  "task": { "$ref": "Reference.1.0.0.json#/attributes" },
-  "mapping": { "$ref": "Mapping.1.0.0.json#/attributes" }
+  "task": { "$ref": "reference.1.0.0.json#/attributes" },
+  "mapping": { "$ref": "mapping.1.0.0.json#/attributes" }
 }
 ```
 
@@ -107,7 +108,7 @@ For onEntry, onExit, onFirstEntry, onFirstExit:
 - Use workflow field as type indicator in references
 - Use local file references with #/attributes
 - Follow semantic versioning for all files
-- Reference Code.1.0.0.json for mapping properties
+- Reference code.1.0.0.json for mapping properties
 - Read original files before making changes
 
 ## Development Guidelines
