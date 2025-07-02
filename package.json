@@ -1,8 +1,9 @@
 {
-  "name": "@amorphie/definition-core",
+  "name": "@amorphie/core",
   "version": "1.0.0",
   "description": "Amorphie platform core definitions",
   "keywords": [
+    "core",
     "amorphie",
     "workflow",
     "vnext"
@@ -34,6 +35,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/amorphie/definition-core.git"
+    "url": "git+https://github.com/amorphie/Amorphie.Definition.Core.git"
   }
 }

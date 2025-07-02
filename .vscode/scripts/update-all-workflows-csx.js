@@ -5,35 +5,42 @@ const path = require('path');
 const { execSync } = require('child_process');
 
 /**
- * Updates all core domain component JSON files by encoding CSX rule files to base64
+ * Updates all {domainName} domain component JSON files by encoding CSX rule files to base64
  * Usage: node update-all-workflows-csx.js [domainName]
  */
 
-function findComponentDirectories(baseDir) {
-    const componentDirs = [];
-    
+function findComponentFiles(baseDir) {
+    const componentFiles = [];
+
     function scanDirectory(dirPath) {
         try {
             const items = fs.readdirSync(dirPath, { withFileTypes: true });
-            
+
             items.forEach(item => {
                 if (item.isDirectory()) {
                     const fullPath = path.join(dirPath, item.name);
-                    
-                    // Check if this directory has a JSON file and src directory
+
+                    // Check if this directory has JSON files and src directory
                     try {
                         const dirContents = fs.readdirSync(fullPath);
-                        const hasJson = dirContents
-                            .some(file => file.endsWith('.json'));
+                        const jsonFiles = dirContents
+                            .filter(file => file.endsWith('.json'))
+                            .map(file => path.join(fullPath, file));
                         const hasSrcDir = fs.existsSync(path.join(fullPath, 'src'));
-                        
-                        if (hasJson && hasSrcDir) {
-                            componentDirs.push(fullPath);
+
+                        if (jsonFiles.length > 0 && hasSrcDir) {
+                            // Add each JSON file as a separate component
+                            jsonFiles.forEach(jsonFile => {
+                                componentFiles.push({
+                                    jsonFile: jsonFile,
+                                    directory: fullPath
+                                });
+                            });
                         }
                     } catch (error) {
                         // Skip directories we can't read
                     }
-                    
+
                     // Recursively scan subdirectories (max depth 3 to avoid infinite loops)
                     const depth = fullPath.split(path.sep).length - baseDir.split(path.sep).length;
                     if (depth < 3) {
@@ -45,22 +52,26 @@ function findComponentDirectories(baseDir) {
             console.warn(`⚠️  Cannot scan directory ${dirPath}: ${error.message}`);
         }
     }
-    
+
     scanDirectory(baseDir);
-    return componentDirs;
+    return componentFiles;
 }
 
-function updateComponent(componentDir) {
+function updateComponent(component) {
     const updateScript = path.join(__dirname, 'update-workflow-csx.js');
     const workspaceRoot = path.resolve(__dirname, '../..');
-    
+
     try {
-        console.log(`\n🔄 Updating: ${path.relative(workspaceRoot, componentDir)}`);
-        const output = execSync(`node "${updateScript}" "${componentDir}"`, { 
+        const jsonFileName = path.basename(component.jsonFile);
+        const relativeDir = path.relative(workspaceRoot, component.directory);
+        console.log(`\n🔄 Updating: ${relativeDir}/${jsonFileName}`);
+
+        // Pass directory and filename separately as update-workflow-csx.js expects
+        const output = execSync(`node "${updateScript}" "${component.directory}" "${jsonFileName}"`, {
             encoding: 'utf-8',
-            cwd: workspaceRoot 
+            cwd: workspaceRoot
         });
-        
+
         // Show success message
         const lines = output.split('\n');
         const successLine = lines.find(line => line.includes('Successfully updated') || line.includes('No CSX rules found'));
@@ -90,20 +101,22 @@ if (!fs.existsSync(domainDir)) {
     process.exit(1);
 }
 
-console.log(`🔍 Scanning core domain for component directories...`);
-const componentDirs = findComponentDirectories(domainDir);
+console.log(`🔍 Scanning core domain for component files...`);
+const componentFiles = findComponentFiles(domainDir);
 
-if (componentDirs.length === 0) {
-    console.log(`⚠️  No component directories found in core domain`);
+if (componentFiles.length === 0) {
+    console.log(`⚠️  No component files found in core domain`);
     console.log(`\nTo create a component directory, add:`);
     console.log(`- A JSON file (any component type)`);
     console.log(`- A 'src' directory with .csx files`);
     process.exit(0);
 }
 
-console.log(`📁 Found ${componentDirs.length} component directories in core domain:`);
-componentDirs.forEach((dir, index) => {
-    console.log(`${index + 1}. ${path.relative(workspaceRoot, dir)}`);
+console.log(`📁 Found ${componentFiles.length} component files in core domain:`);
+componentFiles.forEach((component, index) => {
+    const relativeDir = path.relative(workspaceRoot, component.directory);
+    const jsonFileName = path.basename(component.jsonFile);
+    console.log(`${index + 1}. ${relativeDir}/${jsonFileName}`);
 });
 
 console.log('\n🔄 Starting batch update...');
@@ -112,12 +125,14 @@ console.log('\n🔄 Starting batch update...');
 let successCount = 0;
 let errorCount = 0;
 
-componentDirs.forEach(componentDir => {
+componentFiles.forEach(component => {
     try {
-        updateComponent(componentDir);
+        updateComponent(component);
         successCount++;
     } catch (error) {
-        console.error(`❌ Failed to update ${componentDir}:`, error.message);
+        const relativeDir = path.relative(workspaceRoot, component.directory);
+        const jsonFileName = path.basename(component.jsonFile);
+        console.error(`❌ Failed to update ${relativeDir}/${jsonFileName}:`, error.message);
         errorCount++;
     }
 });
@@ -132,4 +147,4 @@ console.log(`\n🎉 core domain component batch update completed!`);
 
 if (errorCount > 0) {
     process.exit(1);
-} 
+}

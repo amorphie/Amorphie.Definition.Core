@@ -25,7 +25,7 @@ function encodeToBase64(content) {
 function tryGetActiveWorkflowFile() {
     try {
         const activeFileScript = path.join(__dirname, 'get-active-file.js');
-        const output = execSync(`node "${activeFileScript}"`, { 
+        const output = execSync(`node "${activeFileScript}"`, {
             encoding: 'utf-8',
             stdio: ['pipe', 'pipe', 'pipe']
         });
@@ -38,9 +38,9 @@ function tryGetActiveWorkflowFile() {
 
 function processWorkflowDirectory(dirPath, specificFile = null) {
     console.log(`🔄 Processing core domain directory: ${dirPath}`);
-    
+
     let targetFileName;
-    
+
     if (specificFile) {
         // Use specific file if provided
         const specificPath = path.join(dirPath, specificFile);
@@ -66,30 +66,30 @@ function processWorkflowDirectory(dirPath, specificFile = null) {
                 console.log(`⚠️  Active file not found in target directory: ${activeFile}`);
             }
         }
-        
+
         if (!targetFileName) {
             // Find JSON files (existing logic)
-            const jsonFiles = fs.readdirSync(dirPath).filter(file => 
+            const jsonFiles = fs.readdirSync(dirPath).filter(file =>
                 file.endsWith('.json')
             );
-            
+
             if (jsonFiles.length === 0) {
                 console.log('⚠️  No JSON file found in directory');
                 return;
             }
-            
+
             targetFileName = jsonFiles[0];
             console.log(`📄 Found JSON file: ${jsonFiles[0]}`);
-            
+
             if (jsonFiles.length > 1) {
                 console.log(`📄 Note: Multiple JSON files found, using: ${targetFileName}`);
                 console.log(`📄 Other files: ${jsonFiles.slice(1).join(', ')}`);
             }
         }
     }
-    
+
     const jsonFile = path.join(dirPath, targetFileName);
-    
+
     // Read and parse JSON
     let workflowData;
     try {
@@ -99,23 +99,23 @@ function processWorkflowDirectory(dirPath, specificFile = null) {
         console.error(`❌ Error reading JSON file: ${error.message}`);
         return;
     }
-    
+
     // Validate domain
     if (workflowData.domain !== 'core') {
         console.warn(`⚠️  Warning: Component domain '${workflowData.domain}' does not match expected 'core'`);
     }
-    
+
     // Find src directory
     const srcDir = path.join(dirPath, 'src');
     if (!fs.existsSync(srcDir)) {
         console.log('⚠️  No src directory found');
         return;
     }
-    
+
     // Get all CSX files in src directory
     const csxFiles = fs.readdirSync(srcDir).filter(file => file.endsWith('.csx'));
     console.log(`🔍 Found ${csxFiles.length} CSX files in core domain`);
-    
+
     // Create mapping of CSX files
     const csxContentMap = {};
     csxFiles.forEach(file => {
@@ -126,13 +126,13 @@ function processWorkflowDirectory(dirPath, specificFile = null) {
         csxContentMap[`./src/${file}`] = encoded;
         console.log(`✅ Processed CSX: ${file}`);
     });
-    
+
     // Update JSON data
     let updatesCount = 0;
-    
+
     function updateTasksInCollection(tasks, collectionName) {
         if (!Array.isArray(tasks)) return;
-        
+
         tasks.forEach(task => {
             if (task.rule && task.rule.location) {
                 const location = task.rule.location;
@@ -152,10 +152,10 @@ function processWorkflowDirectory(dirPath, specificFile = null) {
             }
         });
     }
-    
+
     function updateRulesInStates(states) {
         if (!Array.isArray(states)) return;
-        
+
         states.forEach(state => {
             // Update transitions
             if (state.transitions) {
@@ -174,19 +174,19 @@ function processWorkflowDirectory(dirPath, specificFile = null) {
                     }
                 });
             }
-            
+
             // Update onEntries
             if (state.onEntries) {
                 updateTasksInCollection(state.onEntries, `state: ${state.key} onEntries`);
             }
-            
+
             // Update onExits
             if (state.onExits) {
                 updateTasksInCollection(state.onExits, `state: ${state.key} onExits`);
             }
         });
     }
-    
+
     // Update startTransition
     if (workflowData.attributes && workflowData.attributes.startTransition) {
         const startTransition = workflowData.attributes.startTransition;
@@ -194,7 +194,7 @@ function processWorkflowDirectory(dirPath, specificFile = null) {
             updateTasksInCollection(startTransition.onExecutionTasks, 'startTransition');
         }
     }
-    
+
     // Update sharedTransitions
     if (workflowData.attributes && workflowData.attributes.sharedTransitions) {
         workflowData.attributes.sharedTransitions.forEach(sharedTransition => {
@@ -203,17 +203,25 @@ function processWorkflowDirectory(dirPath, specificFile = null) {
             }
         });
     }
-    
+
     // Update states
     if (workflowData.attributes && workflowData.attributes.states) {
         updateRulesInStates(workflowData.attributes.states);
     }
-    
+
+    // Extension and Functions task
+    if (workflowData.attributes && workflowData.attributes.task) {
+        const taskItem = workflowData.attributes.task;
+        if (taskItem) {
+            updateTasksInCollection([taskItem], 'task');
+        }
+    }
+
     // Write updated JSON
     try {
         const updatedJson = JSON.stringify(workflowData, null, 2);
         fs.writeFileSync(jsonFile, updatedJson, 'utf-8');
-        
+
         if (updatesCount > 0) {
             console.log(`✅ Successfully updated ${updatesCount} rules in core component: ${targetFileName}`);
         } else {
@@ -265,4 +273,4 @@ try {
 } catch (error) {
     console.error(`❌ Error updating core components:`, error.message);
     process.exit(1);
-} 
+}

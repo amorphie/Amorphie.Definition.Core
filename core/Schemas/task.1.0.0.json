@@ -5,10 +5,10 @@
   "flow": "sys-schemas",
   "flowVersion": "1.0.0",
   "tags": [
-    "Core",
-    "Schema",
-    "Task",
-    "Polymorphic"
+    "core",
+    "schema",
+    "task",
+    "polymorphic"
   ],
   "attributes": {
     "type": "task",
@@ -31,10 +31,15 @@
             "6",
             "7"
           ]
+        },
+        "config": {
+          "type": "object",
+          "description": "Task konfigürasyon objesi"
         }
       },
       "required": [
-        "type"
+        "type",
+        "config"
       ],
       "allOf": [
         {
@@ -51,29 +56,48 @@
               "type": {
                 "const": "1"
               },
-              "endpointName": {
-                "type": "string",
-                "description": "HTTPEndpoint component adı",
-                "minLength": 1
-              },
-              "path": {
-                "type": "string",
-                "description": "BaseUrl'e eklenecek path",
-                "minLength": 1
-              },
-              "method": {
-                "type": "string",
-                "description": "HTTP metodu",
-                "default": "GET"
-              },
-              "headers": {
-                "description": "Ek header bilgileri JSON formatında"
+              "config": {
+                "type": "object",
+                "description": "Dapr HTTP Endpoint konfigürasyonu",
+                "properties": {
+                  "endpointName": {
+                    "type": "string",
+                    "description": "Dapr HTTP endpoint adı",
+                    "minLength": 1
+                  },
+                  "path": {
+                    "type": "string",
+                    "description": "HTTP endpoint path",
+                    "minLength": 1
+                  },
+                  "method": {
+                    "type": "string",
+                    "description": "HTTP metodu",
+                    "enum": [
+                      "GET",
+                      "POST",
+                      "PUT",
+                      "DELETE",
+                      "PATCH"
+                    ],
+                    "default": "GET"
+                  },
+                  "headers": {
+                    "type": "object",
+                    "description": "HTTP header bilgileri"
+                  }
+                },
+                "required": [
+                  "endpointName",
+                  "path",
+                  "method"
+                ],
+                "additionalProperties": false
               }
             },
             "required": [
               "type",
-              "endpointName",
-              "path"
+              "config"
             ],
             "additionalProperties": false
           }
@@ -92,27 +116,39 @@
               "type": {
                 "const": "2"
               },
-              "bindingName": {
-                "type": "string",
-                "description": "Binding adı",
-                "minLength": 1
-              },
-              "operation": {
-                "type": "string",
-                "description": "Binding operasyonu",
-                "minLength": 1
-              },
-              "metadata": {
-                "description": "Binding metadata bilgileri"
-              },
-              "data": {
-                "description": "Binding data bilgileri"
+              "config": {
+                "type": "object",
+                "description": "Dapr Binding konfigürasyonu",
+                "properties": {
+                  "bindingName": {
+                    "type": "string",
+                    "description": "Dapr binding adı",
+                    "minLength": 1
+                  },
+                  "operation": {
+                    "type": "string",
+                    "description": "Binding operasyonu",
+                    "minLength": 1
+                  },
+                  "metadata": {
+                    "type": "object",
+                    "description": "Binding metadata bilgileri"
+                  },
+                  "data": {
+                    "type": "object",
+                    "description": "Binding data bilgileri"
+                  }
+                },
+                "required": [
+                  "bindingName",
+                  "operation"
+                ],
+                "additionalProperties": false
               }
             },
             "required": [
               "type",
-              "bindingName",
-              "operation"
+              "config"
             ],
             "additionalProperties": false
           }
@@ -131,43 +167,56 @@
               "type": {
                 "const": "3"
               },
-              "appId": {
-                "type": "string",
-                "description": "Dapr App ID",
-                "minLength": 1
-              },
-              "methodName": {
-                "type": "string",
-                "description": "Çağrılacak method adı",
-                "minLength": 1
-              },
-              "httpVerb": {
-                "type": "string",
-                "description": "HTTP verb",
-                "minLength": 1
-              },
-              "data": {
-                "description": "Gönderilecek data"
-              },
-              "queryString": {
-                "type": [
-                  "string",
-                  "null"
+              "config": {
+                "type": "object",
+                "description": "Dapr Service konfigürasyonu",
+                "properties": {
+                  "appId": {
+                    "type": "string",
+                    "description": "Dapr app ID",
+                    "minLength": 1
+                  },
+                  "methodName": {
+                    "type": "string",
+                    "description": "Servis method adı",
+                    "minLength": 1
+                  },
+                  "httpVerb": {
+                    "type": "string",
+                    "description": "HTTP verb",
+                    "enum": [
+                      "GET",
+                      "POST",
+                      "PUT",
+                      "DELETE",
+                      "PATCH"
+                    ]
+                  },
+                  "data": {
+                    "type": "object",
+                    "description": "Servis çağrısı data"
+                  },
+                  "queryString": {
+                    "type": "string",
+                    "description": "Query string parametreleri"
+                  },
+                  "timeoutSeconds": {
+                    "type": "integer",
+                    "description": "Timeout süresi (saniye)",
+                    "minimum": 1,
+                    "default": 30
+                  }
+                },
+                "required": [
+                  "appId",
+                  "methodName"
                 ],
-                "description": "Query string parametreleri"
-              },
-              "timeoutSeconds": {
-                "type": "integer",
-                "description": "Timeout süresi (saniye)",
-                "default": 30,
-                "minimum": 1
+                "additionalProperties": false
               }
             },
             "required": [
               "type",
-              "appId",
-              "methodName",
-              "httpVerb"
+              "config"
             ],
             "additionalProperties": false
           }
@@ -186,27 +235,39 @@
               "type": {
                 "const": "4"
               },
-              "pubSubName": {
-                "type": "string",
-                "description": "PubSub component adı",
-                "minLength": 1
-              },
-              "topic": {
-                "type": "string",
-                "description": "Topic adı",
-                "minLength": 1
-              },
-              "data": {
-                "description": "Publish edilecek data"
-              },
-              "metadata": {
-                "description": "PubSub metadata bilgileri"
+              "config": {
+                "type": "object",
+                "description": "Dapr PubSub konfigürasyonu",
+                "properties": {
+                  "pubSubName": {
+                    "type": "string",
+                    "description": "PubSub component adı",
+                    "minLength": 1
+                  },
+                  "topic": {
+                    "type": "string",
+                    "description": "Topic adı",
+                    "minLength": 1
+                  },
+                  "data": {
+                    "type": "object",
+                    "description": "Message data"
+                  },
+                  "metadata": {
+                    "type": "object",
+                    "description": "Message metadata"
+                  }
+                },
+                "required": [
+                  "pubSubName",
+                  "topic"
+                ],
+                "additionalProperties": false
               }
             },
             "required": [
               "type",
-              "pubSubName",
-              "topic"
+              "config"
             ],
             "additionalProperties": false
           }
@@ -225,52 +286,62 @@
               "type": {
                 "const": "5"
               },
-              "title": {
-                "type": "string",
-                "description": "Task başlığı",
-                "minLength": 1
-              },
-              "instructions": {
-                "type": "string",
-                "description": "Task talimatları",
-                "minLength": 1
-              },
-              "assignedTo": {
-                "type": "string",
-                "description": "Atanan kişi/grup",
-                "minLength": 1
-              },
-              "dueDate": {
-                "type": [
-                  "string",
-                  "null"
+              "config": {
+                "type": "object",
+                "description": "Human Task konfigürasyonu",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "description": "Task başlığı",
+                    "minLength": 1
+                  },
+                  "instructions": {
+                    "type": "string",
+                    "description": "Task talimatları",
+                    "minLength": 1
+                  },
+                  "assignedTo": {
+                    "type": "string",
+                    "description": "Atanan kişi/grup",
+                    "minLength": 1
+                  },
+                  "dueDate": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Bitiş tarihi (ISO 8601 format)",
+                    "format": "date-time"
+                  },
+                  "form": {
+                    "description": "Form tanımı JSON formatında"
+                  },
+                  "reminderIntervalMinutes": {
+                    "type": "integer",
+                    "description": "Hatırlatma aralığı (dakika)",
+                    "minimum": 0
+                  },
+                  "escalationTimeoutMinutes": {
+                    "type": "integer",
+                    "description": "Escalation timeout (dakika)",
+                    "minimum": 0
+                  },
+                  "escalationAssignee": {
+                    "type": "string",
+                    "description": "Escalation atanacak kişi/grup"
+                  }
+                },
+                "required": [
+                  "title",
+                  "instructions",
+                  "assignedTo"
                 ],
-                "description": "Bitiş tarihi (ISO 8601 format)",
-                "format": "date-time"
-              },
-              "form": {
-                "description": "Form tanımı JSON formatında"
-              },
-              "reminderIntervalMinutes": {
-                "type": "integer",
-                "description": "Hatırlatma aralığı (dakika)",
-                "minimum": 0
-              },
-              "escalationTimeoutMinutes": {
-                "type": "integer",
-                "description": "Escalation timeout (dakika)",
-                "minimum": 0
-              },
-              "escalationAssignee": {
-                "type": "string",
-                "description": "Escalation atanacak kişi/grup"
+                "additionalProperties": false
               }
             },
             "required": [
               "type",
-              "title",
-              "instructions",
-              "assignedTo"
+              "config"
             ],
             "additionalProperties": false
           }
@@ -289,38 +360,56 @@
               "type": {
                 "const": "6"
               },
-              "url": {
-                "type": "string",
-                "description": "HTTP URL",
-                "minLength": 1,
-                "format": "uri"
-              },
-              "method": {
-                "type": "string",
-                "description": "HTTP metodu",
-                "default": "GET"
-              },
-              "headers": {
-                "description": "HTTP header bilgileri JSON formatında"
-              },
-              "body": {
-                "description": "HTTP body JSON formatında"
-              },
-              "timeoutSeconds": {
-                "type": "integer",
-                "description": "Timeout süresi (saniye)",
-                "default": 30,
-                "minimum": 1
-              },
-              "validateSsl": {
-                "type": "boolean",
-                "description": "SSL doğrulaması yapılsın mı",
-                "default": true
+              "config": {
+                "type": "object",
+                "description": "HTTP Task konfigürasyonu",
+                "properties": {
+                  "url": {
+                    "type": "string",
+                    "description": "HTTP URL"
+                  },
+                  "method": {
+                    "type": "string",
+                    "description": "HTTP metodu",
+                    "enum": [
+                      "GET",
+                      "POST",
+                      "PUT",
+                      "DELETE",
+                      "PATCH"
+                    ],
+                    "default": "GET"
+                  },
+                  "headers": {
+                    "type": "object",
+                    "description": "HTTP header bilgileri"
+                  },
+                  "body": {
+                    "type": "object",
+                    "description": "HTTP request body"
+                  },
+                  "timeoutSeconds": {
+                    "type": "integer",
+                    "description": "Timeout süresi (saniye)",
+                    "minimum": 1,
+                    "default": 30
+                  },
+                  "validateSsl": {
+                    "type": "boolean",
+                    "description": "SSL doğrulaması yapılsın mı",
+                    "default": true
+                  }
+                },
+                "required": [
+                  "url",
+                  "method"
+                ],
+                "additionalProperties": false
               }
             },
             "required": [
               "type",
-              "url"
+              "config"
             ],
             "additionalProperties": false
           }
@@ -338,10 +427,17 @@
             "properties": {
               "type": {
                 "const": "7"
+              },
+              "config": {
+                "type": "object",
+                "description": "Script Task konfigürasyonu",
+                "properties": {},
+                "additionalProperties": false
               }
             },
             "required": [
-              "type"
+              "type",
+              "config"
             ],
             "additionalProperties": false
           }
