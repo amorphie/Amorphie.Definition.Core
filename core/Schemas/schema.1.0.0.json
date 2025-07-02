@@ -5,10 +5,10 @@
   "flow": "sys-schemas",
   "flowVersion": "1.0.0",
   "tags": [
-    "Core",
-    "Schema",
-    "MetaSchema",
-    "Base"
+    "core",
+    "schema",
+    "metaSchema",
+    "base"
   ],
   "attributes": {
     "type": "schema",

@@ -1,4 +1,4 @@
-# Amorphie Definition Core
+# Amorphie Core
 
 A domain-driven Amorphie project created using [@amorphie/cli](https://www.npmjs.com/package/@amorphie/cli).
 
@@ -36,7 +36,7 @@ npm run dev
 ## 📁 Project Structure
 
 ```
-Amorphie.Definition.Core/
+amorphie-core/
 ├── core/                    # Domain-specific components
 │   ├── Workflows/                   # Business process workflows
 │   │   ├── workflow-1.json

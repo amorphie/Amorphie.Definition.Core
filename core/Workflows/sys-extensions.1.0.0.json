@@ -1,14 +1,14 @@
 {
-  "key": "sys-tasks",
+  "key": "sys-extensions",
   "version": "1.0.0",
   "domain": "core",
   "flow": "sys-flows",
   "flowVersion": "1.0.0",
   "tags": [
-    "core",
-    "task",
-    "lifecycle",
-    "repository"
+    "Core",
+    "Extension",
+    "Lifecycle",
+    "Repository"
   ],
   "attributes": {
     "timeout": null,
@@ -16,11 +16,11 @@
     "labels": [
       {
         "language": "en-US",
-        "label": "Task Lifecycle Management"
+        "label": "Extension Lifecycle Management"
       },
       {
         "language": "tr-TR",
-        "label": "Görev Yaşam Döngüsü Yönetimi"
+        "label": "Eklenti Yaşam Döngüsü Yönetimi"
       }
     ],
     "functions": [],
@@ -34,17 +34,15 @@
       "labels": [
         {
           "language": "en-US",
-          "label": "Create Task"
+          "label": "Create Extension"
         },
         {
           "language": "tr-TR",
-          "label": "Görev Oluştur"
+          "label": "Eklenti Oluştur"
         }
       ],
       "versionStrategy": "Minor",
-      "schema": {
-        "ref": "Schemas/task.1.0.0.json"
-      },
+      "schema": null,
       "onExecutionTasks": [],
       "view": null
     },
@@ -71,11 +69,11 @@
             "labels": [
               {
                 "language": "en-US",
-                "label": "Activate Task"
+                "label": "Activate Extension"
               },
               {
                 "language": "tr-TR",
-                "label": "Görevi Aktifleştir"
+                "label": "Eklentiyi Aktifleştir"
               }
             ],
             "versionStrategy": "Minor",
@@ -106,7 +104,7 @@
           {
             "key": "delete",
             "from": "draft",
-            "target": "draft",
+            "target": "deleted",
             "triggerType": 0,
             "labels": [
               {
@@ -125,7 +123,7 @@
         ],
         "view": null,
         "onEntries": [],
-        "onExits": [],
+        "onExitss": [],
         "versionStrategy": "Minor"
       },
       {
@@ -150,11 +148,11 @@
             "labels": [
               {
                 "language": "en-US",
-                "label": "Deactivate Task"
+                "label": "Deactivate Extension"
               },
               {
                 "language": "tr-TR",
-                "label": "Görevi Pasifleştir"
+                "label": "Eklentiyi Pasifleştir"
               }
             ],
             "versionStrategy": "Minor",
@@ -169,11 +167,11 @@
             "labels": [
               {
                 "language": "en-US",
-                "label": "Update Task"
+                "label": "Update Extension"
               },
               {
                 "language": "tr-TR",
-                "label": "Görevi Güncelle"
+                "label": "Eklentiyi Güncelle"
               }
             ],
             "versionStrategy": "Minor",
@@ -199,15 +197,12 @@
                 }
               }
             ],
-            "schema": {
-              "ref": "Schemas/task.1.0.0.json"
-            },
             "view": null
           }
         ],
         "view": null,
         "onEntries": [],
-        "onExits": [],
+        "onExitss": [],
         "versionStrategy": "Minor"
       },
       {
@@ -232,11 +227,11 @@
             "labels": [
               {
                 "language": "en-US",
-                "label": "Reactivate Task"
+                "label": "Reactivate Extension"
               },
               {
                 "language": "tr-TR",
-                "label": "Görevi Yeniden Aktifleştir"
+                "label": "Eklentiyi Yeniden Aktifleştir"
               }
             ],
             "versionStrategy": "Minor",
@@ -251,11 +246,11 @@
             "labels": [
               {
                 "language": "en-US",
-                "label": "Archive Task"
+                "label": "Archive Extension"
               },
               {
                 "language": "tr-TR",
-                "label": "Görevi Arşivle"
+                "label": "Eklentiyi Arşivle"
               }
             ],
             "versionStrategy": "Minor",
@@ -265,7 +260,7 @@
         ],
         "view": null,
         "onEntries": [],
-        "onExits": [],
+        "onExitss": [],
         "versionStrategy": "Minor"
       },
       {
@@ -304,7 +299,7 @@
         ],
         "view": null,
         "onEntries": [],
-        "onExits": [],
+        "onExitss": [],
         "versionStrategy": "Minor"
       }
     ]
