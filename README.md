@@ -322,10 +322,13 @@ The linter checks for:
 
 ```bash
 # Validate single file
-node .vscode/scripts/validate-component.js path/to/file.json core
+npm run validate -- -f path/to/file.json
 
 # Validate all components
 npm run validate
+
+# Get help
+npm run validate -- --help
 
 # Lint components
 npm run lint

@@ -11,7 +11,7 @@
   "main": "index.js",
   "scripts": {
     "test": "npm run lint:domain",
-    "validate": "node .vscode/scripts/validate-component.js ${file} core",
+    "validate": "node .vscode/scripts/validate-component.js",
     "validate:all": "node .vscode/scripts/validate-component.js core core",
     "validate:verbose": "node .vscode/scripts/validate-component.js core core --verbose",
     "lint": "node .vscode/scripts/lint-domain.js core",

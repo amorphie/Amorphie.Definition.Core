@@ -184,6 +184,13 @@
             ]
           }
         },
+        "features": {
+          "type": "array",
+          "description": "Features used in the workflow",
+          "items": {
+            "$ref": "#/definitions/reference"
+          }
+        },
         "startTransition": {
           "allOf": [
             {
@@ -213,7 +220,8 @@
             "$ref": "#/definitions/state"
           }
         }
-      }
+      },
+      "additionalProperties": false
     }
   },
   "definitions": {
@@ -724,6 +732,10 @@
           "type": "string",
           "description": "Transition key"
         },
+        "from": {
+          "type": "string",
+          "description": "Source state key"
+        },
         "target": {
           "type": "string",
           "description": "Target state key"
@@ -753,8 +765,27 @@
               "type": "null"
             }
           ]
+        },
+        "onExecutionTasks": {
+          "type": "array",
+          "description": "Tasks to execute during transition",
+          "items": {
+            "$ref": "#/definitions/executionTask"
+          }
+        },
+        "view": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/viewReference"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "View reference for this transition"
         }
-      }
+      },
+      "additionalProperties": false
     },
     "transition": {
       "allOf": [
@@ -814,7 +845,7 @@
             "$ref": "#/definitions/executionTask"
           }
         },
-        "onExit": {
+        "onExits": {
           "type": "array",
           "description": "Tasks to execute when exiting the state",
           "items": {
@@ -832,8 +863,19 @@
           "type": "array",
           "description": "Transitions from this state",
           "items": {
-            "$ref": "#/definitions/transition"
+            "$ref": "#/definitions/transitionBase"
           }
+        },
+        "view": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/viewReference"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "View reference for this state"
         },
         "views": {
           "type": "array",
@@ -861,7 +903,8 @@
             }
           }
         }
-      }
+      },
+      "additionalProperties": false
     }
   }
 }
