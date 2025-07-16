@@ -50,7 +50,7 @@ class ComponentValidator {
     } catch (error) {
       console.warn(`${colors.yellow}⚠ Could not load amorphie.config.json: ${error.message}${colors.reset}`);
     }
-    
+
     // Default config
     return {
       domain: this.domainName,
@@ -60,7 +60,7 @@ class ComponentValidator {
       },
       paths: {
         workflows: "Workflows",
-        functions: "Functions", 
+        functions: "Functions",
         views: "Views",
         extensions: "Extensions",
         schemas: "Schemas",
@@ -76,7 +76,7 @@ class ComponentValidator {
         const schemaContent = fs.readFileSync(schemaPath, "utf8");
         return JSON.parse(schemaContent);
       }
-      
+
       // Fallback to basic schema
       return this.getBasicSchema();
     } catch (error) {
@@ -102,7 +102,7 @@ class ComponentValidator {
   determineSchema(filePath, json) {
     const componentPath = path.dirname(filePath);
     const componentType = path.basename(componentPath);
-    
+
     switch (componentType) {
       case "Workflows":
         return "workflow-definition.schema.json";
@@ -207,14 +207,14 @@ class ComponentValidator {
 
   printParseError(parseError, content, filePath) {
     console.log(`    ${colors.red}JSON Parse Error: ${parseError.message}${colors.reset}`);
-    
+
     const match = parseError.message.match(/position (\\d+)/);
     if (match) {
       const position = parseInt(match[1]);
       const lines = content.split('\\n');
       let currentPos = 0;
       let lineNum = 1;
-      
+
       for (const line of lines) {
         if (currentPos + line.length >= position) {
           const columnNum = position - currentPos + 1;
@@ -241,15 +241,15 @@ class ComponentValidator {
 
   findComponentFiles(directory) {
     const files = [];
-    
+
     const scanDirectory = (dir) => {
       try {
         const entries = fs.readdirSync(dir, { withFileTypes: true });
         console.log(`${colors.blue}📁 Scanning directory: ${dir}${colors.reset}`);
-        
+
         for (const entry of entries) {
           const fullPath = path.join(dir, entry.name);
-          
+
           if (entry.isDirectory()) {
             // Scan component directories
             const componentTypes = ['Workflows', 'Functions', 'Views', 'Extensions', 'Schemas', 'Tasks'];
@@ -279,13 +279,13 @@ class ComponentValidator {
     if (!filename.endsWith('.json')) {
       return false;
     }
-    
+
     // Exclude common config files
     const excludeFiles = ['package.json', 'tsconfig.json', 'amorphie.config.json'];
     if (excludeFiles.includes(filename)) {
       return false;
     }
-    
+
     return true;
   }
 
@@ -296,7 +296,7 @@ class ComponentValidator {
     console.log(`Total files: ${this.totalFiles}`);
     console.log(`${colors.green}Valid files: ${this.validFiles}${colors.reset}`);
     console.log(`${colors.red}Invalid files: ${this.invalidFiles}${colors.reset}`);
-    
+
     if (this.invalidFiles === 0) {
       console.log(`\\n${colors.green}${colors.bright}✅ All ${this.domainName} domain components are valid!${colors.reset}`);
     } else {
@@ -336,17 +336,73 @@ class ComponentValidator {
   }
 }
 
-// Main execution
-async function main() {
-  const [, , targetPath, domainName] = process.argv;
-  
-  if (!domainName) {
-    console.error("Usage: node validate-component.js <targetPath> <domainName>");
-    process.exit(1);
+// Command line argument parsing
+function parseArguments(args) {
+  const options = {
+    targetPath: null,
+    domainName: 'core', // default domain
+    verbose: false,
+    help: false
+  };
+
+  for (let i = 2; i < args.length; i++) {
+    const arg = args[i];
+
+    if (arg === '-f' || arg === '--file') {
+      options.targetPath = args[i + 1];
+      i++; // skip next argument as it's the file path
+    } else if (arg === '-d' || arg === '--domain') {
+      options.domainName = args[i + 1];
+      i++; // skip next argument as it's the domain name
+    } else if (arg === '--verbose') {
+      options.verbose = true;
+    } else if (arg === '-h' || arg === '--help') {
+      options.help = true;
+    } else if (!arg.startsWith('-')) {
+      // Legacy support: first non-flag argument is targetPath, second is domainName
+      if (!options.targetPath) {
+        options.targetPath = arg;
+      } else if (options.domainName === 'core') {
+        options.domainName = arg;
+      }
+    }
   }
 
-  const validator = new ComponentValidator(domainName);
-  await validator.run(targetPath);
+  return options;
 }
 
-main().catch(console.error); 
+function showHelp() {
+  console.log(`${colors.cyan}${colors.bright}Amorphie Component Validator${colors.reset}`);
+  console.log(`${colors.cyan}${'='.repeat(40)}${colors.reset}`);
+  console.log('');
+  console.log('Usage:');
+  console.log('  npm run validate                           # Validate all core domain files');
+  console.log('  npm run validate -- -f path/to/file.json  # Validate single file');
+  console.log('  npm run validate -- -f file.json -d core  # Validate file for specific domain');
+  console.log('');
+  console.log('Options:');
+  console.log('  -f, --file <path>     Validate specific file');
+  console.log('  -d, --domain <name>   Domain name (default: core)');
+  console.log('  --verbose             Enable verbose output');
+  console.log('  -h, --help            Show this help message');
+  console.log('');
+  console.log('Examples:');
+  console.log('  npm run validate -- -f core/Schemas/schema.1.0.0.json');
+  console.log('  npm run validate -- -f workflow.json -d myDomain');
+  console.log('');
+}
+
+// Main execution
+async function main() {
+  const options = parseArguments(process.argv);
+
+  if (options.help) {
+    showHelp();
+    process.exit(0);
+  }
+
+  const validator = new ComponentValidator(options.domainName);
+  await validator.run(options.targetPath);
+}
+
+main().catch(console.error);
