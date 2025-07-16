@@ -123,7 +123,7 @@
         ],
         "view": null,
         "onEntries": [],
-        "onExitss": [],
+        "onExits": [],
         "versionStrategy": "Minor"
       },
       {
@@ -202,7 +202,7 @@
         ],
         "view": null,
         "onEntries": [],
-        "onExitss": [],
+        "onExits": [],
         "versionStrategy": "Minor"
       },
       {
@@ -260,7 +260,7 @@
         ],
         "view": null,
         "onEntries": [],
-        "onExitss": [],
+        "onExits": [],
         "versionStrategy": "Minor"
       },
       {
@@ -299,7 +299,7 @@
         ],
         "view": null,
         "onEntries": [],
-        "onExitss": [],
+        "onExits": [],
         "versionStrategy": "Minor"
       }
     ]
