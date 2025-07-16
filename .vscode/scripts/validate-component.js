@@ -229,10 +229,30 @@ class ComponentValidator {
     }
   }
 
-  printSchemaErrors(errors, filePath, content) {
+    printSchemaErrors(errors, filePath, content) {
     errors.forEach((error, index) => {
       console.log(`    ${colors.red}✗ Error ${index + 1}: ${error.message}${colors.reset}`);
-      console.log(`    ${colors.white}  Path: ${error.instancePath}${colors.reset}`);
+
+      // Enhanced path information for better understanding
+      let pathInfo = `  Path: ${error.instancePath}`;
+
+      // For additionalProperties errors, show the specific invalid property name
+      if (error.keyword === 'additionalProperties' && error.params && error.params.additionalProperty) {
+        const invalidProperty = error.params.additionalProperty;
+        pathInfo += ` → Invalid property: "${invalidProperty}"`;
+      }
+
+      // For array items, make the path more readable (generic for any array)
+      const arrayMatch = error.instancePath.match(/\/([^\/]+)\/(\d+)(?:\/|$)/);
+      if (arrayMatch) {
+        const arrayName = arrayMatch[1];
+        const itemIndex = parseInt(arrayMatch[2]);
+        const capitalizedArrayName = arrayName.charAt(0).toUpperCase() + arrayName.slice(1);
+        pathInfo += ` (${capitalizedArrayName} #${itemIndex + 1})`;
+      }
+
+      console.log(`    ${colors.white}${pathInfo}${colors.reset}`);
+
       if (error.data !== undefined) {
         console.log(`    ${colors.white}  Value: ${JSON.stringify(error.data)}${colors.reset}`);
       }
